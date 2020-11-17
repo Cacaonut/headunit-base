@@ -1,0 +1,12 @@
+<RCC>
+  <qresource prefix="images">
+    <file>media.svg</file>
+    <file>android_auto.png</file>
+    <file>car.svg</file>
+    <file>devices.svg</file>
+    <file>home.svg</file>
+    <file>settings.svg</file>
+    <file>toyota.png</file>
+    <file>home.svg</file>
+  </qresource>
+</RCC>
