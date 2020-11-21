@@ -294,10 +294,10 @@ class Ui_MainWindow(object):
         window = subprocess.check_output("wmctrl -l | grep 'MainWindow'")
         window_id = window.decode("UTF-8").split(" ")[0]
         print(window_id)
-        window_android_auto = QtGui.QWindow.fromWinId(window_id)
-        window_android_auto.setFlag(QtCore.Qt.FramelessWindowHint)
-        content_android_auto = QtWidgets.QWidget.createWindowContainer(window_android_auto)
-        self.content.addWidget(content_android_auto)
+        #window_android_auto = QtGui.QWindow.fromWinId(window_id)
+        #window_android_auto.setFlag(QtCore.Qt.FramelessWindowHint)
+        #content_android_auto = QtWidgets.QWidget.createWindowContainer(window_android_auto)
+        #self.content.addWidget(content_android_auto)
 
         # Settings
         content_settings = QtWidgets.QWidget()
