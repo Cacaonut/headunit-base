@@ -297,7 +297,7 @@ class Ui_MainWindow(object):
         if platform == "linux" or platform == "linux2":
             subprocess.Popen(["sudo", "/home/pi/openauto/bin/autoapp"])
             time.sleep(3)
-            os.system("wmctrl -r MainWindow -e 0,0,45,720,435 ")
+            #os.system("wmctrl -r MainWindow -e 0,0,45,720,435 ")
             windows = subprocess.check_output(["wmctrl", "-l"]).decode("UTF-8").split("\n")
             for window in windows:
                 if window.find("MainWindow") > -1:
