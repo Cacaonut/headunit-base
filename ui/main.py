@@ -10,6 +10,7 @@ import ui.settings as settings
 from PyQt5 import QtCore, QtGui, QtWidgets
 from datetime import datetime
 import threading
+from sys import platform
 
 
 class Ui_MainWindow(object):
@@ -17,7 +18,8 @@ class Ui_MainWindow(object):
         MainWindow.setObjectName("Headunit")
         MainWindow.setEnabled(True)
         MainWindow.resize(800, 480)
-        MainWindow.showFullScreen()
+        if platform == "linux" or platform == "linux2":
+            MainWindow.showFullScreen()
         MainWindow.setStyleSheet("")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setStyleSheet("#centralwidget {background: #000}\n"
@@ -291,10 +293,11 @@ class Ui_MainWindow(object):
         self.content.addWidget(content_devices)
 
         # Android Auto
-        os.system("sudo ~/openauto/bin/autoapp")
-        window = subprocess.check_output("wmctrl -l | grep 'MainWindow'")
-        window_id = window.decode("UTF-8").split(" ")[0]
-        print(window_id)
+        if platform == "linux" or platform == "linux2":
+            os.system("sudo ~/openauto/bin/autoapp")
+            window = subprocess.check_output("wmctrl -l | grep 'MainWindow'")
+            window_id = window.decode("UTF-8").split(" ")[0]
+            print(window_id)
         #window_android_auto = QtGui.QWindow.fromWinId(window_id)
         #window_android_auto.setFlag(QtCore.Qt.FramelessWindowHint)
         #content_android_auto = QtWidgets.QWidget.createWindowContainer(window_android_auto)

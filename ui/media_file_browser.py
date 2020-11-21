@@ -14,6 +14,7 @@ import ui.lists.file
 import ui.lists.folder
 from mutagen.mp3 import MP3
 from mutagen.easyid3 import EasyID3
+from sys import platform
 
 
 class Ui_content(object):
@@ -130,7 +131,10 @@ class Ui_content(object):
 
         # Search for files and directories
         self.retranslateUi(content)
-        self.current_path = "D:\\"
+        if platform == "linux" or platform == "linux2":
+            self.current_path = "/home/pi"
+        else:
+            self.current_path = "D:\\"
         self.updateFiles()
         QtCore.QMetaObject.connectSlotsByName(content)
 
