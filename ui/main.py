@@ -294,7 +294,7 @@ class Ui_MainWindow(object):
 
         # Android Auto
         if platform == "linux" or platform == "linux2":
-            subprocess.call(["sudo ~/openauto/bin/autoapp"])
+            subprocess.call(["~/openauto/bin/autoapp"])
             window = subprocess.check_output(["wmctrl", "-l", "|", "grep", "'MainWindow'"])
             window_id = window.decode("UTF-8").split(" ")[0]
             print(window_id)
