@@ -295,7 +295,7 @@ class Ui_MainWindow(object):
         # Android Auto
         if platform == "linux" or platform == "linux2":
             os.system("sudo ~/openauto/bin/autoapp")
-            window = subprocess.check_output("wmctrl -l | grep 'MainWindow'")
+            window = subprocess.check_output(["wmctrl", "-l", "|", "grep", "'MainWindow'"])
             window_id = window.decode("UTF-8").split(" ")[0]
             print(window_id)
         #window_android_auto = QtGui.QWindow.fromWinId(window_id)
