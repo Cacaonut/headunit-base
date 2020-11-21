@@ -380,7 +380,6 @@ class Ui_MainWindow(object):
         self.current_tab = self.btn_settings
 
     def updateTime(self):
-        os.system("wmctrl -R Headunit")
         now = datetime.now()
         current_time = now.strftime("%H:%M")
         self.label_clock.setText(current_time)
