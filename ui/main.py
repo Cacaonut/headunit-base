@@ -298,6 +298,7 @@ class Ui_MainWindow(object):
             #window = subprocess.check_output(["wmctrl", "-a", "'Headunit'"])
             window = subprocess.check_output(["wmctrl", "-l", "|", "grep", "'MainWindow'"])
             window_id = window.decode("UTF-8").split(" ")[0]
+            print(window)
             print(int(window_id, 0))
             window_android_auto = QtGui.QWindow.fromWinId(int(window_id, 0))
             window_android_auto.setFlag(QtCore.Qt.FramelessWindowHint)
