@@ -297,6 +297,7 @@ class Ui_MainWindow(object):
         if platform == "linux" or platform == "linux2":
             subprocess.Popen(["sudo", "/home/pi/openauto/bin/autoapp"])
             time.sleep(3)
+            os.system("wmctrl -r MainWindow -e 0,0,45,720,435 ")
             windows = subprocess.check_output(["wmctrl", "-l"]).decode("UTF-8").split("\n")
             for window in windows:
                 if window.find("MainWindow") > -1:
@@ -306,7 +307,6 @@ class Ui_MainWindow(object):
                     window_android_auto = QtGui.QWindow.fromWinId(int(window_id, 0))
                     window_android_auto.setFlag(QtCore.Qt.FramelessWindowHint)
                     content_android_auto = QtWidgets.QWidget.createWindowContainer(window_android_auto)
-                    content_android_auto.resize(720, 435)
                     self.content.addWidget(content_android_auto)
 
         # Settings
