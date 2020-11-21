@@ -306,6 +306,7 @@ class Ui_MainWindow(object):
                     window_android_auto = QtGui.QWindow.fromWinId(int(window_id, 0))
                     window_android_auto.setFlag(QtCore.Qt.FramelessWindowHint)
                     content_android_auto = QtWidgets.QWidget.createWindowContainer(window_android_auto)
+                    content_android_auto.resize(720, 435)
                     self.content.addWidget(content_android_auto)
 
         # Settings
