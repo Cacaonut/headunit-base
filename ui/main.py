@@ -302,7 +302,6 @@ class Ui_MainWindow(object):
             ui_android_auto.setupUi(self.content_android_auto)
             self.content.addWidget(self.content_android_auto)
             self.current_aa_wid = 0
-            self.bindAndroidAuto()
             #os.system("wmctrl -r MainWindow -e 0,0,45,720,435 ")
 
 
@@ -371,6 +370,7 @@ class Ui_MainWindow(object):
         self.btn_android_auto.setEnabled(False)
         self.current_tab.setEnabled(True)
         self.label_title.setText("ANDROID AUTO")
+        self.bindAndroidAuto()
         self.current_tab = self.btn_android_auto
 
     def switchToSettings(self, event):
@@ -401,5 +401,3 @@ class Ui_MainWindow(object):
                     self.content.removeWidget(self.content_android_auto)
                     self.content.insertWidget(4, content_android_auto)
                     self.content_android_auto = content_android_auto
-
-        threading.Timer(1, self.bindAndroidAuto).start()
