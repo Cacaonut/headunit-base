@@ -10,8 +10,8 @@ import os
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-import media
-import media_file_browser
+import ui.media as media
+import ui.media_file_browser as media_file_browser
 
 
 class Ui_widget(object):

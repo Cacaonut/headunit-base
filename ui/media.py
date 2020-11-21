@@ -9,7 +9,8 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-import media_music_player, media_file_browser
+import ui.media_music_player as media_music_player
+import ui.media_file_browser as media_file_browser
 
 
 class Ui_content(object):

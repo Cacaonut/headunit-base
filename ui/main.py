@@ -1,12 +1,11 @@
 import os
 
-import res.resources
 import subprocess
-import car
-import devices
-import home
-import media
-import settings
+import ui.car as car
+import ui.devices as devices
+import ui.home as home
+import ui.media as media
+import ui.settings as settings
 from PyQt5 import QtCore, QtGui, QtWidgets
 from datetime import datetime
 import threading

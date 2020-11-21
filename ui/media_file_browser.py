@@ -10,8 +10,8 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 import os
-import lists.file
-import lists.folder
+import ui.lists.file
+import ui.lists.folder
 from mutagen.mp3 import MP3
 from mutagen.easyid3 import EasyID3
 
@@ -158,7 +158,7 @@ class Ui_content(object):
 
         for directory in dirs:
             content_dir = QtWidgets.QWidget()
-            ui_dir = lists.folder.Ui_widget()
+            ui_dir = ui.lists.folder.Ui_widget()
             ui_dir.setupUi(content_dir, self)
             ui_dir.label_title.setText(directory)
             self.scrollAreaLayout.addWidget(content_dir)
@@ -167,7 +167,7 @@ class Ui_content(object):
         for file in files:
             i += 1
             content_file = QtWidgets.QWidget()
-            ui_file = lists.file.Ui_widget()
+            ui_file = ui.lists.file.Ui_widget()
             ui_file.setupUi(content_file, self, file, self.owner)
             filename, file_extension = os.path.splitext(file)
             ui_file.label_number.setText(str(i))
