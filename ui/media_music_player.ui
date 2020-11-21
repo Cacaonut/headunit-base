@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>720</width>
-    <height>435</height>
+    <width>660</width>
+    <height>300</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,33 +15,24 @@
   </property>
   <property name="styleSheet">
    <string notr="true">#content {
-	background: black;
+	background: black
 }
 
 * {
-	color: white;
+	color: white
 }</string>
   </property>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>260</x>
-     <y>187</y>
-     <width>200</width>
-     <height>50</height>
+     <x>280</x>
+     <y>140</y>
+     <width>47</width>
+     <height>13</height>
     </rect>
    </property>
-   <property name="font">
-    <font>
-     <family>Avenir Next LT Pro</family>
-     <pointsize>24</pointsize>
-    </font>
-   </property>
    <property name="text">
-    <string>Android Auto</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
+    <string>Music</string>
    </property>
   </widget>
  </widget>

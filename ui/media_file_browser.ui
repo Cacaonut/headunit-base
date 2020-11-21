@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>720</width>
-    <height>435</height>
+    <width>660</width>
+    <height>300</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,184 +15,220 @@
   </property>
   <property name="styleSheet">
    <string notr="true">#content {
-	background: black;
+	background: black
 }
 
 * {
-	color: white;
+	color: white
 }</string>
   </property>
-  <widget class="QWidget" name="btn_bluetooth" native="true">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>30</y>
-     <width>180</width>
-     <height>45</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">#btn_bluetooth {
-	background: #252525; color: white
-}
-
-#btn_bluetooth::hover {
-	background: #303030;
-}
-
-#btn_bluetooth::!enabled {
-	background: #595959;
-	border-bottom: 3px solid #E00000;
-}</string>
-   </property>
-   <widget class="QLabel" name="text_btn_bluetooth">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>10</y>
-      <width>140</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Avenir Next LT Pro</family>
-      <pointsize>16</pointsize>
-     </font>
-    </property>
-    <property name="lineWidth">
-     <number>1</number>
-    </property>
-    <property name="text">
-     <string>Bluetooth</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-  </widget>
-  <widget class="QWidget" name="btn_usb" native="true">
+  <widget class="QWidget" name="btn_play" native="true">
    <property name="enabled">
     <bool>true</bool>
    </property>
    <property name="geometry">
     <rect>
-     <x>230</x>
-     <y>30</y>
-     <width>180</width>
-     <height>45</height>
+     <x>0</x>
+     <y>265</y>
+     <width>120</width>
+     <height>35</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">#btn_usb {
+    <string notr="true">#btn_play {
 	background: #252525; color: white
 }
 
-#btn_usb::hover {
+#btn_play::hover {
 	background: #303030;
 }
 
-#btn_usb::!enabled {
+#btn_play::!enabled {
 	background: #595959;
 	border-bottom: 3px solid #E00000;
 }</string>
    </property>
-   <widget class="QLabel" name="text_btn_usb">
+   <widget class="QLabel" name="text_btn_play">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>10</y>
-      <width>140</width>
+      <x>10</x>
+      <y>5</y>
+      <width>100</width>
       <height>25</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Avenir Next LT Pro</family>
-      <pointsize>16</pointsize>
+      <pointsize>14</pointsize>
      </font>
     </property>
     <property name="lineWidth">
      <number>1</number>
     </property>
     <property name="text">
-     <string>USB</string>
+     <string>Play</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
   </widget>
-  <widget class="QWidget" name="widget" native="true">
+  <widget class="QWidget" name="btn_shuffle" native="true">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>100</y>
+     <x>135</x>
+     <y>265</y>
+     <width>120</width>
+     <height>35</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#btn_shuffle {
+	background: #252525; color: white
+}
+
+#btn_shuffle::hover {
+	background: #303030;
+}
+
+#btn_shuffle::!enabled {
+	background: #595959;
+	border-bottom: 3px solid #E00000;
+}</string>
+   </property>
+   <widget class="QLabel" name="text_btn_shuffle">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>5</y>
+      <width>100</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Avenir Next LT Pro</family>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="lineWidth">
+     <number>1</number>
+    </property>
+    <property name="text">
+     <string>Shuffle</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QScrollArea" name="scrollArea">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>60</y>
      <width>660</width>
-     <height>300</height>
+     <height>190</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">#scrollArea  {
+	border: none
+}</string>
+   </property>
+   <property name="widgetResizable">
+    <bool>true</bool>
+   </property>
+   <widget class="QWidget" name="scrollAreaWidgetContents">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>660</width>
+      <height>190</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#scrollAreaWidgetContents {
+	background: black;
+}</string>
+    </property>
+   </widget>
   </widget>
-  <widget class="QWidget" name="btn_file_browser" native="true">
+  <widget class="QWidget" name="btn_back" native="true">
    <property name="enabled">
     <bool>true</bool>
    </property>
    <property name="geometry">
     <rect>
-     <x>600</x>
-     <y>30</y>
-     <width>70</width>
-     <height>45</height>
+     <x>10</x>
+     <y>10</y>
+     <width>30</width>
+     <height>30</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">#btn_file_browser {
+    <string notr="true">#btn_back {
 	background: #252525; color: white
 }
 
-#btn_file_browser::hover {
+#btn_back::hover {
 	background: #303030;
 }
 
-#btn_file_browser::!enabled {
+#btn_back::!enabled {
 	background: #595959;
 	border-bottom: 3px solid #E00000;
 }</string>
    </property>
-   <widget class="QLabel" name="text_btn_file_browser">
+   <widget class="QLabel" name="label_btn_back">
     <property name="geometry">
      <rect>
-      <x>15</x>
+      <x>2</x>
       <y>2</y>
-      <width>40</width>
-      <height>40</height>
+      <width>26</width>
+      <height>26</height>
      </rect>
     </property>
-    <property name="font">
-     <font>
-      <family>Avenir Next LT Pro</family>
-      <pointsize>16</pointsize>
-     </font>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
     </property>
-    <property name="lineWidth">
-     <number>1</number>
+    <property name="styleSheet">
+     <string notr="true"/>
     </property>
     <property name="text">
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap resource="res/main.qrc">:/images/file_browser.svg</pixmap>
+     <pixmap resource="res/main.qrc">:/images/back.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
     </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
    </widget>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>10</y>
+     <width>500</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Avenir Next LT Pro</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>path/to/current/directory</string>
+   </property>
   </widget>
  </widget>
  <resources>

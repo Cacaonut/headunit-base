@@ -16,32 +16,32 @@ class Ui_content(object):
         content.setObjectName("content")
         content.resize(720, 435)
         content.setStyleSheet("#content {\n"
-"    background: black;\n"
-"}\n"
-"\n"
-"* {\n"
-"    color: white;\n"
-"}")
+                              "    background: black;\n"
+                              "}\n"
+                              "\n"
+                              "* {\n"
+                              "    color: white;\n"
+                              "}")
         self.btn_connected = QtWidgets.QWidget(content)
         self.btn_connected.setEnabled(False)
         self.btn_connected.setGeometry(QtCore.QRect(30, 30, 180, 45))
         self.btn_connected.setStyleSheet("#btn_connected {\n"
-"    background: #252525; color: white\n"
-"}\n"
-"\n"
-"#btn_connected::hover {\n"
-"    background: #303030;\n"
-"}\n"
-"\n"
-"#btn_connected::!enabled {\n"
-"    background: #595959;\n"
-"    border-bottom: 3px solid #E00000;\n"
-"}")
+                                         "    background: #252525; color: white\n"
+                                         "}\n"
+                                         "\n"
+                                         "#btn_connected::hover {\n"
+                                         "    background: #303030;\n"
+                                         "}\n"
+                                         "\n"
+                                         "#btn_connected::!enabled {\n"
+                                         "    background: #595959;\n"
+                                         "    border-bottom: 3px solid #E00000;\n"
+                                         "}")
         self.btn_connected.setObjectName("btn_connected")
         self.text_btn_connected = QtWidgets.QLabel(self.btn_connected)
         self.text_btn_connected.setGeometry(QtCore.QRect(20, 10, 140, 25))
         font = QtGui.QFont()
-        font.setFamily("Avenir Next LT Pro")
+        font.setFamily("Montserrat Light")
         font.setPointSize(16)
         self.text_btn_connected.setFont(font)
         self.text_btn_connected.setLineWidth(1)
@@ -51,22 +51,22 @@ class Ui_content(object):
         self.btn_linked.setEnabled(True)
         self.btn_linked.setGeometry(QtCore.QRect(230, 30, 180, 45))
         self.btn_linked.setStyleSheet("#btn_linked {\n"
-"    background: #252525; color: white\n"
-"}\n"
-"\n"
-"#btn_linked::hover {\n"
-"    background: #303030;\n"
-"}\n"
-"\n"
-"#btn_linked::!enabled {\n"
-"    background: #595959;\n"
-"    border-bottom: 3px solid #E00000;\n"
-"}")
+                                      "    background: #252525; color: white\n"
+                                      "}\n"
+                                      "\n"
+                                      "#btn_linked::hover {\n"
+                                      "    background: #303030;\n"
+                                      "}\n"
+                                      "\n"
+                                      "#btn_linked::!enabled {\n"
+                                      "    background: #595959;\n"
+                                      "    border-bottom: 3px solid #E00000;\n"
+                                      "}")
         self.btn_linked.setObjectName("btn_linked")
         self.text_btn_linked = QtWidgets.QLabel(self.btn_linked)
         self.text_btn_linked.setGeometry(QtCore.QRect(20, 10, 140, 25))
         font = QtGui.QFont()
-        font.setFamily("Avenir Next LT Pro")
+        font.setFamily("Montserrat Light")
         font.setPointSize(16)
         self.text_btn_linked.setFont(font)
         self.text_btn_linked.setLineWidth(1)
@@ -76,22 +76,22 @@ class Ui_content(object):
         self.btn_connect.setEnabled(True)
         self.btn_connect.setGeometry(QtCore.QRect(30, 365, 120, 35))
         self.btn_connect.setStyleSheet("#btn_connect {\n"
-"    background: #252525; color: white\n"
-"}\n"
-"\n"
-"#btn_connect::hover {\n"
-"    background: #303030;\n"
-"}\n"
-"\n"
-"#btn_connect::!enabled {\n"
-"    background: #595959;\n"
-"    border-bottom: 3px solid #E00000;\n"
-"}")
+                                       "    background: #252525; color: white\n"
+                                       "}\n"
+                                       "\n"
+                                       "#btn_connect::hover {\n"
+                                       "    background: #303030;\n"
+                                       "}\n"
+                                       "\n"
+                                       "#btn_connect::!enabled {\n"
+                                       "    background: #595959;\n"
+                                       "    border-bottom: 3px solid #E00000;\n"
+                                       "}")
         self.btn_connect.setObjectName("btn_connect")
         self.text_btn_connect = QtWidgets.QLabel(self.btn_connect)
         self.text_btn_connect.setGeometry(QtCore.QRect(10, 10, 100, 15))
         font = QtGui.QFont()
-        font.setFamily("Avenir Next LT Pro")
+        font.setFamily("Montserrat Light")
         font.setPointSize(14)
         self.text_btn_connect.setFont(font)
         self.text_btn_connect.setLineWidth(1)
@@ -104,8 +104,8 @@ class Ui_content(object):
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
         self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 658, 238))
         self.scrollAreaWidgetContents.setStyleSheet("#scrollAreaWidgetContents {\n"
-"    background: black\n"
-"}")
+                                                    "    background: black\n"
+                                                    "}")
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.verticalLayoutWidget = QtWidgets.QWidget(self.scrollAreaWidgetContents)
         self.verticalLayoutWidget.setGeometry(QtCore.QRect(-1, -1, 661, 241))
@@ -128,6 +128,7 @@ class Ui_content(object):
 
 if __name__ == "__main__":
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
     content = QtWidgets.QWidget()
     ui = Ui_content()

@@ -1,11 +1,15 @@
+import os
+
 import res.resources
-import android_auto
+import subprocess
 import car
 import devices
 import home
 import media
 import settings
 from PyQt5 import QtCore, QtGui, QtWidgets
+from datetime import datetime
+import threading
 
 
 class Ui_MainWindow(object):
@@ -27,7 +31,7 @@ class Ui_MainWindow(object):
         self.label_title = QtWidgets.QLabel(self.top_bar)
         self.label_title.setGeometry(QtCore.QRect(260, 7, 200, 30))
         font = QtGui.QFont()
-        font.setFamily("Avenir Next LT Pro")
+        font.setFamily("Montserrat Light")
         font.setPointSize(16)
         self.label_title.setFont(font)
         self.label_title.setAutoFillBackground(False)
@@ -38,7 +42,7 @@ class Ui_MainWindow(object):
         self.label_clock = QtWidgets.QLabel(self.top_bar)
         self.label_clock.setGeometry(QtCore.QRect(10, 7, 80, 30))
         font = QtGui.QFont()
-        font.setFamily("Avenir Next LT Pro")
+        font.setFamily("Montserrat Light")
         font.setPointSize(16)
         self.label_clock.setFont(font)
         self.label_clock.setAutoFillBackground(False)
@@ -55,7 +59,7 @@ class Ui_MainWindow(object):
         self.label_temperature = QtWidgets.QLabel(self.top_bar)
         self.label_temperature.setGeometry(QtCore.QRect(625, 7, 80, 30))
         font = QtGui.QFont()
-        font.setFamily("Avenir Next LT Pro")
+        font.setFamily("Montserrat Light")
         font.setPointSize(16)
         self.label_temperature.setFont(font)
         self.label_temperature.setAutoFillBackground(False)
@@ -81,7 +85,7 @@ class Ui_MainWindow(object):
         self.text_btn_media = QtWidgets.QLabel(self.btn_media)
         self.text_btn_media.setGeometry(QtCore.QRect(10, 47, 60, 15))
         font = QtGui.QFont()
-        font.setFamily("Avenir Next LT Pro")
+        font.setFamily("Montserrat Light")
         font.setPointSize(11)
         self.text_btn_media.setFont(font)
         self.text_btn_media.setLineWidth(1)
@@ -112,7 +116,7 @@ class Ui_MainWindow(object):
         self.text_btn_home = QtWidgets.QLabel(self.btn_home)
         self.text_btn_home.setGeometry(QtCore.QRect(10, 47, 60, 15))
         font = QtGui.QFont()
-        font.setFamily("Avenir Next LT Pro")
+        font.setFamily("Montserrat Light")
         font.setPointSize(11)
         self.text_btn_home.setFont(font)
         self.text_btn_home.setLineWidth(1)
@@ -142,7 +146,7 @@ class Ui_MainWindow(object):
         self.text_btn_car = QtWidgets.QLabel(self.btn_car)
         self.text_btn_car.setGeometry(QtCore.QRect(10, 47, 60, 15))
         font = QtGui.QFont()
-        font.setFamily("Avenir Next LT Pro")
+        font.setFamily("Montserrat Light")
         font.setPointSize(11)
         self.text_btn_car.setFont(font)
         self.text_btn_car.setLineWidth(1)
@@ -172,7 +176,7 @@ class Ui_MainWindow(object):
         self.text_btn_devices = QtWidgets.QLabel(self.btn_devices)
         self.text_btn_devices.setGeometry(QtCore.QRect(10, 47, 60, 15))
         font = QtGui.QFont()
-        font.setFamily("Avenir Next LT Pro")
+        font.setFamily("Montserrat Light")
         font.setPointSize(11)
         self.text_btn_devices.setFont(font)
         self.text_btn_devices.setLineWidth(1)
@@ -202,7 +206,7 @@ class Ui_MainWindow(object):
         self.text_btn_android_auto = QtWidgets.QLabel(self.btn_android_auto)
         self.text_btn_android_auto.setGeometry(QtCore.QRect(10, 30, 60, 30))
         font = QtGui.QFont()
-        font.setFamily("Avenir Next LT Pro")
+        font.setFamily("Montserrat Light")
         font.setPointSize(11)
         self.text_btn_android_auto.setFont(font)
         self.text_btn_android_auto.setStyleSheet("")
@@ -286,9 +290,13 @@ class Ui_MainWindow(object):
         self.content.addWidget(content_devices)
 
         # Android Auto
-        content_android_auto = QtWidgets.QWidget()
-        ui_android_auto = android_auto.Ui_content()
-        ui_android_auto.setupUi(content_android_auto)
+        os.system("sudo ~/openauto/bin/autoapp")
+        window = subprocess.check_output("wmctrl -l | grep 'MainWindow'")
+        window_id = window.decode("UTF-8").split(" ")[0]
+        print(window_id)
+        window_android_auto = QtGui.QWindow.fromWinId(window_id)
+        window_android_auto.setFlag(QtCore.Qt.FramelessWindowHint)
+        content_android_auto = QtWidgets.QWidget.createWindowContainer(window_android_auto)
         self.content.addWidget(content_android_auto)
 
         # Settings
@@ -307,13 +315,13 @@ class Ui_MainWindow(object):
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.retranslateUi(MainWindow)
+        self.updateTime()
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Headunit"))
         self.label_title.setText(_translate("MainWindow", "HOME"))
-        self.label_clock.setText(_translate("MainWindow", "12:32"))
         self.label_temperature.setText(_translate("MainWindow", "21 °C"))
         self.text_btn_media.setText(_translate("MainWindow", "Media"))
         self.text_btn_home.setText(_translate("MainWindow", "Home"))
@@ -364,3 +372,9 @@ class Ui_MainWindow(object):
         self.current_tab.setEnabled(True)
         self.label_title.setText("SETTINGS")
         self.current_tab = self.btn_settings
+
+    def updateTime(self):
+        now = datetime.now()
+        current_time = now.strftime("%H:%M")
+        self.label_clock.setText(current_time)
+        threading.Timer(0.5, self.updateTime).start()

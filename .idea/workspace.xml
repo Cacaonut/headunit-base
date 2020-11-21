@@ -1,7 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="8721f21b-a18e-4131-9aaa-b09c049b5ac3" name="Default Changelist" comment="" />
+    <list default="true" id="8721f21b-a18e-4131-9aaa-b09c049b5ac3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ui/lists/file.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ui/lists/folder.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ui/media_file_browser.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ui/res/back.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ui/res/back.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/android_auto.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/media_music_player.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/android_auto.ui" beforeDir="false" afterPath="$PROJECT_DIR$/ui/media_music_player.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/devices.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/devices.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/media.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/media.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/media.ui" beforeDir="false" afterPath="$PROJECT_DIR$/ui/media.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/res/main.qrc" beforeDir="false" afterPath="$PROJECT_DIR$/ui/res/main.qrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/res/resources.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/res/resources.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,14 +48,22 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="JupyterTrust" id="e3f656dc-581d-47a7-8d9f-fee9099e88d4" />
   <component name="ProjectId" id="1kKz6Lc7q0o4J9s5VH4NTG1MLJN" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -127,41 +169,68 @@
       <workItem from="1605470916103" duration="421000" />
       <workItem from="1605518246499" duration="5249000" />
       <workItem from="1605553541039" duration="4006000" />
-      <workItem from="1605598109167" duration="4065000" />
+      <workItem from="1605598109167" duration="5116000" />
+      <workItem from="1605806992083" duration="1298000" />
+      <workItem from="1605862205469" duration="11625000" />
+      <workItem from="1605883628474" duration="623000" />
+      <workItem from="1605890198326" duration="5721000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
   <component name="WindowStateProjectService">
+    <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1605945465867">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1605945465867" />
     <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1605463918745">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="274" key="FileChooserDialogImpl/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1605463918745" />
-    <state width="1181" height="282" key="GridCell.Tab.0.bottom" timestamp="1605601049995">
+    <state width="1176" height="267" key="GridCell.Tab.0.bottom" timestamp="1605951316915">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1181" height="282" key="GridCell.Tab.0.bottom/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1605601049995" />
-    <state width="1181" height="282" key="GridCell.Tab.0.center" timestamp="1605601049995">
+    <state width="1176" height="267" key="GridCell.Tab.0.bottom/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1605951316915" />
+    <state width="1176" height="267" key="GridCell.Tab.0.center" timestamp="1605951316915">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1181" height="282" key="GridCell.Tab.0.center/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1605601049995" />
-    <state width="1181" height="282" key="GridCell.Tab.0.left" timestamp="1605601049995">
+    <state width="1176" height="267" key="GridCell.Tab.0.center/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1605951316915" />
+    <state width="1176" height="267" key="GridCell.Tab.0.left" timestamp="1605951316915">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1181" height="282" key="GridCell.Tab.0.left/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1605601049995" />
-    <state width="1181" height="282" key="GridCell.Tab.0.right" timestamp="1605601049995">
+    <state width="1176" height="267" key="GridCell.Tab.0.left/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1605951316915" />
+    <state width="1176" height="267" key="GridCell.Tab.0.right" timestamp="1605951316915">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1181" height="282" key="GridCell.Tab.0.right/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1605601049995" />
+    <state width="1176" height="267" key="GridCell.Tab.0.right/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1605951316915" />
     <state x="461" y="164" key="SettingsEditor" timestamp="1605599771444">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="164" key="SettingsEditor/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1605599771444" />
+    <state x="667" y="119" width="585" height="801" key="find.popup" timestamp="1605871027954">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="667" y="119" width="585" height="801" key="find.popup/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1605871027954" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/headunit_base$main.coverage" NAME="main Coverage Results" MODIFIED="1605530338435" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/headunit_base$main__1_.coverage" NAME="main (1) Coverage Results" MODIFIED="1605601049989" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/headunit_base$main__1_.coverage" NAME="main (1) Coverage Results" MODIFIED="1605951316906" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

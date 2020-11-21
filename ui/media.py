@@ -9,27 +9,123 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+import media_music_player, media_file_browser
 
 
 class Ui_content(object):
     def setupUi(self, content):
+        self.useBluetooth = False
+        self.current_file = ""
+        self.current_dir = ""
+
         content.setObjectName("content")
         content.resize(720, 435)
         content.setStyleSheet("#content {\n"
-"    background: black;\n"
-"}\n"
-"\n"
-"* {\n"
-"    color: white;\n"
-"}")
-        self.label = QtWidgets.QLabel(content)
-        self.label.setGeometry(QtCore.QRect(260, 187, 200, 50))
+                              "    background: black;\n"
+                              "}\n"
+                              "\n"
+                              "* {\n"
+                              "    color: white;\n"
+                              "}")
+        self.btn_bluetooth = QtWidgets.QWidget(content)
+        self.btn_bluetooth.setEnabled(False)
+        self.btn_bluetooth.setGeometry(QtCore.QRect(30, 30, 180, 45))
+        self.btn_bluetooth.setStyleSheet("#btn_bluetooth {\n"
+                                         "    background: #252525; color: white\n"
+                                         "}\n"
+                                         "\n"
+                                         "#btn_bluetooth::hover {\n"
+                                         "    background: #303030;\n"
+                                         "}\n"
+                                         "\n"
+                                         "#btn_bluetooth::!enabled {\n"
+                                         "    background: #595959;\n"
+                                         "    border-bottom: 3px solid #E00000;\n"
+                                         "}")
+        self.btn_bluetooth.setObjectName("btn_bluetooth")
+        self.text_btn_bluetooth = QtWidgets.QLabel(self.btn_bluetooth)
+        self.text_btn_bluetooth.setGeometry(QtCore.QRect(20, 10, 140, 25))
+        font = QtGui.QFont()
+        font.setFamily("Montserrat Light")
+        font.setPointSize(16)
+        self.text_btn_bluetooth.setFont(font)
+        self.text_btn_bluetooth.setLineWidth(1)
+        self.text_btn_bluetooth.setAlignment(QtCore.Qt.AlignCenter)
+        self.text_btn_bluetooth.setObjectName("text_btn_bluetooth")
+        self.btn_usb = QtWidgets.QWidget(content)
+        self.btn_usb.setEnabled(True)
+        self.btn_usb.setGeometry(QtCore.QRect(230, 30, 180, 45))
+        self.btn_usb.setStyleSheet("#btn_usb {\n"
+                                   "    background: #252525; color: white\n"
+                                   "}\n"
+                                   "\n"
+                                   "#btn_usb::hover {\n"
+                                   "    background: #303030;\n"
+                                   "}\n"
+                                   "\n"
+                                   "#btn_usb::!enabled {\n"
+                                   "    background: #595959;\n"
+                                   "    border-bottom: 3px solid #E00000;\n"
+                                   "}")
+        self.btn_usb.setObjectName("btn_usb")
+        self.text_btn_usb = QtWidgets.QLabel(self.btn_usb)
+        self.text_btn_usb.setGeometry(QtCore.QRect(20, 10, 140, 25))
+        font = QtGui.QFont()
+        font.setFamily("Montserrat Light")
+        font.setPointSize(16)
+        self.text_btn_usb.setFont(font)
+        self.text_btn_usb.setLineWidth(1)
+        self.text_btn_usb.setAlignment(QtCore.Qt.AlignCenter)
+        self.text_btn_usb.setObjectName("text_btn_usb")
+        self.content = QtWidgets.QStackedWidget(content)
+        self.content.setGeometry(QtCore.QRect(30, 100, 660, 300))
+        self.content.setObjectName("content")
+        self.btn_file_browser = QtWidgets.QWidget(content)
+        self.btn_file_browser.setEnabled(True)
+        self.btn_file_browser.setVisible(False)
+        self.btn_file_browser.setGeometry(QtCore.QRect(600, 30, 70, 45))
+        self.btn_file_browser.setStyleSheet("#btn_file_browser {\n"
+                                            "    background: #252525; color: white\n"
+                                            "}\n"
+                                            "\n"
+                                            "#btn_file_browser::hover {\n"
+                                            "    background: #303030;\n"
+                                            "}\n"
+                                            "\n"
+                                            "#btn_file_browser::!enabled {\n"
+                                            "    background: #595959;\n"
+                                            "    border-bottom: 3px solid #E00000;\n"
+                                            "}")
+        self.btn_file_browser.setObjectName("btn_file_browser")
+        self.text_btn_file_browser = QtWidgets.QLabel(self.btn_file_browser)
+        self.text_btn_file_browser.setGeometry(QtCore.QRect(15, 2, 40, 40))
         font = QtGui.QFont()
         font.setFamily("Avenir Next LT Pro")
-        font.setPointSize(24)
-        self.label.setFont(font)
-        self.label.setAlignment(QtCore.Qt.AlignCenter)
-        self.label.setObjectName("label")
+        font.setPointSize(16)
+        self.text_btn_file_browser.setFont(font)
+        self.text_btn_file_browser.setLineWidth(1)
+        self.text_btn_file_browser.setText("")
+        self.text_btn_file_browser.setPixmap(QtGui.QPixmap(":/images/file_browser.svg"))
+        self.text_btn_file_browser.setScaledContents(True)
+        self.text_btn_file_browser.setAlignment(QtCore.Qt.AlignCenter)
+        self.text_btn_file_browser.setObjectName("text_btn_file_browser")
+
+        # Music Player
+        content_music_player = QtWidgets.QWidget()
+        ui_music_player = media_music_player.Ui_content()
+        ui_music_player.setupUi(content_music_player)
+        self.content.addWidget(content_music_player)
+
+        # File Browser
+        content_file_browser = QtWidgets.QWidget()
+        ui_file_browser = media_file_browser.Ui_content()
+        ui_file_browser.setupUi(content_file_browser, self)
+        self.content.addWidget(content_file_browser)
+
+        # Set button actions
+        self.btn_bluetooth.mouseReleaseEvent = self.switchToBluetooth
+        self.btn_usb.mouseReleaseEvent = self.switchToUSB
+        self.btn_file_browser.mouseReleaseEvent = self.switchToFileBrowser
 
         self.retranslateUi(content)
         QtCore.QMetaObject.connectSlotsByName(content)
@@ -37,14 +133,31 @@ class Ui_content(object):
     def retranslateUi(self, content):
         _translate = QtCore.QCoreApplication.translate
         content.setWindowTitle(_translate("content", "Form"))
-        self.label.setText(_translate("content", "Media"))
+        self.text_btn_bluetooth.setText(_translate("content", "Bluetooth"))
+        self.text_btn_usb.setText(_translate("content", "USB"))
 
+    def switchToBluetooth(self, event):
+        self.content.setCurrentIndex(0)
+        self.btn_bluetooth.setEnabled(False)
+        self.btn_usb.setEnabled(True)
+        self.btn_file_browser.setVisible(False)
+        self.useBluetooth = True
 
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    content = QtWidgets.QWidget()
-    ui = Ui_content()
-    ui.setupUi(content)
-    content.show()
-    sys.exit(app.exec_())
+    def switchToUSB(self, event):
+        self.content.setCurrentIndex(0)
+        self.btn_bluetooth.setEnabled(True)
+        self.btn_usb.setEnabled(False)
+        self.btn_file_browser.setEnabled(True)
+        self.btn_file_browser.setVisible(True)
+        self.useBluetooth = False
+
+    def switchToFileBrowser(self, event):
+        self.content.setCurrentIndex(1)
+        self.btn_bluetooth.setEnabled(True)
+        self.btn_usb.setEnabled(True)
+        self.btn_file_browser.setEnabled(False)
+        self.btn_file_browser.setVisible(True)
+
+    def play(self):
+        if self.useBluetooth:
+            print("Coming soon")

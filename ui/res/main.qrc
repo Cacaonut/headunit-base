@@ -1,5 +1,10 @@
 <RCC>
   <qresource prefix="images">
+    <file>back.png</file>
+    <file>file_browser.svg</file>
+    <file>folder.svg</file>
+    <file>queue.svg</file>
+    <file>play.svg</file>
     <file>media.svg</file>
     <file>android_auto.png</file>
     <file>car.svg</file>
