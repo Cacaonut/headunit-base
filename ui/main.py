@@ -301,6 +301,7 @@ class Ui_MainWindow(object):
             ui_android_auto = settings.Ui_content()
             ui_android_auto.setupUi(self.content_android_auto)
             self.content.addWidget(self.content_android_auto)
+            self.current_aa_wid = 0
             self.bindAndroidAuto()
             #os.system("wmctrl -r MainWindow -e 0,0,45,720,435 ")
 
