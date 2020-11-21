@@ -391,7 +391,7 @@ class Ui_MainWindow(object):
         for window in windows:
             if window.find("autoapp") > -1:
                 window_id = window.split(" ")[0]
-                print(window)
+                self.label_title.setText(window)
                 print(int(window_id, 0))
                 if int(window_id, 0) != self.current_aa_wid:
                     self.current_aa_wid = int(window_id, 0)
