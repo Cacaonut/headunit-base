@@ -297,10 +297,10 @@ class Ui_MainWindow(object):
         if platform == "linux" or platform == "linux2":
             subprocess.Popen(["sudo", "/home/pi/openauto/bin/autoapp"])
             time.sleep(3)
-            windows = subprocess.check_output(["wmctrl", "-l"]).split("\n")
+            windows = subprocess.check_output(["wmctrl", "-l"]).decode("UTF-8").split("\n")
             for window in windows:
                 if window.find("MainWindow") > -1:
-                    window_id = window.decode("UTF-8").split(" ")[0]
+                    window_id = window.split(" ")[0]
                     print(window)
                     print(int(window_id, 0))
                     window_android_auto = QtGui.QWindow.fromWinId(int(window_id, 0))
