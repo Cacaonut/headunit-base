@@ -295,6 +295,7 @@ class Ui_MainWindow(object):
         # Android Auto
         if platform == "linux" or platform == "linux2":
             subprocess.Popen(["sudo", "/home/pi/openauto/bin/autoapp"])
+            window = subprocess.check_output(["wmctrl", "-a", "'Headunit'"])
             window = subprocess.check_output(["wmctrl", "-l", "|", "grep", "'MainWindow'"])
             window_id = window.decode("UTF-8").split(" ")[0]
             print(int(window_id, 0))
