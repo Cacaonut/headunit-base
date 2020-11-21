@@ -297,17 +297,13 @@ class Ui_MainWindow(object):
         if platform == "linux" or platform == "linux2":
             subprocess.Popen(["sudo", "/home/pi/openauto/bin/autoapp"])
             time.sleep(3)
+            self.content_android_auto = QtWidgets.QWidget()
+            ui_android_auto = settings.Ui_content()
+            ui_android_auto.setupUi(self.content_android_auto)
+            self.content.addWidget(self.content_android_auto)
+            self.bindAndroidAuto()
             #os.system("wmctrl -r MainWindow -e 0,0,45,720,435 ")
-            windows = subprocess.check_output(["wmctrl", "-l"]).decode("UTF-8").split("\n")
-            for window in windows:
-                if window.find("MainWindow") > -1:
-                    window_id = window.split(" ")[0]
-                    print(window)
-                    print(int(window_id, 0))
-                    window_android_auto = QtGui.QWindow.fromWinId(int(window_id, 0))
-                    window_android_auto.setFlag(QtCore.Qt.FramelessWindowHint)
-                    content_android_auto = QtWidgets.QWidget.createWindowContainer(window_android_auto)
-                    self.content.addWidget(content_android_auto)
+
 
         # Settings
         content_settings = QtWidgets.QWidget()
@@ -388,3 +384,19 @@ class Ui_MainWindow(object):
         current_time = now.strftime("%H:%M")
         self.label_clock.setText(current_time)
         threading.Timer(0.5, self.updateTime).start()
+
+    def bindAndroidAuto(self):
+        windows = subprocess.check_output(["wmctrl", "-l"]).decode("UTF-8").split("\n")
+        for window in windows:
+            if window.find("autoapp") > -1:
+                window_id = window.split(" ")[0]
+                print(window)
+                print(int(window_id, 0))
+                window_android_auto = QtGui.QWindow.fromWinId(int(window_id, 0))
+                window_android_auto.setFlag(QtCore.Qt.FramelessWindowHint)
+                content_android_auto = QtWidgets.QWidget.createWindowContainer(window_android_auto)
+                self.content.removeWidget(self.content_android_auto)
+                self.content.insertWidget(4, content_android_auto)
+                self.content_android_auto = content_android_auto
+
+        threading.Timer(1, self.bindAndroidAuto).start()
