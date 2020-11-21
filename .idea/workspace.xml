@@ -19,9 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8721f21b-a18e-4131-9aaa-b09c049b5ac3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/ui/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/main.py" afterDir="false" />
-    </list>
+    <list default="true" id="8721f21b-a18e-4131-9aaa-b09c049b5ac3" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -159,7 +157,7 @@
       <workItem from="1605806992083" duration="1298000" />
       <workItem from="1605862205469" duration="11625000" />
       <workItem from="1605883628474" duration="623000" />
-      <workItem from="1605890198326" duration="12175000" />
+      <workItem from="1605890198326" duration="12502000" />
     </task>
     <servers />
   </component>
