@@ -302,7 +302,6 @@ class Ui_MainWindow(object):
             ui_android_auto.setupUi(self.content_android_auto)
             self.content.addWidget(self.content_android_auto)
             self.current_aa_wid = 0
-            #os.system("wmctrl -r MainWindow -e 0,0,45,720,435 ")
 
 
         # Settings
@@ -381,6 +380,7 @@ class Ui_MainWindow(object):
         self.current_tab = self.btn_settings
 
     def updateTime(self):
+        os.system("wmctrl -a Headunit")
         now = datetime.now()
         current_time = now.strftime("%H:%M")
         self.label_clock.setText(current_time)
