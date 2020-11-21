@@ -1,5 +1,6 @@
 import os
 
+import ui.res.resources
 import subprocess
 import ui.car as car
 import ui.devices as devices
@@ -16,6 +17,7 @@ class Ui_MainWindow(object):
         MainWindow.setObjectName("Headunit")
         MainWindow.setEnabled(True)
         MainWindow.resize(800, 480)
+        MainWindow.showFullScreen()
         MainWindow.setStyleSheet("")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setStyleSheet("#centralwidget {background: #000}\n"

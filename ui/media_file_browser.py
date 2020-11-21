@@ -130,7 +130,7 @@ class Ui_content(object):
 
         # Search for files and directories
         self.retranslateUi(content)
-        self.current_path = "~"
+        self.current_path = "D:\\"
         self.updateFiles()
         QtCore.QMetaObject.connectSlotsByName(content)
 
