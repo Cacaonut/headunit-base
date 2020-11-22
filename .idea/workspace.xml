@@ -20,7 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8721f21b-a18e-4131-9aaa-b09c049b5ac3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/ui/android_auto.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ui/android_auto.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,7 +163,7 @@
       <workItem from="1605862205469" duration="11625000" />
       <workItem from="1605883628474" duration="623000" />
       <workItem from="1605890198326" duration="21555000" />
-      <workItem from="1606035309144" duration="594000" />
+      <workItem from="1606035309144" duration="3791000" />
     </task>
     <servers />
   </component>

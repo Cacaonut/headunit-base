@@ -3,6 +3,7 @@ import time
 
 import ui.res.resources
 import subprocess
+import ui.android_auto as android_auto
 import ui.car as car
 import ui.devices as devices
 import ui.home as home
@@ -299,8 +300,8 @@ class Ui_MainWindow(object):
             subprocess.Popen(["sudo", "/home/pi/openauto/bin/autoapp"])
             time.sleep(3)
             self.content_android_auto = QtWidgets.QWidget()
-            ui_android_auto = settings.Ui_content()
-            ui_android_auto.setupUi(self.content_android_auto)
+            ui_android_auto = android_auto.Ui_content()
+            ui_android_auto.setupUi(self.content_android_auto, self)
             self.content.addWidget(self.content_android_auto)
             self.current_aa_wid = 0
 
@@ -387,9 +388,11 @@ class Ui_MainWindow(object):
         threading.Timer(0.5, self.updateTime).start()
 
     def bindAndroidAuto(self):
+        running = False
         windows = subprocess.check_output(["wmctrl", "-l"]).decode("UTF-8").split("\n")
         for window in windows:
             if window.find("autoapp") > -1:
+                running = True
                 window_id = window.split(" ")[0]
                 self.label_title.setText(window)
                 print(int(window_id, 0))
@@ -401,3 +404,10 @@ class Ui_MainWindow(object):
                     self.content.removeWidget(self.content_android_auto)
                     self.content.insertWidget(4, content_android_auto)
                     self.content_android_auto = content_android_auto
+
+        if not running:
+            self.content_android_auto = QtWidgets.QWidget()
+            ui_android_auto = android_auto.Ui_content()
+            ui_android_auto.setupUi(self.content_android_auto, self)
+            self.content.removeWidget(self.content_android_auto)
+            self.content.insertWidget(4, self.content_android_auto)
