@@ -272,28 +272,28 @@ class Ui_MainWindow(object):
         self.current_tab = self.btn_home
 
         # Home
-        content_home = QtWidgets.QWidget()
+        self.content_home = QtWidgets.QWidget()
         ui_home = home.Ui_content()
-        ui_home.setupUi(content_home)
-        self.content.addWidget(content_home)
+        ui_home.setupUi(self.content_home)
+        self.content.addWidget(self.content_home)
 
         # Media
-        content_media = QtWidgets.QWidget()
+        self.content_media = QtWidgets.QWidget()
         ui_media = media.Ui_content()
-        ui_media.setupUi(content_media)
-        self.content.addWidget(content_media)
+        ui_media.setupUi(self.content_media)
+        self.content.addWidget(self.content_media)
 
         # Car
-        content_car = QtWidgets.QWidget()
+        self.content_car = QtWidgets.QWidget()
         ui_car = car.Ui_content()
-        ui_car.setupUi(content_car)
-        self.content.addWidget(content_car)
+        ui_car.setupUi(self.content_car)
+        self.content.addWidget(self.content_car)
 
         # Devices
-        content_devices = QtWidgets.QWidget()
+        self.content_devices = QtWidgets.QWidget()
         ui_devices = devices.Ui_content()
-        ui_devices.setupUi(content_devices)
-        self.content.addWidget(content_devices)
+        ui_devices.setupUi(self.content_devices)
+        self.content.addWidget(self.content_devices)
 
         # Android Auto
         if platform == "linux" or platform == "linux2":
@@ -308,10 +308,10 @@ class Ui_MainWindow(object):
 
 
         # Settings
-        content_settings = QtWidgets.QWidget()
+        self.content_settings = QtWidgets.QWidget()
         ui_settings = settings.Ui_content()
-        ui_settings.setupUi(content_settings)
-        self.content.addWidget(content_settings)
+        ui_settings.setupUi(self.content_settings)
+        self.content.addWidget(self.content_settings)
 
         # Set button actions
         self.btn_home.mouseReleaseEvent = self.switchToHome
@@ -340,35 +340,35 @@ class Ui_MainWindow(object):
         self.text_btn_settings.setText(_translate("MainWindow", "Settings"))
 
     def switchToHome(self, event):
-        self.content.setCurrentIndex(0)
+        self.content.setCurrentWidget(self.content_home)
         self.btn_home.setEnabled(False)
         self.current_tab.setEnabled(True)
         self.label_title.setText("HOME")
         self.current_tab = self.btn_home
 
     def switchToMedia(self, event):
-        self.content.setCurrentIndex(1)
+        self.content.setCurrentWidget(self.content_media)
         self.btn_media.setEnabled(False)
         self.current_tab.setEnabled(True)
         self.label_title.setText("MEDIA")
         self.current_tab = self.btn_media
 
     def switchToCar(self, event):
-        self.content.setCurrentIndex(2)
+        self.content.setCurrentWidget(self.content_car)
         self.btn_car.setEnabled(False)
         self.current_tab.setEnabled(True)
         self.label_title.setText("CAR")
         self.current_tab = self.btn_car
 
     def switchToDevices(self, event):
-        self.content.setCurrentIndex(3)
+        self.content.setCurrentWidget(self.content_devices)
         self.btn_devices.setEnabled(False)
         self.current_tab.setEnabled(True)
         self.label_title.setText("DEVICES")
         self.current_tab = self.btn_devices
 
     def switchToAndroidAuto(self, event):
-        self.content.setCurrentIndex(4)
+        self.content.setCurrentWidget(self.content_android_auto)
         self.btn_android_auto.setEnabled(False)
         self.current_tab.setEnabled(True)
         self.label_title.setText("ANDROID AUTO")
@@ -376,7 +376,7 @@ class Ui_MainWindow(object):
         self.current_tab = self.btn_android_auto
 
     def switchToSettings(self, event):
-        self.content.setCurrentIndex(5)
+        self.content.setCurrentWidget(self.content_settings)
         self.btn_settings.setEnabled(False)
         self.current_tab.setEnabled(True)
         self.label_title.setText("SETTINGS")
@@ -401,12 +401,12 @@ class Ui_MainWindow(object):
                     window_android_auto.setFlag(QtCore.Qt.FramelessWindowHint)
                     content_android_auto = QtWidgets.QWidget.createWindowContainer(window_android_auto)
                     self.content.removeWidget(self.content_android_auto)
-                    self.content.insertWidget(4, content_android_auto)
                     self.content_android_auto = content_android_auto
+                    self.content.addWidget(self.content_android_auto)
 
         if not self.running:
             self.content_android_auto = QtWidgets.QWidget()
             ui_android_auto = android_auto.Ui_content()
             ui_android_auto.setupUi(self.content_android_auto, self)
             self.content.removeWidget(self.content_android_auto)
-            self.content.insertWidget(4, self.content_android_auto)
+            self.content.addWidget(self.content_android_auto)
