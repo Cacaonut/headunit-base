@@ -396,14 +396,18 @@ class Ui_MainWindow(object):
                 window_id = window.split(" ")[0]
                 print(int(window_id, 0))
                 if int(window_id, 0) != self.current_aa_wid:
-                    self.current_aa_wid = int(window_id, 0)
-                    window_android_auto = QtGui.QWindow.fromWinId(int(window_id, 0))
-                    window_android_auto.setFlag(QtCore.Qt.FramelessWindowHint)
-                    window_android_auto.windowStateChanged = self.androidAutoClosed
-                    content_android_auto = QtWidgets.QWidget.createWindowContainer(window_android_auto)
-                    self.content.removeWidget(self.content_android_auto)
-                    self.content_android_auto = content_android_auto
-                    self.content.addWidget(self.content_android_auto)
+                    try:
+                        self.current_aa_wid = int(window_id, 0)
+                        window_android_auto = QtGui.QWindow.fromWinId(int(window_id, 0))
+                        window_android_auto.setFlag(QtCore.Qt.FramelessWindowHint)
+                        content_android_auto = QtWidgets.QWidget.createWindowContainer(window_android_auto)
+                        self.content.removeWidget(self.content_android_auto)
+                        self.content_android_auto = content_android_auto
+                        self.content.addWidget(self.content_android_auto)
+                        break
+                    except:
+                        self.aa_running = False
+                        self.bindAndroidAuto()
 
         if not self.aa_running:
             self.content_android_auto = QtWidgets.QWidget()
