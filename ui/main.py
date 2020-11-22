@@ -21,6 +21,7 @@ class Ui_MainWindow(object):
         MainWindow.resize(800, 480)
         if platform == "linux" or platform == "linux2":
             MainWindow.showFullScreen()
+            MainWindow.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
         MainWindow.setStyleSheet("")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setStyleSheet("#centralwidget {background: #000}\n"
