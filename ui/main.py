@@ -22,10 +22,10 @@ class Ui_MainWindow(object):
         MainWindow.resize(800, 480)
         if platform == "linux" or platform == "linux2":
             MainWindow.showFullScreen()
-            MainWindow.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
+            #MainWindow.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
         MainWindow.setStyleSheet("")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
-        self.centralwidget.setStyleSheet("#centralwidget {background: #000}\n"
+        self.centralwidget.setStyleSheet("#centralwidget {background: #F00}\n"
                                          "* {color: white}")
         self.centralwidget.setObjectName("centralwidget")
         self.top_bar = QtWidgets.QWidget(self.centralwidget)
@@ -388,6 +388,7 @@ class Ui_MainWindow(object):
         threading.Timer(0.5, self.updateTime).start()
 
     def bindAndroidAuto(self):
+        print("Bind android auto")
         windows = subprocess.check_output(["wmctrl", "-l"]).decode("UTF-8").split("\n")
         for window in windows:
             if window.find("autoapp") > -1:
