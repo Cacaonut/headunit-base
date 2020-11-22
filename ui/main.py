@@ -413,5 +413,6 @@ class Ui_MainWindow(object):
             self.content.addWidget(self.content_android_auto)
 
     def androidAutoClosed(self, windowState):
+        self.label_title.setText("removed")
         self.aa_running = False
         self.bindAndroidAuto()
