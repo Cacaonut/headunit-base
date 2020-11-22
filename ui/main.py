@@ -304,6 +304,7 @@ class Ui_MainWindow(object):
             ui_android_auto.setupUi(self.content_android_auto, self)
             self.content.addWidget(self.content_android_auto)
             self.current_aa_wid = 0
+            self.running = False
 
 
         # Settings
@@ -388,13 +389,11 @@ class Ui_MainWindow(object):
         threading.Timer(0.5, self.updateTime).start()
 
     def bindAndroidAuto(self):
-        running = False
         windows = subprocess.check_output(["wmctrl", "-l"]).decode("UTF-8").split("\n")
         for window in windows:
             if window.find("autoapp") > -1:
-                running = True
+                self.running = True
                 window_id = window.split(" ")[0]
-                self.label_title.setText(window)
                 print(int(window_id, 0))
                 if int(window_id, 0) != self.current_aa_wid:
                     self.current_aa_wid = int(window_id, 0)
@@ -405,7 +404,7 @@ class Ui_MainWindow(object):
                     self.content.insertWidget(4, content_android_auto)
                     self.content_android_auto = content_android_auto
 
-        if not running:
+        if not self.running:
             self.content_android_auto = QtWidgets.QWidget()
             ui_android_auto = android_auto.Ui_content()
             ui_android_auto.setupUi(self.content_android_auto, self)
