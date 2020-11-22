@@ -306,7 +306,6 @@ class Ui_MainWindow(object):
             self.current_aa_wid = 0
             self.aa_running = False
 
-
         # Settings
         self.content_settings = QtWidgets.QWidget()
         ui_settings = settings.Ui_content()
@@ -392,31 +391,13 @@ class Ui_MainWindow(object):
         windows = subprocess.check_output(["wmctrl", "-l"]).decode("UTF-8").split("\n")
         for window in windows:
             if window.find("autoapp") > -1:
-                self.aa_running = True
                 window_id = window.split(" ")[0]
                 print(int(window_id, 0))
                 if int(window_id, 0) != self.current_aa_wid:
-                    try:
-                        self.current_aa_wid = int(window_id, 0)
-                        window_android_auto = QtGui.QWindow.fromWinId(int(window_id, 0))
-                        window_android_auto.setFlag(QtCore.Qt.FramelessWindowHint)
-                        content_android_auto = QtWidgets.QWidget.createWindowContainer(window_android_auto)
-                        self.content.removeWidget(self.content_android_auto)
-                        self.content_android_auto = content_android_auto
-                        self.content.addWidget(self.content_android_auto)
-                        break
-                    except:
-                        self.aa_running = False
-                        self.bindAndroidAuto()
-
-        if not self.aa_running:
-            self.content_android_auto = QtWidgets.QWidget()
-            ui_android_auto = android_auto.Ui_content()
-            ui_android_auto.setupUi(self.content_android_auto, self)
-            self.content.removeWidget(self.content_android_auto)
-            self.content.addWidget(self.content_android_auto)
-
-    def androidAutoClosed(self, windowState):
-        self.label_title.setText("removed")
-        self.aa_running = False
-        self.bindAndroidAuto()
+                    self.current_aa_wid = int(window_id, 0)
+                    window_android_auto = QtGui.QWindow.fromWinId(int(window_id, 0))
+                    window_android_auto.setFlag(QtCore.Qt.FramelessWindowHint)
+                    content_android_auto = QtWidgets.QWidget.createWindowContainer(window_android_auto)
+                    self.content.removeWidget(self.content_android_auto)
+                    self.content_android_auto = content_android_auto
+                    self.content.addWidget(self.content_android_auto)

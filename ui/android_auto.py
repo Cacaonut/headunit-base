@@ -70,6 +70,7 @@ class Ui_content(object):
         self.text_btn_launch.setText(_translate("content", "Launch"))
 
     def bindAndroidAuto(self, event):
+        print("Launch android auto")
         self.owner.bindAndroidAuto()
 
 
