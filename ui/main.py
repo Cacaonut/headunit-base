@@ -304,7 +304,7 @@ class Ui_MainWindow(object):
             ui_android_auto.setupUi(self.content_android_auto, self)
             self.content.addWidget(self.content_android_auto)
             self.current_aa_wid = 0
-            self.running = False
+            self.aa_running = False
 
 
         # Settings
@@ -392,21 +392,26 @@ class Ui_MainWindow(object):
         windows = subprocess.check_output(["wmctrl", "-l"]).decode("UTF-8").split("\n")
         for window in windows:
             if window.find("autoapp") > -1:
-                self.running = True
+                self.aa_running = True
                 window_id = window.split(" ")[0]
                 print(int(window_id, 0))
                 if int(window_id, 0) != self.current_aa_wid:
                     self.current_aa_wid = int(window_id, 0)
                     window_android_auto = QtGui.QWindow.fromWinId(int(window_id, 0))
                     window_android_auto.setFlag(QtCore.Qt.FramelessWindowHint)
+                    window_android_auto.windowStateChanged = self.androidAutoClosed
                     content_android_auto = QtWidgets.QWidget.createWindowContainer(window_android_auto)
                     self.content.removeWidget(self.content_android_auto)
                     self.content_android_auto = content_android_auto
                     self.content.addWidget(self.content_android_auto)
 
-        if not self.running:
+        if not self.aa_running:
             self.content_android_auto = QtWidgets.QWidget()
             ui_android_auto = android_auto.Ui_content()
             ui_android_auto.setupUi(self.content_android_auto, self)
             self.content.removeWidget(self.content_android_auto)
             self.content.addWidget(self.content_android_auto)
+
+    def androidAutoClosed(self, windowState):
+        self.aa_running = False
+        self.bindAndroidAuto()
