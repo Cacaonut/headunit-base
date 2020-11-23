@@ -31,32 +31,6 @@ class Ui_content(object):
         self.label_howto.setFont(font)
         self.label_howto.setAlignment(QtCore.Qt.AlignCenter)
         self.label_howto.setObjectName("label_howto")
-        self.btn_launch = QtWidgets.QWidget(content)
-        self.btn_launch.setEnabled(True)
-        self.btn_launch.setGeometry(QtCore.QRect(300, 260, 120, 35))
-        self.btn_launch.setStyleSheet("#btn_launch {\n"
-                                      "    background: #252525; color: white\n"
-                                      "}\n"
-                                      "\n"
-                                      "#btn_launch::hover {\n"
-                                      "    background: #303030;\n"
-                                      "}\n"
-                                      "\n"
-                                      "#btn_launch::!enabled {\n"
-                                      "    background: #595959;\n"
-                                      "    border-bottom: 3px solid #E00000;\n"
-                                      "}")
-        self.btn_launch.setObjectName("btn_launch")
-        self.btn_launch.mouseReleaseEvent = self.bindAndroidAuto
-        self.text_btn_launch = QtWidgets.QLabel(self.btn_launch)
-        self.text_btn_launch.setGeometry(QtCore.QRect(10, 5, 100, 25))
-        font = QtGui.QFont()
-        font.setFamily("Montserrat")
-        font.setPointSize(14)
-        self.text_btn_launch.setFont(font)
-        self.text_btn_launch.setLineWidth(1)
-        self.text_btn_launch.setAlignment(QtCore.Qt.AlignCenter)
-        self.text_btn_launch.setObjectName("text_btn_launch")
 
         self.retranslateUi(content)
         QtCore.QMetaObject.connectSlotsByName(content)
@@ -66,8 +40,4 @@ class Ui_content(object):
         content.setWindowTitle(_translate("content", "Form"))
         self.label_howto.setText(_translate("content", "1. Connect your Android mobile phone via USB\n"
                                                        "\n"
-                                                       "2. Click on \"Launch\" to launch Android Auto"))
-        self.text_btn_launch.setText(_translate("content", "Launch"))
-
-    def bindAndroidAuto(self, event):
-        self.owner.switchToAndroidAuto(event)
+                                                       "2. Go back to the home screen and reopen Android Auto"))

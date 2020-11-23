@@ -25,7 +25,7 @@ class Ui_MainWindow(object):
             #MainWindow.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
         MainWindow.setStyleSheet("")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
-        self.centralwidget.setStyleSheet("#centralwidget {background: #F00}\n"
+        self.centralwidget.setStyleSheet("#centralwidget {background: #000}\n"
                                          "* {color: white}")
         self.centralwidget.setObjectName("centralwidget")
         self.top_bar = QtWidgets.QWidget(self.centralwidget)
