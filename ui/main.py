@@ -404,5 +404,5 @@ class Ui_MainWindow(object):
                     widget_android_auto = QtWidgets.QWidget.createWindowContainer(window_android_auto)
                     widget_android_auto.setParent(self.content_android_auto)
                     widget_android_auto.resize(720, 435)
-                    self.content.update()
-                    self.content_android_auto.update()
+                    self.content.setCurrentWidget(self.content_home)
+                    self.content.setCurrentWidget(self.content_android_auto)
