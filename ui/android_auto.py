@@ -70,15 +70,4 @@ class Ui_content(object):
         self.text_btn_launch.setText(_translate("content", "Launch"))
 
     def bindAndroidAuto(self, event):
-        self.owner.switchToAndroidAuto()
-
-
-if __name__ == "__main__":
-    import sys
-
-    app = QtWidgets.QApplication(sys.argv)
-    content = QtWidgets.QWidget()
-    ui = Ui_content()
-    ui.setupUi(content)
-    content.show()
-    sys.exit(app.exec_())
+        self.owner.switchToAndroidAuto(event)
