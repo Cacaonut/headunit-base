@@ -305,6 +305,7 @@ class Ui_MainWindow(object):
             self.content.addWidget(self.content_android_auto)
             self.current_aa_wid = 0
             self.aa_running = False
+            self.content.setCurrentWidget(self.content_android_auto)
 
         # Settings
         self.content_settings = QtWidgets.QWidget()
@@ -324,6 +325,8 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         self.updateTime()
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+        self.content.setCurrentWidget(self.content_home)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -399,6 +402,6 @@ class Ui_MainWindow(object):
                     window_android_auto = QtGui.QWindow.fromWinId(int(window_id, 0))
                     window_android_auto.setFlag(QtCore.Qt.FramelessWindowHint)
                     widget_android_auto = QtWidgets.QWidget.createWindowContainer(window_android_auto)
-                    widget_android_auto.setParent(self.content)
+                    widget_android_auto.setParent(self.content_android_auto)
                     widget_android_auto.resize(720, 435)
                     #widget_android_auto.move(0, 45)
