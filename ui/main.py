@@ -373,9 +373,9 @@ class Ui_MainWindow(object):
         self.btn_android_auto.setEnabled(False)
         self.current_tab.setEnabled(True)
         self.label_title.setText("ANDROID AUTO")
+        self.bindAndroidAuto()
         self.content.setCurrentWidget(self.content_android_auto)
         self.current_tab = self.btn_android_auto
-        self.bindAndroidAuto()
 
     def switchToSettings(self, event):
         self.content.setCurrentWidget(self.content_settings)
@@ -404,4 +404,3 @@ class Ui_MainWindow(object):
                     widget_android_auto = QtWidgets.QWidget.createWindowContainer(window_android_auto)
                     widget_android_auto.setParent(self.content_android_auto)
                     widget_android_auto.resize(720, 435)
-                    self.content.setCurrentWidget(self.content_android_auto)
