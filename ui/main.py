@@ -24,7 +24,6 @@ class Ui_MainWindow(object):
             MainWindow.showFullScreen()
             #MainWindow.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
         MainWindow.setStyleSheet("")
-        self.main_window = MainWindow
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setStyleSheet("#centralwidget {background: #000}\n"
                                          "* {color: white}")
@@ -403,6 +402,6 @@ class Ui_MainWindow(object):
                     window_android_auto = QtGui.QWindow.fromWinId(int(window_id, 0))
                     window_android_auto.setFlag(QtCore.Qt.FramelessWindowHint)
                     widget_android_auto = QtWidgets.QWidget.createWindowContainer(window_android_auto)
-                    widget_android_auto.setParent(self.main_window)
+                    widget_android_auto.setParent(self.content_android_auto)
                     widget_android_auto.resize(720, 435)
                     widget_android_auto.move(0, 45)
