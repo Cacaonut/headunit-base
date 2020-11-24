@@ -399,7 +399,6 @@ class Ui_MainWindow(object):
                     window_android_auto = QtGui.QWindow.fromWinId(int(window_id, 0))
                     window_android_auto.setFlag(QtCore.Qt.FramelessWindowHint)
                     widget_android_auto = QtWidgets.QWidget.createWindowContainer(window_android_auto)
-                    widget_android_auto.setParent(self.centralwidget)
+                    widget_android_auto.setParent(self.content_android_auto)
                     widget_android_auto.resize(720, 435)
-                    widget_android_auto.move(0, 45)
                     widget_android_auto.show()
