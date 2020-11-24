@@ -208,7 +208,7 @@ class Ui_content(object):
             self.scrollAreaLayout.addWidget(content_file)
 
         self.scrollAreaWidget.resize(660, (len(dirs) + len(files)) * 47)
-        self.label_path.setText(self.current_path)
+        self.label_path.setText(self.current_path.replace("/media/pi/", "").replace("/media/pi", ""))
 
     def toParentDir(self, event):
         self.changePath(os.path.dirname(self.current_path))
