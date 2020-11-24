@@ -11,6 +11,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import ui.media_music_player as media_music_player
 import ui.media_file_browser as media_file_browser
+from pygame import mixer
 
 
 class Ui_content(object):
@@ -131,6 +132,8 @@ class Ui_content(object):
         self.retranslateUi(content)
         QtCore.QMetaObject.connectSlotsByName(content)
 
+        mixer.init()
+
     def retranslateUi(self, content):
         _translate = QtCore.QCoreApplication.translate
         content.setWindowTitle(_translate("content", "Form"))
@@ -163,3 +166,5 @@ class Ui_content(object):
         if self.useBluetooth:
             print("Coming soon")
         else:
+            mixer.music.load(self.current_file)
+            mixer.music.play()
