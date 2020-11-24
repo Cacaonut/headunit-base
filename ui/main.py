@@ -302,6 +302,8 @@ class Ui_MainWindow(object):
             self.content_android_auto = QtWidgets.QWidget()
             ui_android_auto = android_auto.Ui_content()
             ui_android_auto.setupUi(self.content_android_auto, self)
+            self.layout_android_auto = QtWidgets.QVBoxLayout
+            self.content_android_auto.setLayout(self.layout_android_auto)
             self.content.addWidget(self.content_android_auto)
             self.current_aa_wid = 0
             self.aa_running = False
@@ -399,6 +401,5 @@ class Ui_MainWindow(object):
                     window_android_auto = QtGui.QWindow.fromWinId(int(window_id, 0))
                     window_android_auto.setFlag(QtCore.Qt.FramelessWindowHint)
                     widget_android_auto = QtWidgets.QWidget.createWindowContainer(window_android_auto)
-                    widget_android_auto.setParent(self.content_android_auto)
-                    #widget_android_auto.setGeometry(QtCore.QRect(0, 0, 600, 100))
+                    self.layout_android_auto.addWidget(widget_android_auto)
                     widget_android_auto.show()
