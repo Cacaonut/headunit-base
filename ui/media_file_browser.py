@@ -88,7 +88,14 @@ class Ui_content(object):
         self.scrollArea.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
         self.scrollArea.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.scrollArea.setObjectName("scrollArea")
-        QtWidgets.QScroller.grabGesture(self.scrollArea, QtWidgets.QScroller.TouchGesture)
+        scroller = QtWidgets.QScroller.scroller(self.scrollArea.viewport())
+        scroller.grabGesture(self.scrollArea, QtWidgets.QScroller.TouchGesture)
+        scrollerProps = scroller.scrollerProperties()
+        scrollerProps.setScrollMetric(QtWidgets.QScrollerProperties.HorizontalOvershootPolicy,
+                                      QtWidgets.QScrollerProperties.OvershootAlwaysOff)
+        scrollerProps.setScrollMetric(QtWidgets.QScrollerProperties.VerticalOvershootPolicy,
+                                      QtWidgets.QScrollerProperties.OvershootAlwaysOff)
+        scroller.setScrollerProperties(scrollerProps)
         self.scrollAreaWidget = QtWidgets.QFrame()
         self.scrollAreaWidget.setStyleSheet("#scrollAreaWidget {\n"
                                             "    background: black;\n"
