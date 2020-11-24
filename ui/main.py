@@ -302,7 +302,7 @@ class Ui_MainWindow(object):
             self.content_android_auto = QtWidgets.QWidget()
             ui_android_auto = android_auto.Ui_content()
             ui_android_auto.setupUi(self.content_android_auto, self)
-            self.layout_android_auto = QtWidgets.QVBoxLayout
+            self.layout_android_auto = QtWidgets.QVBoxLayout()
             self.content_android_auto.setLayout(self.layout_android_auto)
             self.content.addWidget(self.content_android_auto)
             self.current_aa_wid = 0
