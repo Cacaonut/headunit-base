@@ -298,13 +298,10 @@ class Ui_MainWindow(object):
         # Android Auto
         if platform == "linux" or platform == "linux2":
             subprocess.Popen(["sudo", "/home/pi/openauto/bin/autoapp"])
-            time.sleep(3)
-            self.content_android_auto = QtWidgets.QWidget()
-            ui_android_auto = android_auto.Ui_content()
-            ui_android_auto.setupUi(self.content_android_auto, self)
-            self.content.addWidget(self.content_android_auto)
-            self.current_aa_wid = 0
-            self.aa_running = False
+        self.content_android_auto = QtWidgets.QWidget()
+        ui_android_auto = android_auto.Ui_content()
+        ui_android_auto.setupUi(self.content_android_auto, self)
+        self.content.addWidget(self.content_android_auto)
 
         # Settings
         self.content_settings = QtWidgets.QWidget()
@@ -371,11 +368,10 @@ class Ui_MainWindow(object):
         self.current_tab = self.btn_devices
 
     def switchToAndroidAuto(self, event):
+        self.content.setCurrentWidget(self.content_android_auto)
         self.btn_android_auto.setEnabled(False)
         self.current_tab.setEnabled(True)
         self.label_title.setText("ANDROID AUTO")
-        self.content.setCurrentWidget(self.content_android_auto)
-        self.bindAndroidAuto()
         self.current_tab = self.btn_android_auto
 
     def switchToSettings(self, event):
@@ -390,19 +386,3 @@ class Ui_MainWindow(object):
         current_time = now.strftime("%H:%M")
         self.label_clock.setText(current_time)
         threading.Timer(0.5, self.updateTime).start()
-
-    def bindAndroidAuto(self):
-        print("Bind android auto")
-        windows = subprocess.check_output(["wmctrl", "-l"]).decode("UTF-8").split("\n")
-        for window in windows:
-            if window.find("autoapp") > -1:
-                window_id = window.split(" ")[0]
-                print(int(window_id, 0))
-                if int(window_id, 0) != self.current_aa_wid:
-                    self.current_aa_wid = int(window_id, 0)
-                    window_android_auto = QtGui.QWindow.fromWinId(int(window_id, 0))
-                    window_android_auto.setFlag(QtCore.Qt.FramelessWindowHint)
-                    widget_android_auto = QtWidgets.QWidget.createWindowContainer(window_android_auto)
-                    widget_android_auto.setParent(self.content_android_auto)
-                    widget_android_auto.setGeometry(QtCore.QRect(0, 0, 720, 435))
-                    widget_android_auto.show()

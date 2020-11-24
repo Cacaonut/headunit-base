@@ -162,3 +162,4 @@ class Ui_content(object):
     def play(self):
         if self.useBluetooth:
             print("Coming soon")
+        else:

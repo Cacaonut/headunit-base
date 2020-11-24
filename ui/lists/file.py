@@ -114,3 +114,4 @@ class Ui_widget(object):
     def playFile(self, event):
         media.Ui_content.current_dir = self.owner.current_path
         media.Ui_content.current_file = os.path.join(self.owner.current_path, self.label_title.text())
+        media.Ui_content.play(self.owner)

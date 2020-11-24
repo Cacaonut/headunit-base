@@ -19,7 +19,13 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8721f21b-a18e-4131-9aaa-b09c049b5ac3" name="Default Changelist" comment="" />
+    <list default="true" id="8721f21b-a18e-4131-9aaa-b09c049b5ac3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/scripts/home_aa_btn.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/lists/file.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/lists/file.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/media.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/media.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -163,7 +169,7 @@
       <workItem from="1606141319699" duration="474000" />
       <workItem from="1606155850672" duration="2726000" />
       <workItem from="1606161909452" duration="2197000" />
-      <workItem from="1606204441468" duration="5035000" />
+      <workItem from="1606204441468" duration="7927000" />
     </task>
     <servers />
   </component>
@@ -210,10 +216,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="267" key="GridCell.Tab.0.right/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606062426988" />
-    <state x="377" y="113" key="SettingsEditor" timestamp="1605953676145">
+    <state x="377" y="113" key="SettingsEditor" timestamp="1606212187907">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="377" y="113" key="SettingsEditor/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1605953676145" />
+    <state x="377" y="113" key="SettingsEditor/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606212187907" />
     <state x="667" y="119" width="585" height="801" key="find.popup" timestamp="1605871027954">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
