@@ -371,10 +371,9 @@ class Ui_MainWindow(object):
         self.current_tab.setEnabled(True)
         self.label_title.setText("ANDROID AUTO")
         self.content.setCurrentWidget(self.content_android_auto)
-        print("Switching finished")
+        time.sleep(2)
         self.bindAndroidAuto()
         self.current_tab = self.btn_android_auto
-        print("------------------")
 
     def switchToSettings(self, event):
         self.content.setCurrentWidget(self.content_settings)
