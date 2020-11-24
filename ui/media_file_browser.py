@@ -89,7 +89,7 @@ class Ui_content(object):
         self.scrollArea.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.scrollArea.setObjectName("scrollArea")
         scroller = QtWidgets.QScroller.scroller(self.scrollArea.viewport())
-        scroller.grabGesture(self.scrollArea, QtWidgets.QScroller.TouchGesture)
+        scroller.grabGesture(self.scrollArea, QtWidgets.QScroller.LeftMouseButtonGesture)
         scrollerProps = scroller.scrollerProperties()
         scrollerProps.setScrollMetric(QtWidgets.QScrollerProperties.HorizontalOvershootPolicy,
                                       QtWidgets.QScrollerProperties.OvershootAlwaysOff)
