@@ -371,7 +371,6 @@ class Ui_MainWindow(object):
         self.current_tab.setEnabled(True)
         self.label_title.setText("ANDROID AUTO")
         self.content.setCurrentWidget(self.content_android_auto)
-        time.sleep(2)
         self.bindAndroidAuto()
         self.current_tab = self.btn_android_auto
 
@@ -398,9 +397,8 @@ class Ui_MainWindow(object):
                 if int(window_id, 0) != self.current_aa_wid:
                     self.current_aa_wid = int(window_id, 0)
                     window_android_auto = QtGui.QWindow.fromWinId(int(window_id, 0))
-                    window_android_auto.setFlag(QtCore.Qt.FramelessWindowHint)
+                    #window_android_auto.setFlag(QtCore.Qt.FramelessWindowHint)
                     widget_android_auto = QtWidgets.QWidget.createWindowContainer(window_android_auto)
                     widget_android_auto.setParent(self.content_android_auto)
-                    widget_android_auto.resize(720, 435)
+                    self.label_howto.setGeometry(QtCore.QRect(0, 0, 600, 100))
                     widget_android_auto.show()
-                    print("Binding finished")
