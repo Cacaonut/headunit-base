@@ -149,7 +149,7 @@ class Ui_content(object):
         # Search for files and directories
         self.retranslateUi(content)
         if platform == "linux" or platform == "linux2":
-            self.current_path = "/home/pi"
+            self.current_path = "/media/pi"
         else:
             self.current_path = "D:\\Music"
         self.updateFiles()
