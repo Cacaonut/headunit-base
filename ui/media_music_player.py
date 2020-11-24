@@ -29,7 +29,7 @@ class Ui_content(object):
                               "    color: white\n"
                               "}")
         self.music_slider = QtWidgets.QSlider(content)
-        self.music_slider.setGeometry(QtCore.QRect(80, 260, 500, 20))
+        self.music_slider.setGeometry(QtCore.QRect(80, 280, 500, 20))
         self.music_slider.setStyleSheet("QSlider::groove:horizontal { \n"
                                         "    background-color: #7F7F7F; \n"
                                         "    height: 2px;\n"
@@ -98,7 +98,7 @@ class Ui_content(object):
         self.btn_next.setObjectName("btn_next")
         self.btn_next.mouseReleaseEvent = self.nextBtnPressed
         self.label_music_pos = QtWidgets.QLabel(content)
-        self.label_music_pos.setGeometry(QtCore.QRect(20, 260, 45, 15))
+        self.label_music_pos.setGeometry(QtCore.QRect(20, 280, 45, 15))
         font = QtGui.QFont()
         font.setFamily("Comfortaa")
         font.setPointSize(11)
@@ -106,7 +106,7 @@ class Ui_content(object):
         self.label_music_pos.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignTrailing | QtCore.Qt.AlignVCenter)
         self.label_music_pos.setObjectName("label_music_pos")
         self.label_length = QtWidgets.QLabel(content)
-        self.label_length.setGeometry(QtCore.QRect(595, 260, 47, 15))
+        self.label_length.setGeometry(QtCore.QRect(595, 280, 47, 15))
         font = QtGui.QFont()
         font.setFamily("Comfortaa")
         font.setPointSize(11)
