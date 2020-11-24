@@ -397,8 +397,8 @@ class Ui_MainWindow(object):
                 if int(window_id, 0) != self.current_aa_wid:
                     self.current_aa_wid = int(window_id, 0)
                     window_android_auto = QtGui.QWindow.fromWinId(int(window_id, 0))
-                    #window_android_auto.setFlag(QtCore.Qt.FramelessWindowHint)
+                    window_android_auto.setFlag(QtCore.Qt.FramelessWindowHint)
                     widget_android_auto = QtWidgets.QWidget.createWindowContainer(window_android_auto)
                     widget_android_auto.setParent(self.content_android_auto)
-                    widget_android_auto.setGeometry(QtCore.QRect(0, 0, 600, 100))
+                    #widget_android_auto.setGeometry(QtCore.QRect(0, 0, 600, 100))
                     widget_android_auto.show()
