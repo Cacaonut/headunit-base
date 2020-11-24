@@ -18,6 +18,7 @@ class Ui_widget(object):
     def setupUi(self, widget, owner, filename, media_player):
         self.owner = owner
         self.filename = filename
+        self.media_player = media_player
         widget.setObjectName("widget")
         widget.resize(600, 35)
         widget.setStyleSheet("#widget {\n"
@@ -112,6 +113,6 @@ class Ui_widget(object):
         self.label_length.setText(_translate("widget", "x:xx"))
 
     def playFile(self, event):
-        media.Ui_content.current_dir = self.owner.current_path
-        media.Ui_content.current_file = os.path.join(self.owner.current_path, self.label_title.text())
-        media.Ui_content.play(self.owner)
+        self.media_player.current_dir = self.owner.current_path
+        self.media_player.current_file = os.path.join(self.owner.current_path, self.filename)
+        self.media_player.play()

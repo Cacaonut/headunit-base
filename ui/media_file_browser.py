@@ -28,6 +28,15 @@ class Ui_content(object):
                               "\n"
                               "* {\n"
                               "    color: white\n"
+                              "}"
+                              "QScrollBar {"
+                              "    background: white;"
+                              "    border: none;"
+                              "    width: 2px"
+                              "}"
+                              "QScrollBar:handle {"
+                              "    background: #E00000;"
+                              "    width: 2px;"
                               "}")
         self.btn_play = QtWidgets.QWidget(content)
         self.btn_play.setEnabled(True)
@@ -142,7 +151,7 @@ class Ui_content(object):
         if platform == "linux" or platform == "linux2":
             self.current_path = "/home/pi"
         else:
-            self.current_path = "D:\\"
+            self.current_path = "D:\\Music"
         self.updateFiles()
         QtCore.QMetaObject.connectSlotsByName(content)
 
@@ -183,16 +192,19 @@ class Ui_content(object):
             ui_file.setupUi(content_file, self, file, self.owner)
             filename, file_extension = os.path.splitext(file)
             ui_file.label_number.setText(str(i))
-            mp3 = MP3(os.path.join(self.current_path, file))
-            id3 = EasyID3(os.path.join(self.current_path, file))
-            ui_file.label_title.setText(id3["title"][0])
-            minutes = int(mp3.info.length / 60)
-            if minutes > 0:
+            try:
+                id3 = EasyID3(os.path.join(self.current_path, file))
+                ui_file.label_title.setText(id3["title"][0])
+            except:
+                ui_file.label_title.setText(file)
+
+            try:
+                mp3 = MP3(os.path.join(self.current_path, file))
+                minutes = int(mp3.info.length / 60)
                 seconds = int(mp3.info.length - minutes * 60)
-            else:
-                seconds = int(mp3.info.length)
-            print(str(minutes) + ":" + str(seconds))
-            ui_file.label_length.setText(str(minutes) + ":" + f"{seconds:02d}")
+                ui_file.label_length.setText(str(minutes) + ":" + f"{seconds:02d}")
+            except:
+                ui_file.label_length.setText("")
             self.scrollAreaLayout.addWidget(content_file)
 
         self.scrollAreaWidget.resize(660, (len(dirs) + len(files)) * 47)

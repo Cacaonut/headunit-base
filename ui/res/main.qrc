@@ -1,5 +1,12 @@
 <RCC>
   <qresource prefix="images">
+    <file>last.svg</file>
+    <file>next.svg</file>
+    <file>pause.svg</file>
+    <file>disc.svg</file>
+    <file>artist.svg</file>
+    <file>music.svg</file>
+    <file>cover.png</file>
     <file>back.png</file>
     <file>file_browser.svg</file>
     <file>folder.svg</file>
