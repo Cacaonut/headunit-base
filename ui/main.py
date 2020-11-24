@@ -325,6 +325,10 @@ class Ui_MainWindow(object):
         self.updateTime()
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
+        self.content.setCurrentWidget(self.content_android_auto)
+        time.sleep(1)
+        self.content.setCurrentWidget(self.content_home)
+
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Headunit"))
