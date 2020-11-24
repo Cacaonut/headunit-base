@@ -370,8 +370,8 @@ class Ui_MainWindow(object):
         self.btn_android_auto.setEnabled(False)
         self.current_tab.setEnabled(True)
         self.label_title.setText("ANDROID AUTO")
-        self.bindAndroidAuto()
         self.content.setCurrentWidget(self.content_android_auto)
+        self.bindAndroidAuto()
         self.current_tab = self.btn_android_auto
 
     def switchToSettings(self, event):
