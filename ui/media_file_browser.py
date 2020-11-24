@@ -93,6 +93,7 @@ class Ui_content(object):
                                             "    background: black;\n"
                                             "}")
         self.scrollAreaWidget.setObjectName("scrollAreaWidget")
+        QtWidgets.QScroller.grabGesture(self.scrollAreaWidget, QtWidgets.QScroller.TouchGesture)
         self.scrollAreaLayout = QtWidgets.QVBoxLayout()
         self.scrollAreaWidget.setLayout(self.scrollAreaLayout)
         self.scrollArea.setWidget(self.scrollAreaWidget)
