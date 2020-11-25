@@ -25,5 +25,5 @@ if __name__ == "__main__":
     ui = ui.main.Ui_MainWindow()
     ui.setupUi(MainWindow)
     MainWindow.show()
-    setupBluetooth()
+    #setupBluetooth()
     sys.exit(app.exec_())
