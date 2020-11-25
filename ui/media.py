@@ -140,6 +140,7 @@ class Ui_content(object):
         QtCore.QMetaObject.connectSlotsByName(content)
 
         mixer.init()
+        self.cooldown = False
         self.checkForMusicStop()
 
     def retranslateUi(self, content):
@@ -176,10 +177,15 @@ class Ui_content(object):
         else:
             print("Playing file: " + self.current_file)
             try:
+                mixer.music.stop()
+                mixer.music.unload()
+                mixer.quit()
+                mixer.init()
                 mixer.music.load(self.current_file)
                 mixer.music.play()
                 self.ui_music_player.updateUI()
                 self.setPlaying()
+                self.startCooldown()
             except:
                 print("File could not be played")
 
@@ -189,44 +195,55 @@ class Ui_content(object):
         self.ui_music_player.current_offset = 0
 
     def pause(self):
-        if not self.paused:
-            mixer.music.pause()
-            self.paused = True
-            self.ui_music_player.btn_play.setPixmap(QtGui.QPixmap(":/images/play.svg"))
-            print("Pause")
-        else:
-            mixer.music.unpause()
-            self.paused = False
-            self.ui_music_player.btn_play.setPixmap(QtGui.QPixmap(":/images/pause.svg"))
-            print("Play")
+        if not self.cooldown:
+            if not self.paused:
+                mixer.music.pause()
+                self.paused = True
+                self.ui_music_player.btn_play.setPixmap(QtGui.QPixmap(":/images/play.svg"))
+                print("Pause")
+            else:
+                mixer.music.unpause()
+                self.paused = False
+                self.ui_music_player.btn_play.setPixmap(QtGui.QPixmap(":/images/pause.svg"))
+                print("Play")
 
     def next(self):
-        mixer.music.stop()
+        if not self.cooldown:
+            mixer.music.stop()
 
     def rewind(self):
-        mixer.music.stop()
-        self.play()
+        if not self.cooldown:
+            mixer.music.stop()
+            self.play()
 
     def checkForMusicStop(self):
-        if not mixer.music.get_busy():
-            next_track = ""
-            if len(self.queue) > 0:
-                next_track = self.queue[0]
-                self.queue.remove(self.queue[0])
-            elif os.path.exists(self.current_dir):
-                files = []
-                audio_files = [".mp3"]
+        try:
+            if not mixer.music.get_busy():
+                next_track = ""
+                if len(self.queue) > 0:
+                    next_track = self.queue[0]
+                    self.queue.remove(self.queue[0])
+                elif os.path.exists(self.current_dir):
+                    files = []
+                    audio_files = [".mp3"]
 
-                for item in os.listdir(self.current_dir):
-                    if os.path.isfile(os.path.join(self.current_dir, item)):
-                        filename, file_extension = os.path.splitext(item)
-                        if file_extension in audio_files:
-                            files.append(item)
+                    for item in os.listdir(self.current_dir):
+                        if os.path.isfile(os.path.join(self.current_dir, item)):
+                            filename, file_extension = os.path.splitext(item)
+                            if file_extension in audio_files:
+                                files.append(item)
 
-                next_track = random.choice(files)
+                    next_track = random.choice(files)
 
-            if not next_track == "":
-                self.current_file = os.path.join(self.current_dir, next_track)
-                self.play()
+                if not next_track == "":
+                    self.current_file = os.path.join(self.current_dir, next_track)
+                    self.play()
+        finally:
+            threading.Timer(0.1, self.checkForMusicStop).start()
 
-        threading.Timer(0.1, self.checkForMusicStop).start()
+    def startCooldown(self):
+        self.cooldown = True
+        threading.Timer(1, self.finishCooldown).start()
+
+    def finishCooldown(self):
+        self.cooldown = False
