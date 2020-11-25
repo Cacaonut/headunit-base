@@ -95,6 +95,7 @@ class Ui_widget(object):
                                      "    border-bottom: 3px solid #E00000;\n"
                                      "}")
         self.btn_queue.setObjectName("btn_queue")
+        self.btn_queue.mouseReleaseEvent = self.queueFile
         self.label_btn_queue = QtWidgets.QLabel(self.btn_queue)
         self.label_btn_queue.setGeometry(QtCore.QRect(3, 3, 24, 24))
         self.label_btn_queue.setText("")
@@ -116,3 +117,6 @@ class Ui_widget(object):
         self.media_player.current_dir = self.owner.current_path
         self.media_player.current_file = os.path.join(self.owner.current_path, self.filename)
         self.media_player.play()
+
+    def queueFile(self, event):
+        self.media_player.queue.append(os.path.join(self.owner.current_path, self.filename))
