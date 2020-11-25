@@ -177,10 +177,6 @@ class Ui_content(object):
         else:
             print("Playing file: " + self.current_file)
             try:
-                mixer.music.stop()
-                mixer.music.unload()
-                mixer.quit()
-                mixer.init()
                 mixer.music.load(self.current_file)
                 mixer.music.play()
                 self.ui_music_player.updateUI()
