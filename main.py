@@ -10,7 +10,7 @@ def setupBluetooth():
     port = 1
     server_sock.bind(("", port))
     server_sock.listen(1)
-    bluetooth.advertise_service(server_sock, "Toyota RAV 4")
+    bluetooth.advertise_service(server_sock, "Toyota RAV4")
 
     client_sock, address = server_sock.accept()
     client_name = bluetooth.lookup_name(address)
@@ -25,5 +25,5 @@ if __name__ == "__main__":
     ui = ui.main.Ui_MainWindow()
     ui.setupUi(MainWindow)
     MainWindow.show()
-    # setupBluetooth()
+    setupBluetooth()
     sys.exit(app.exec_())
