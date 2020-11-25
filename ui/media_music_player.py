@@ -142,6 +142,7 @@ class Ui_content(object):
         QtCore.QMetaObject.connectSlotsByName(content)
 
         self.slider_pressed = False
+        self.fetching_info = False
         self.current_offset = 0
 
     def retranslateUi(self, content):
@@ -154,9 +155,11 @@ class Ui_content(object):
         self.label_album.setText(_translate("content", ""))
 
     def updateUI(self):
-        if self.slider_pressed:
+        if self.slider_pressed or self.fetching_info:
             threading.Timer(0.1, self.updateUI).start()
             return
+
+        self.fetching_info = True
 
         if mixer.music.get_busy():
             try:
@@ -217,6 +220,7 @@ class Ui_content(object):
             self.music_slider.setValue(0)
             self.music_slider.blockSignals(False)
 
+        self.fetching_info = False
         threading.Timer(0.1, self.updateUI).start()
 
     def playBtnPressed(self, event):
