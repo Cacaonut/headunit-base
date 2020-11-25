@@ -140,6 +140,7 @@ class Ui_content(object):
         QtCore.QMetaObject.connectSlotsByName(content)
 
         mixer.init()
+        pygame.init()
         self.cooldown = False
         self.checkForMusicStop()
 
