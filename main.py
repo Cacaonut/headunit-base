@@ -6,7 +6,8 @@ import ui.main
 
 
 def setupBluetooth():
-    print(bluetool.Bluetooth.get_paired_devices())
+    bt = bluetool.Bluetooth()
+    print(bt.get_paired_devices())
 
 
 if __name__ == "__main__":
