@@ -190,7 +190,7 @@ class Ui_content(object):
                 self.setPlaying()
                 mixer.music.load(self.current_file)
                 mixer.music.play()
-                #self.startCooldown()
+                self.startCooldown()
             except:
                 print("File could not be played")
 
