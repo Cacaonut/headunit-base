@@ -106,7 +106,8 @@ class Ui_content(object):
         self.scrollArea = QtWidgets.QScrollArea(content)
         self.scrollArea.setGeometry(QtCore.QRect(30, 100, 660, 240))
         self.scrollArea.setStyleSheet("#scrollArea  {\n"
-                                      "    border: none\n"
+                                      "    border: none;\n"
+                                      "    background: black\n"
                                       "}")
         self.scrollArea.setObjectName("scrollArea")
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
