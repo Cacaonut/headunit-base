@@ -147,13 +147,13 @@ class Ui_content(object):
         self.text_btn_linked.setText(_translate("content", "Linked"))
         self.text_btn_connect.setText(_translate("content", "Connect"))
 
-    def switchToLinked(self):
+    def switchToLinked(self, event):
         self.current_tab_connected = False
         self.updateDevices()
         self.btn_connected.setEnabled(True)
         self.btn_linked.setEnabled(False)
 
-    def switchToConnected(self):
+    def switchToConnected(self, event):
         self.current_tab_connected = True
         self.updateDevices()
         self.btn_connected.setEnabled(False)
