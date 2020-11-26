@@ -170,6 +170,7 @@ class Ui_content(object):
             devices = self.bluetooth.get_paired_devices()
 
         for device in devices:
+            print(device)
             content_device = QtWidgets.QWidget()
             ui_device = ui.lists.device.Ui_widget()
             ui_device.setupUi(content_device)
