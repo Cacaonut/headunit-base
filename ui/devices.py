@@ -175,7 +175,7 @@ class Ui_content(object):
             print(device)
             content_device = QtWidgets.QWidget()
             ui_device = ui.lists.device.Ui_widget()
-            ui_device.setupUi(content_device)
+            ui_device.setupUi(content_device, self, str(device["mac_address"].decode("UTF-8")))
             ui_device.label_name.setText(str(device["name"].decode("UTF-8")))
             self.verticalLayout.addWidget(content_device)
 
