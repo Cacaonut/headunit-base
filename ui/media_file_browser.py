@@ -109,10 +109,13 @@ class Ui_content(object):
         scroller.setScrollerProperties(scrollerProps)
         self.scrollAreaWidget = QtWidgets.QFrame()
         self.scrollAreaWidget.setStyleSheet("#scrollAreaWidget {\n"
-                                            "    background: black;\n"
+                                            "    background: red;\n"
                                             "}")
         self.scrollAreaWidget.setObjectName("scrollAreaWidget")
+        self.scrollAreaWidget.setGeometry(QtCore.QRect(0, 0, 660, 0))
         self.scrollAreaLayout = QtWidgets.QVBoxLayout()
+        self.scrollAreaLayout.setContentsMargins(0, 0, 0, 0)
+        self.scrollAreaLayout.setSpacing(0)
         self.scrollAreaWidget.setLayout(self.scrollAreaLayout)
         self.scrollArea.setWidget(self.scrollAreaWidget)
         self.btn_back = QtWidgets.QWidget(content)
@@ -208,7 +211,7 @@ class Ui_content(object):
                 ui_file.label_length.setText("")
             self.scrollAreaLayout.addWidget(content_file)
 
-        self.scrollAreaWidget.resize(660, (len(dirs) + len(files)) * 47)
+        self.scrollAreaWidget.setFixedHeight((len(dirs) + len(files)) * 45)
         self.label_path.setText(self.current_path.replace("/media/pi/", "").replace("/media/pi", ""))
 
     def toParentDir(self, event):

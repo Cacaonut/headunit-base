@@ -20,7 +20,7 @@ class Ui_widget(object):
         self.filename = filename
         self.media_player = media_player
         widget.setObjectName("widget")
-        widget.resize(600, 35)
+        widget.resize(600, 45)
         widget.setStyleSheet("#widget {\n"
                              "    background: black;\n"
                              "    border-bottom: 1px solid #CCC\n"
@@ -30,7 +30,7 @@ class Ui_widget(object):
                              "    color: white\n"
                              "}")
         self.label_number = QtWidgets.QLabel(widget)
-        self.label_number.setGeometry(QtCore.QRect(15, 10, 15, 15))
+        self.label_number.setGeometry(QtCore.QRect(15, 15, 15, 15))
         font = QtGui.QFont()
         font.setFamily("Montserrat Light")
         font.setPointSize(13)
@@ -39,7 +39,7 @@ class Ui_widget(object):
         self.label_number.setAlignment(QtCore.Qt.AlignCenter)
         self.label_number.setObjectName("label_number")
         self.label_title = QtWidgets.QLabel(widget)
-        self.label_title.setGeometry(QtCore.QRect(70, 5, 300, 25))
+        self.label_title.setGeometry(QtCore.QRect(70, 10, 300, 25))
         font = QtGui.QFont()
         font.setFamily("Montserrat Light")
         font.setPointSize(13)
@@ -48,7 +48,7 @@ class Ui_widget(object):
         self.label_title.setAlignment(QtCore.Qt.AlignLeading | QtCore.Qt.AlignLeft | QtCore.Qt.AlignVCenter)
         self.label_title.setObjectName("label_title")
         self.label_length = QtWidgets.QLabel(widget)
-        self.label_length.setGeometry(QtCore.QRect(430, 10, 45, 15))
+        self.label_length.setGeometry(QtCore.QRect(430, 15, 45, 15))
         font = QtGui.QFont()
         font.setFamily("Montserrat Light")
         font.setPointSize(13)
@@ -58,7 +58,7 @@ class Ui_widget(object):
         self.label_length.setObjectName("label_length")
         self.btn_play = QtWidgets.QWidget(widget)
         self.btn_play.setEnabled(True)
-        self.btn_play.setGeometry(QtCore.QRect(515, 2, 30, 30))
+        self.btn_play.setGeometry(QtCore.QRect(515, 7, 30, 30))
         self.btn_play.setStyleSheet("#btn_play {\n"
                                     "    background: #252525; color: white\n"
                                     "}\n"
@@ -81,7 +81,7 @@ class Ui_widget(object):
         self.label_btn_play.setObjectName("label_btn_play")
         self.btn_queue = QtWidgets.QWidget(widget)
         self.btn_queue.setEnabled(True)
-        self.btn_queue.setGeometry(QtCore.QRect(555, 2, 30, 30))
+        self.btn_queue.setGeometry(QtCore.QRect(555, 7, 30, 30))
         self.btn_queue.setStyleSheet("#btn_queue {\n"
                                      "    background: #252525; color: white\n"
                                      "}\n"

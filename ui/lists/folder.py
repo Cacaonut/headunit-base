@@ -16,7 +16,7 @@ class Ui_widget(object):
     def setupUi(self, widget, owner):
         self.owner = owner
         widget.setObjectName("widget")
-        widget.resize(600, 35)
+        widget.resize(600, 45)
         widget.setStyleSheet("#widget {\n"
                              "    background: black;\n"
                              "    border-bottom: 1px solid #CCC\n"
@@ -26,7 +26,7 @@ class Ui_widget(object):
                              "    color: white\n"
                              "}")
         self.label_folder = QtWidgets.QLabel(widget)
-        self.label_folder.setGeometry(QtCore.QRect(10, 5, 25, 25))
+        self.label_folder.setGeometry(QtCore.QRect(10, 10, 25, 25))
         font = QtGui.QFont()
         font.setFamily("Montserrat Light")
         font.setPointSize(13)
@@ -38,7 +38,7 @@ class Ui_widget(object):
         self.label_folder.setAlignment(QtCore.Qt.AlignCenter)
         self.label_folder.setObjectName("label_folder")
         self.label_title = QtWidgets.QLabel(widget)
-        self.label_title.setGeometry(QtCore.QRect(70, 5, 300, 25))
+        self.label_title.setGeometry(QtCore.QRect(70, 10, 300, 25))
         font = QtGui.QFont()
         font.setFamily("Montserrat Light")
         font.setPointSize(13)

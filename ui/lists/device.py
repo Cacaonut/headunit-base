@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_widget(object):
     def setupUi(self, widget):
         widget.setObjectName("widget")
-        widget.resize(600, 35)
+        widget.resize(600, 45)
         widget.setStyleSheet("#widget {\n"
                              "    background: black;\n"
                              "    border-bottom: 1px solid #CCC\n"
@@ -24,7 +24,7 @@ class Ui_widget(object):
                              "    color: white\n"
                              "}")
         self.label_sound = QtWidgets.QLabel(widget)
-        self.label_sound.setGeometry(QtCore.QRect(10, 5, 25, 25))
+        self.label_sound.setGeometry(QtCore.QRect(10, 10, 25, 25))
         font = QtGui.QFont()
         font.setFamily("Avenir Next LT Pro")
         font.setPointSize(14)
@@ -36,7 +36,7 @@ class Ui_widget(object):
         self.label_sound.setAlignment(QtCore.Qt.AlignCenter)
         self.label_sound.setObjectName("label_sound")
         self.label_name = QtWidgets.QLabel(widget)
-        self.label_name.setGeometry(QtCore.QRect(70, 5, 300, 25))
+        self.label_name.setGeometry(QtCore.QRect(70, 10, 300, 25))
         font = QtGui.QFont()
         font.setFamily("Montserrat")
         font.setPointSize(14)
@@ -46,7 +46,7 @@ class Ui_widget(object):
         self.label_name.setObjectName("label_name")
         self.btn_remove = QtWidgets.QWidget(widget)
         self.btn_remove.setEnabled(True)
-        self.btn_remove.setGeometry(QtCore.QRect(555, 2, 30, 30))
+        self.btn_remove.setGeometry(QtCore.QRect(555, 7, 30, 30))
         self.btn_remove.setStyleSheet("#btn_remove {\n"
                                       "    background: #252525; color: white\n"
                                       "}\n"
@@ -68,7 +68,7 @@ class Ui_widget(object):
         self.label_btn_remove.setObjectName("label_btn_remove")
         self.btn_disconnect = QtWidgets.QWidget(widget)
         self.btn_disconnect.setEnabled(True)
-        self.btn_disconnect.setGeometry(QtCore.QRect(515, 2, 30, 30))
+        self.btn_disconnect.setGeometry(QtCore.QRect(515, 7, 30, 30))
         self.btn_disconnect.setStyleSheet("#btn_disconnect {\n"
                                           "    background: #252525; color: white\n"
                                           "}\n"
@@ -90,7 +90,7 @@ class Ui_widget(object):
         self.label_btn_disconnect.setObjectName("label_btn_disconnect")
         self.btn_sound = QtWidgets.QWidget(widget)
         self.btn_sound.setEnabled(True)
-        self.btn_sound.setGeometry(QtCore.QRect(475, 2, 30, 30))
+        self.btn_sound.setGeometry(QtCore.QRect(475, 7, 30, 30))
         self.btn_sound.setStyleSheet("#btn_sound {\n"
                                      "    background: #252525; color: white\n"
                                      "}\n"

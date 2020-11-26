@@ -116,11 +116,9 @@ class Ui_content(object):
                                                     "    background: black\n"
                                                     "}")
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
-        self.verticalLayoutWidget = QtWidgets.QWidget(self.scrollAreaWidgetContents)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(-1, -1, 661, 241))
-        self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
-        self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout.setSpacing(0)
         self.verticalLayout.setObjectName("verticalLayout")
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.timout_label = QtWidgets.QLabel(content)
@@ -180,4 +178,4 @@ class Ui_content(object):
             ui_device.label_name.setText(str(device["name"].decode("UTF-8")))
             self.verticalLayout.addWidget(content_device)
 
-        self.scrollAreaWidgetContents.resize(660, len(devices) * 35)
+        self.scrollAreaWidgetContents.setFixedHeight(len(devices) * 45)
