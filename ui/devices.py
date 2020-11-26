@@ -166,4 +166,3 @@ class Ui_content(object):
             self.verticalLayout.addWidget(content_device)
 
         self.scrollAreaWidgetContents.resize(660, len(devices) * 47)
-        threading.Timer(0.5, self.updateDevices).start()
