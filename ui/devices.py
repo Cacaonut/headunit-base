@@ -42,6 +42,7 @@ class Ui_content(object):
                                          "    border-bottom: 3px solid #E00000;\n"
                                          "}")
         self.btn_connected.setObjectName("btn_connected")
+        self.btn_connected.mouseReleaseEvent = self.switchToConnected
         self.text_btn_connected = QtWidgets.QLabel(self.btn_connected)
         self.text_btn_connected.setGeometry(QtCore.QRect(20, 10, 140, 25))
         font = QtGui.QFont()
@@ -67,6 +68,7 @@ class Ui_content(object):
                                       "    border-bottom: 3px solid #E00000;\n"
                                       "}")
         self.btn_linked.setObjectName("btn_linked")
+        self.btn_linked.mouseReleaseEvent = self.switchToLinked
         self.text_btn_linked = QtWidgets.QLabel(self.btn_linked)
         self.text_btn_linked.setGeometry(QtCore.QRect(20, 10, 140, 25))
         font = QtGui.QFont()
@@ -145,9 +147,17 @@ class Ui_content(object):
         self.text_btn_linked.setText(_translate("content", "Linked"))
         self.text_btn_connect.setText(_translate("content", "Connect"))
 
-    def switchTab(self):
-        self.current_tab_connected = not self.current_tab_connected
+    def switchToLinked(self):
+        self.current_tab_connected = False
         self.updateDevices()
+        self.btn_connected.setEnabled(True)
+        self.btn_linked.setEnabled(False)
+
+    def switchToConnected(self):
+        self.current_tab_connected = True
+        self.updateDevices()
+        self.btn_connected.setEnabled(False)
+        self.btn_linked.setEnabled(True)
 
     def setupBluetooth(self):
         self.bluetooth = bluetool.Bluetooth()
