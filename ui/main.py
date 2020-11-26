@@ -297,7 +297,7 @@ class Ui_MainWindow(object):
 
         # Android Auto
         if platform == "linux" or platform == "linux2":
-            subprocess.Popen(["sudo", "/home/pi/openauto/bin/autoapp"])
+            subprocess.Popen(["sudo", "/home/pi/openauto/bin/autoapp"], shell=False)
         self.content_android_auto = QtWidgets.QWidget()
         ui_android_auto = android_auto.Ui_content()
         ui_android_auto.setupUi(self.content_android_auto, self)
