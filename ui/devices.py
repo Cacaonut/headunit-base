@@ -108,7 +108,6 @@ class Ui_content(object):
         self.scrollArea.setStyleSheet("#scrollArea  {\n"
                                       "    border: none\n"
                                       "}")
-        self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
         self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 660, 240))
@@ -164,6 +163,9 @@ class Ui_content(object):
         self.bluetooth.make_discoverable()
 
     def updateDevices(self):
+        for i in reversed(range(self.verticalLayout.count())):
+            self.verticalLayout.itemAt(i).widget().setParent(None)
+
         if self.current_tab_connected:
             devices = self.bluetooth.get_connected_devices()
         else:
