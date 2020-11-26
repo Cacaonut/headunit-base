@@ -173,7 +173,7 @@ class Ui_content(object):
             content_device = QtWidgets.QWidget()
             ui_device = ui.lists.device.Ui_widget()
             ui_device.setupUi(content_device)
-            ui_device.label_name.setText(str(device["name"].encode("UTF-8")))
+            ui_device.label_name.setText(str(device["name"].decode("UTF-8")))
             self.verticalLayout.addWidget(content_device)
 
         self.scrollAreaWidgetContents.resize(660, len(devices) * 47)
