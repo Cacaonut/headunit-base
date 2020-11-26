@@ -170,6 +170,10 @@ class Ui_content(object):
             devices = self.bluetooth.get_connected_devices()
         else:
             devices = self.bluetooth.get_paired_devices()
+            connected_devices = self.bluetooth.get_connected_devices()
+            for device in devices:
+                if device in connected_devices:
+                    devices.remove(device)
 
         for device in devices:
             print(device)

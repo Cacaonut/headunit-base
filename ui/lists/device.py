@@ -29,6 +29,8 @@ class Ui_widget(object):
                              "}")
         self.label_sound = QtWidgets.QLabel(widget)
         self.label_sound.setGeometry(QtCore.QRect(10, 10, 25, 25))
+        if not self.mac == media.Ui_content.current_bt_device:
+            self.btn_sound.setVisible(False)
         font = QtGui.QFont()
         font.setFamily("Avenir Next LT Pro")
         font.setPointSize(14)
@@ -91,7 +93,10 @@ class Ui_widget(object):
         self.label_btn_connect = QtWidgets.QLabel(self.btn_connect)
         self.label_btn_connect.setGeometry(QtCore.QRect(3, 3, 24, 24))
         self.label_btn_connect.setText("")
-        self.label_btn_connect.setPixmap(QtGui.QPixmap(":/images/connect.svg"))
+        if self.owner.current_tab_connected:
+            self.label_btn_connect.setPixmap(QtGui.QPixmap(":/images/disconnect.svg"))
+        else:
+            self.label_btn_connect.setPixmap(QtGui.QPixmap(":/images/connect.svg"))
         self.label_btn_connect.setScaledContents(True)
         self.label_btn_connect.setObjectName("label_btn_connect")
         self.btn_sound = QtWidgets.QWidget(widget)
