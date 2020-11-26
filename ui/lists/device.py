@@ -116,7 +116,7 @@ class Ui_widget(object):
                                      "}")
         self.btn_sound.setObjectName("btn_sound")
         self.btn_sound.mouseReleaseEvent = self.soundClicked
-        if not self.owner.current_tab_connected:
+        if not self.owner.current_tab_connected or self.mac == media.Ui_content.current_bt_device:
             self.btn_sound.setVisible(False)
         self.label_btn_sound = QtWidgets.QLabel(self.btn_sound)
         self.label_btn_sound.setGeometry(QtCore.QRect(3, 3, 24, 24))
