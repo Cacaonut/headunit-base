@@ -180,4 +180,4 @@ class Ui_content(object):
             ui_device.label_name.setText(str(device["name"].decode("UTF-8")))
             self.verticalLayout.addWidget(content_device)
 
-        self.scrollAreaWidgetContents.resize(660, len(devices) * 47)
+        #self.scrollAreaWidgetContents.resize(660, len(devices) * 47)
