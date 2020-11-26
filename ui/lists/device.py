@@ -30,7 +30,7 @@ class Ui_widget(object):
         self.label_sound = QtWidgets.QLabel(widget)
         self.label_sound.setGeometry(QtCore.QRect(10, 10, 25, 25))
         if not self.mac == media.Ui_content.current_bt_device:
-            self.btn_sound.setVisible(False)
+            self.label_sound.setVisible(False)
         font = QtGui.QFont()
         font.setFamily("Avenir Next LT Pro")
         font.setPointSize(14)
