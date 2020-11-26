@@ -170,7 +170,7 @@ class Ui_content(object):
         self.btn_usb.setEnabled(False)
         self.btn_file_browser.setEnabled(True)
         self.btn_file_browser.setVisible(True)
-        if self.bt_process is not None:
+        if hasattr(self, "bt_process"):
             self.bt_process.kill()
         self.useBluetooth = False
 
