@@ -94,6 +94,7 @@ class Ui_content(object):
                                        "    border-bottom: 3px solid #E00000;\n"
                                        "}")
         self.btn_connect.setObjectName("btn_connect")
+        self.btn_connect.mouseReleaseEvent = self.connectBtnClicked
         self.text_btn_connect = QtWidgets.QLabel(self.btn_connect)
         self.text_btn_connect.setGeometry(QtCore.QRect(10, 5, 100, 25))
         font = QtGui.QFont()
@@ -179,3 +180,6 @@ class Ui_content(object):
             self.verticalLayout.addWidget(content_device)
 
         self.scrollAreaWidgetContents.setFixedHeight(len(devices) * 45)
+
+    def connectBtnClicked(self, event):
+        self.bluetooth.make_discoverable()

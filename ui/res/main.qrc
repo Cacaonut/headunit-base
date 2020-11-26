@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="images">
+    <file>connect.svg</file>
     <file>sound_gray.svg</file>
     <file>sound_white.svg</file>
     <file>disconnect.svg</file>

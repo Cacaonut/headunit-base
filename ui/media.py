@@ -20,6 +20,8 @@ from pygame import mixer
 
 
 class Ui_content(object):
+    current_bt_device = ""
+
     def setupUi(self, content):
         self.paused = True
         self.useBluetooth = False

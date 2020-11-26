@@ -10,9 +10,13 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+from ui import media
+
 
 class Ui_widget(object):
-    def setupUi(self, widget):
+    def setupUi(self, widget, owner, mac):
+        self.mac = mac
+        self.owner = owner
         widget.setObjectName("widget")
         widget.resize(600, 45)
         widget.setStyleSheet("#widget {\n"
@@ -60,34 +64,36 @@ class Ui_widget(object):
                                       "    border-bottom: 3px solid #E00000;\n"
                                       "}")
         self.btn_remove.setObjectName("btn_remove")
+        self.btn_remove.mouseReleaseEvent = self.removeClicked
         self.label_btn_remove = QtWidgets.QLabel(self.btn_remove)
         self.label_btn_remove.setGeometry(QtCore.QRect(3, 3, 24, 24))
         self.label_btn_remove.setText("")
         self.label_btn_remove.setPixmap(QtGui.QPixmap(":/images/remove.svg"))
         self.label_btn_remove.setScaledContents(True)
         self.label_btn_remove.setObjectName("label_btn_remove")
-        self.btn_disconnect = QtWidgets.QWidget(widget)
-        self.btn_disconnect.setEnabled(True)
-        self.btn_disconnect.setGeometry(QtCore.QRect(515, 7, 30, 30))
-        self.btn_disconnect.setStyleSheet("#btn_disconnect {\n"
+        self.btn_connect = QtWidgets.QWidget(widget)
+        self.btn_connect.setEnabled(True)
+        self.btn_connect.setGeometry(QtCore.QRect(515, 7, 30, 30))
+        self.btn_connect.setStyleSheet("#btn_connect {\n"
                                           "    background: #252525; color: white\n"
                                           "}\n"
                                           "\n"
-                                          "#btn_disconnect::hover {\n"
+                                          "#btn_connect::hover {\n"
                                           "    background: #303030;\n"
                                           "}\n"
                                           "\n"
-                                          "#btn_disconnect::!enabled {\n"
+                                          "#btn_connect::!enabled {\n"
                                           "    background: #595959;\n"
                                           "    border-bottom: 3px solid #E00000;\n"
                                           "}")
-        self.btn_disconnect.setObjectName("btn_disconnect")
-        self.label_btn_disconnect = QtWidgets.QLabel(self.btn_disconnect)
-        self.label_btn_disconnect.setGeometry(QtCore.QRect(3, 3, 24, 24))
-        self.label_btn_disconnect.setText("")
-        self.label_btn_disconnect.setPixmap(QtGui.QPixmap(":/images/disconnect.svg"))
-        self.label_btn_disconnect.setScaledContents(True)
-        self.label_btn_disconnect.setObjectName("label_btn_disconnect")
+        self.btn_connect.setObjectName("btn_connect")
+        self.btn_connect.mouseReleaseEvent = self.connectClicked
+        self.label_btn_connect = QtWidgets.QLabel(self.btn_connect)
+        self.label_btn_connect.setGeometry(QtCore.QRect(3, 3, 24, 24))
+        self.label_btn_connect.setText("")
+        self.label_btn_connect.setPixmap(QtGui.QPixmap(":/images/connect.svg"))
+        self.label_btn_connect.setScaledContents(True)
+        self.label_btn_connect.setObjectName("label_btn_connect")
         self.btn_sound = QtWidgets.QWidget(widget)
         self.btn_sound.setEnabled(True)
         self.btn_sound.setGeometry(QtCore.QRect(475, 7, 30, 30))
@@ -104,6 +110,7 @@ class Ui_widget(object):
                                      "    border-bottom: 3px solid #E00000;\n"
                                      "}")
         self.btn_sound.setObjectName("btn_sound")
+        self.btn_sound.mouseReleaseEvent = self.soundClicked
         self.label_btn_sound = QtWidgets.QLabel(self.btn_sound)
         self.label_btn_sound.setGeometry(QtCore.QRect(3, 3, 24, 24))
         self.label_btn_sound.setText("")
@@ -118,3 +125,19 @@ class Ui_widget(object):
         _translate = QtCore.QCoreApplication.translate
         widget.setWindowTitle(_translate("widget", "Form"))
         self.label_name.setText(_translate("widget", "Device"))
+
+    def removeClicked(self, event):
+        self.owner.bluetooth.remove(self.mac)
+        self.owner.updateDevices()
+
+    def connectClicked(self, event):
+        if self.owner.current_tab_connected:
+            self.owner.bluetooth.disconnect(self.mac)
+        else:
+            self.owner.bluetooth.trust(self.mac)
+            self.owner.bluetooth.connect(self.mac)
+        self.owner.updateDevices()
+
+    def soundClicked(self, event):
+        media.Ui_content.current_bt_device = self.mac
+        self.owner.updateDevices()
