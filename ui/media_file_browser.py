@@ -232,6 +232,7 @@ class Ui_content(object):
                     self.owner.queue.append(os.path.join(self.current_path, item))
 
         self.owner.current_dir = self.current_path
+        self.owner.play()
 
     def shuffleDir(self, event):
         files = []
