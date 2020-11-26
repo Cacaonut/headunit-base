@@ -59,7 +59,7 @@
     </property>
     <property name="font">
      <font>
-      <family>Avenir Next LT Pro</family>
+      <family>Montserrat</family>
       <pointsize>16</pointsize>
      </font>
     </property>
@@ -111,7 +111,7 @@
     </property>
     <property name="font">
      <font>
-      <family>Avenir Next LT Pro</family>
+      <family>Montserrat</family>
       <pointsize>16</pointsize>
      </font>
     </property>
@@ -156,14 +156,14 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>10</y>
+      <y>5</y>
       <width>100</width>
-      <height>15</height>
+      <height>25</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <family>Avenir Next LT Pro</family>
+      <family>Montserrat</family>
       <pointsize>14</pointsize>
      </font>
     </property>
@@ -187,6 +187,11 @@
      <height>240</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">#scrollArea  {
+	border: none
+}</string>
+   </property>
    <property name="widgetResizable">
     <bool>true</bool>
    </property>
@@ -195,8 +200,8 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>658</width>
-      <height>238</height>
+      <width>660</width>
+      <height>240</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -216,6 +221,25 @@
      <layout class="QVBoxLayout" name="verticalLayout"/>
     </widget>
    </widget>
+  </widget>
+  <widget class="QLabel" name="timout_label">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>370</y>
+     <width>200</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Montserrat</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
   </widget>
  </widget>
  <resources>

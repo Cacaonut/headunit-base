@@ -192,7 +192,6 @@ class Ui_content(object):
             content_file = QtWidgets.QWidget()
             ui_file = ui.lists.file.Ui_widget()
             ui_file.setupUi(content_file, self, file, self.owner)
-            filename, file_extension = os.path.splitext(file)
             ui_file.label_number.setText(str(i))
             try:
                 id3 = EasyID3(os.path.join(self.current_path, file))
