@@ -275,14 +275,15 @@ class Ui_content(object):
             dbus_interface='org.freedesktop.DBus.Properties')
 
     def on_property_changed(self, interface, changed, invalidated):
-        print(changed)
         if interface != 'org.bluez.MediaPlayer1':
             return
         for prop, value in changed.items():
             if prop == 'Status':
                 if value == "playing":
+                    self.owner.bt_paused = False
                     self.btn_play.setPixmap(QtGui.QPixmap(":/images/pause.svg"))
                 elif value == "paused":
+                    self.owner.bt_paused = True
                     self.btn_play.setPixmap(QtGui.QPixmap(":/images/play.svg"))
             elif prop == 'Track':
                 self.label_title.setText(value.get("Title", '-'))

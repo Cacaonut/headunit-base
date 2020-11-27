@@ -25,6 +25,7 @@ class Ui_content(object):
 
     def setupUi(self, content):
         self.paused = True
+        self.bt_paused = True
         self.useBluetooth = False
         self.current_file = ""
         self.queue = []
@@ -205,7 +206,12 @@ class Ui_content(object):
     def pause(self):
         if not self.cooldown:
             if self.useBluetooth:
-                self.ui_music_player.player_iface.Pause()
+                if self.bt_paused:
+                    self.ui_music_player.player_iface.Play()
+                    self.bt_paused = False
+                else:
+                    self.ui_music_player.player_iface.Pause()
+                    self.bt_paused = True
             else:
                 if not self.paused:
                     mixer.music.pause()
