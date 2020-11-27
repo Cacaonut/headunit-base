@@ -248,6 +248,7 @@ class Ui_content(object):
             mixer.music.set_pos(new_pos)
 
     def setupBluetooth(self):
+        print("setting up bluetooth")
         dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
         bus = dbus.SystemBus()
         obj = bus.get_object('org.bluez', "/")
