@@ -146,6 +146,7 @@ class Ui_content(object):
         self.slider_pressed = False
         self.fetching_info = False
         self.current_offset = 0
+        self.setupBluetooth()
 
     def retranslateUi(self, content):
         _translate = QtCore.QCoreApplication.translate
@@ -157,7 +158,7 @@ class Ui_content(object):
         self.label_album.setText(_translate("content", ""))
 
     def updateUI(self):
-        if self.slider_pressed or self.fetching_info:
+        if self.slider_pressed or self.fetching_info or self.owner.useBluetooth:
             threading.Timer(0.1, self.updateUI).start()
             return
 
