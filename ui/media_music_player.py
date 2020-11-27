@@ -278,6 +278,7 @@ class Ui_content(object):
         # GLib.MainLoop().run()
 
     def on_property_changed(self, interface, changed, invalidated):
+        print(changed)
         if interface != 'org.bluez.MediaPlayer1':
             return
         for prop, value in changed.items():
