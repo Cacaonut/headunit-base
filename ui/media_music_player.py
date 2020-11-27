@@ -14,7 +14,6 @@ from mutagen.easyid3 import EasyID3
 from mutagen import File
 from mutagen.mp3 import MP3
 from pygame import mixer
-import dbus, dbus.mainloop.glib, sys
 
 
 class Ui_content(object):
@@ -247,6 +246,7 @@ class Ui_content(object):
             mixer.music.set_pos(new_pos)
 
     def setupBluetooth(self):
+        import dbus, dbus.mainloop.glib, sys
         print("setting up bluetooth")
         dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
         bus = dbus.SystemBus()
