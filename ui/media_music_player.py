@@ -146,7 +146,6 @@ class Ui_content(object):
         self.slider_pressed = False
         self.fetching_info = False
         self.current_offset = 0
-        self.setupBluetooth()
 
     def retranslateUi(self, content):
         _translate = QtCore.QCoreApplication.translate
@@ -274,19 +273,22 @@ class Ui_content(object):
             bus_name='org.bluez',
             signal_name='PropertiesChanged',
             dbus_interface='org.freedesktop.DBus.Properties')
-        #GLib.io_add_watch(sys.stdin, GLib.IO_IN, self.on_playback_control)
-        #GLib.MainLoop().run()
+        # GLib.io_add_watch(sys.stdin, GLib.IO_IN, self.on_playback_control)
+        # GLib.MainLoop().run()
 
     def on_property_changed(self, interface, changed, invalidated):
         if interface != 'org.bluez.MediaPlayer1':
             return
         for prop, value in changed.items():
             if prop == 'Status':
-                print('Playback Status: {}'.format(value))
+                if value == "playing":
+                    self.btn_play.setPixmap(QtGui.QPixmap(":/images/pause.svg"))
+                elif value == "paused":
+                    self.btn_play.setPixmap(QtGui.QPixmap(":/images/play.svg"))
             elif prop == 'Track':
-                print('Music Info:')
-                for key in ('Title', 'Artist', 'Album'):
-                    print('   {}: {}'.format(key, value.get(key, '')))
+                self.label_title.setText(value.get("Title", '-'))
+                self.label_artist.setText(value.get("Artist", '-'))
+                self.label_album.setText(value.get("Album", '-'))
 
     def on_playback_control(self, fd, condition):
         if str.startswith('play'):
