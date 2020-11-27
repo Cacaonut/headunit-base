@@ -185,7 +185,7 @@ class Ui_content(object):
 
     def play(self):
         if self.useBluetooth:
-            print("Coming soon")
+            self.ui_music_player.player_iface.Play()
         else:
             print("Playing file: " + self.current_file)
             try:
@@ -204,25 +204,34 @@ class Ui_content(object):
 
     def pause(self):
         if not self.cooldown:
-            if not self.paused:
-                mixer.music.pause()
-                self.paused = True
-                self.ui_music_player.btn_play.setPixmap(QtGui.QPixmap(":/images/play.svg"))
-                print("Pause")
+            if self.useBluetooth:
+                self.ui_music_player.player_iface.Pause()
             else:
-                mixer.music.unpause()
-                self.paused = False
-                self.ui_music_player.btn_play.setPixmap(QtGui.QPixmap(":/images/pause.svg"))
-                print("Play")
+                if not self.paused:
+                    mixer.music.pause()
+                    self.paused = True
+                    self.ui_music_player.btn_play.setPixmap(QtGui.QPixmap(":/images/play.svg"))
+                    print("Pause")
+                else:
+                    mixer.music.unpause()
+                    self.paused = False
+                    self.ui_music_player.btn_play.setPixmap(QtGui.QPixmap(":/images/pause.svg"))
+                    print("Play")
 
     def next(self):
         if not self.cooldown:
-            mixer.music.stop()
+            if self.useBluetooth:
+                self.ui_music_player.player_iface.Next()
+            else:
+                mixer.music.stop()
 
     def rewind(self):
         if not self.cooldown:
-            mixer.music.stop()
-            self.play()
+            if self.useBluetooth:
+                self.ui_music_player.player_iface.Previous()
+            else:
+                mixer.music.stop()
+                self.play()
 
     def checkForMusicStop(self):
         try:

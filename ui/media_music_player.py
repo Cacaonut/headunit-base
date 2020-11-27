@@ -15,7 +15,6 @@ from mutagen import File
 from mutagen.mp3 import MP3
 from pygame import mixer
 import dbus, dbus.mainloop.glib, sys
-from gi.repository import GLib
 
 
 class Ui_content(object):
@@ -274,8 +273,6 @@ class Ui_content(object):
             bus_name='org.bluez',
             signal_name='PropertiesChanged',
             dbus_interface='org.freedesktop.DBus.Properties')
-        # GLib.io_add_watch(sys.stdin, GLib.IO_IN, self.on_playback_control)
-        # GLib.MainLoop().run()
 
     def on_property_changed(self, interface, changed, invalidated):
         print(changed)
@@ -291,23 +288,3 @@ class Ui_content(object):
                 self.label_title.setText(value.get("Title", '-'))
                 self.label_artist.setText(value.get("Artist", '-'))
                 self.label_album.setText(value.get("Album", '-'))
-
-    def on_playback_control(self, fd, condition):
-        if str.startswith('play'):
-            self.player_iface.Play()
-        elif str.startswith('pause'):
-            self.player_iface.Pause()
-        elif str.startswith('next'):
-            self.player_iface.Next()
-        elif str.startswith('prev'):
-            self.player_iface.Previous()
-        elif str.startswith('vol'):
-            vol = int(str.split()[1])
-            if vol not in range(0, 128):
-                print('Possible Values: 0-127')
-                return True
-            self.transport_prop_iface.Set(
-                'org.bluez.MediaTransport1',
-                'Volume',
-                dbus.UInt16(vol))
-        return True
