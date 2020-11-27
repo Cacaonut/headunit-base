@@ -275,7 +275,7 @@ class Ui_content(object):
             dbus_interface='org.freedesktop.DBus.Properties')
 
         status = self.transport_prop_iface.GetAll("org.freedesktop.DBus.Properties")
-        print("Props: " + status)
+        print(status)
 
     def on_property_changed(self, interface, changed, invalidated):
         if interface != 'org.bluez.MediaPlayer1':
