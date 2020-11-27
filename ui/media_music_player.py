@@ -269,11 +269,11 @@ class Ui_content(object):
         if not self.transport_prop_iface:
             sys.exit('Error: DBus.Properties iface not found.')
 
-        bus.add_signal_receiver(
-            self.on_property_changed,
-            bus_name='org.bluez',
-            signal_name='PropertiesChanged',
-            dbus_interface='org.freedesktop.DBus.Properties')
+        #bus.add_signal_receiver(
+            #self.on_property_changed,
+            #bus_name='org.bluez',
+            #signal_name='PropertiesChanged',
+            #dbus_interface='org.freedesktop.DBus.Properties')
         # GLib.io_add_watch(sys.stdin, GLib.IO_IN, self.on_playback_control)
         # GLib.MainLoop().run()
 
