@@ -275,8 +275,7 @@ class Ui_content(object):
             signal_name='PropertiesChanged',
             dbus_interface='org.freedesktop.DBus.Properties')
 
-        prop = dbus.Interface(bus.get_object('org.bluez', "/"), "org.freedesktop.DBus.Properties")
-        status = prop.GetAll("org.bluez.MediaPlayer1")
+        status = self.transport_prop_iface.GetAll("org.bluez.MediaPlayer1")
         print(status)
 
     def on_property_changed(self, interface, changed, invalidated):
