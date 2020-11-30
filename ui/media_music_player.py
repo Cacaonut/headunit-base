@@ -275,12 +275,13 @@ class Ui_content(object):
             signal_name='PropertiesChanged',
             dbus_interface='org.freedesktop.DBus.Properties')
 
+        status = self.player_iface.Status
+        print("Status" + status)
+
     def on_property_changed(self, interface, changed, invalidated):
         if interface != 'org.bluez.MediaPlayer1':
             return
 
-        status = self.transport_prop_iface.GetAll(interface)
-        print(status)
         for prop, value in changed.items():
             if prop == 'Status':
                 if value == "playing":
