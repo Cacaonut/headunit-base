@@ -162,40 +162,43 @@ class Ui_content(object):
         self.fetching_info = True
 
         if self.owner.useBluetooth:
-            props = self.player_prop_iface.GetAll("org.bluez.MediaPlayer1")
-            if props["Status"] == "playing":
-                self.btn_play.setPixmap(QtGui.QPixmap(":/images/pause.svg"))
-                track = props["Track"]
-                self.label_title.setText(track["Title"])
-                self.label_artist.setText(track["Artist"])
-                self.label_album.setText(track["Album"])
+            try:
+                props = self.player_prop_iface.GetAll("org.bluez.MediaPlayer1")
+                if props["Status"] == "playing":
+                    self.btn_play.setPixmap(QtGui.QPixmap(":/images/pause.svg"))
+                    track = props["Track"]
+                    self.label_title.setText(track["Title"])
+                    self.label_artist.setText(track["Artist"])
+                    self.label_album.setText(track["Album"])
 
-                length = track["Duration"] / 1000.0
-                length_minutes = int(length / 60)
-                length_seconds = int(length - length_minutes * 60)
-                self.label_length.setText(str(length_minutes) + ":" + f"{length_seconds:02d}")
+                    length = track["Duration"] / 1000.0
+                    length_minutes = int(length / 60)
+                    length_seconds = int(length - length_minutes * 60)
+                    self.label_length.setText(str(length_minutes) + ":" + f"{length_seconds:02d}")
 
-                pos = props["Position"] / 1000.0
-                pos_minutes = int(pos / 60)
-                pos_seconds = int(pos - pos_minutes * 60)
-                self.label_music_pos.setText(str(pos_minutes) + ":" + f"{pos_seconds:02d}")
+                    pos = props["Position"] / 1000.0
+                    pos_minutes = int(pos / 60)
+                    pos_seconds = int(pos - pos_minutes * 60)
+                    self.label_music_pos.setText(str(pos_minutes) + ":" + f"{pos_seconds:02d}")
 
-                progress = (pos * 100) / length
-                self.music_slider.blockSignals(True)
-                self.music_slider.setValue(progress)
-                self.music_slider.blockSignals(False)
+                    progress = (pos * 100) / length
+                    self.music_slider.blockSignals(True)
+                    self.music_slider.setValue(progress)
+                    self.music_slider.blockSignals(False)
 
-            else:
-                self.btn_play.setPixmap(QtGui.QPixmap(":/images/play.svg"))
-                self.label_title.setText("")
-                self.label_album.setText("")
-                self.label_artist.setText("")
-                self.label_music_pos.setText("0:00")
-                self.label_length.setText("0:00")
-                self.disc_cover.setPixmap(QtGui.QPixmap(":/images/cover.png"))
-                self.music_slider.blockSignals(True)
-                self.music_slider.setValue(0)
-                self.music_slider.blockSignals(False)
+                else:
+                    self.btn_play.setPixmap(QtGui.QPixmap(":/images/play.svg"))
+                    self.label_title.setText("")
+                    self.label_album.setText("")
+                    self.label_artist.setText("")
+                    self.label_music_pos.setText("0:00")
+                    self.label_length.setText("0:00")
+                    self.disc_cover.setPixmap(QtGui.QPixmap(":/images/cover.png"))
+                    self.music_slider.blockSignals(True)
+                    self.music_slider.setValue(0)
+                    self.music_slider.blockSignals(False)
+            except:
+                print("Error retrieving bluetooth music info")
         else:
             if mixer.music.get_busy():
                 try:
@@ -308,8 +311,6 @@ class Ui_content(object):
             sys.exit('Error: Media Player not found.')
         if not self.transport_prop_iface:
             sys.exit('Error: DBus.Properties iface not found.')
-
-        self.music_slider.setEnabled(False)
 
     def on_property_changed(self, interface, changed, invalidated):
         if interface != 'org.bluez.MediaPlayer1':

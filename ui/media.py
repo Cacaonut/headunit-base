@@ -166,6 +166,7 @@ class Ui_content(object):
         if not self.current_bt_device == "":
             self.bt_process = subprocess.Popen(['bluealsa-aplay', self.current_bt_device])
             self.ui_music_player.setupBluetooth()
+            self.ui_music_player.music_slider.setEnabled(False)
 
     def switchToUSB(self, event):
         self.content.setCurrentIndex(0)
@@ -176,6 +177,7 @@ class Ui_content(object):
         if hasattr(self, "bt_process"):
             self.bt_process.kill()
         self.useBluetooth = False
+        self.ui_music_player.music_slider.setEnabled(True)
 
     def switchToFileBrowser(self, event):
         self.content.setCurrentIndex(1)
