@@ -253,14 +253,17 @@ class Ui_content(object):
         obj = bus.get_object('org.bluez', "/")
         mgr = dbus.Interface(obj, 'org.freedesktop.DBus.ObjectManager')
         self.player_iface = None
+        self.player_prop_iface = None
         self.transport_prop_iface = None
         for path, ifaces in mgr.GetManagedObjects().items():
             if 'org.bluez.MediaPlayer1' in ifaces:
                 self.player_iface = dbus.Interface(
                     bus.get_object('org.bluez', path),
                     'org.bluez.MediaPlayer1')
+                self.player_prop_iface = dbus.Interface(
+                    bus.get_object('org.bluez', path),
+                    'org.freedesktop.DBus.Properties')
             elif 'org.bluez.MediaTransport1' in ifaces:
-                print(path)
                 self.transport_prop_iface = dbus.Interface(
                     bus.get_object('org.bluez', path),
                     'org.freedesktop.DBus.Properties')
@@ -275,7 +278,7 @@ class Ui_content(object):
             signal_name='PropertiesChanged',
             dbus_interface='org.freedesktop.DBus.Properties')
 
-        props = self.player_iface.GetAllProperties()
+        props = self.player_prop_iface.GetAll("org.bluez.MediaPlayer1")
         print(props)
 
     def on_property_changed(self, interface, changed, invalidated):
