@@ -164,8 +164,11 @@ class Ui_content(object):
         if self.owner.useBluetooth:
             try:
                 props = self.player_prop_iface.GetAll("org.bluez.MediaPlayer1")
-                if props["Status"] == "playing":
-                    self.btn_play.setPixmap(QtGui.QPixmap(":/images/pause.svg"))
+                if props["Status"] == "playing" or props["Status"] == "paused":
+                    if props["Status"] == "playing":
+                        self.btn_play.setPixmap(QtGui.QPixmap(":/images/pause.svg"))
+                    else:
+                        self.btn_play.setPixmap(QtGui.QPixmap(":/images/play.svg"))
                     track = props["Track"]
                     self.label_title.setText(track["Title"])
                     self.label_artist.setText(track["Artist"])
@@ -294,7 +297,6 @@ class Ui_content(object):
         mgr = dbus.Interface(obj, 'org.freedesktop.DBus.ObjectManager')
         self.player_iface = None
         self.player_prop_iface = None
-        self.transport_prop_iface = None
         for path, ifaces in mgr.GetManagedObjects().items():
             if 'org.bluez.MediaPlayer1' in ifaces:
                 self.player_iface = dbus.Interface(
@@ -303,28 +305,5 @@ class Ui_content(object):
                 self.player_prop_iface = dbus.Interface(
                     bus.get_object('org.bluez', path),
                     'org.freedesktop.DBus.Properties')
-            elif 'org.bluez.MediaTransport1' in ifaces:
-                self.transport_prop_iface = dbus.Interface(
-                    bus.get_object('org.bluez', path),
-                    'org.freedesktop.DBus.Properties')
         if not self.player_iface:
             sys.exit('Error: Media Player not found.')
-        if not self.transport_prop_iface:
-            sys.exit('Error: DBus.Properties iface not found.')
-
-    def on_property_changed(self, interface, changed, invalidated):
-        if interface != 'org.bluez.MediaPlayer1':
-            return
-
-        for prop, value in changed.items():
-            if prop == 'Status':
-                if value == "playing":
-                    self.owner.bt_paused = False
-                    self.btn_play.setPixmap(QtGui.QPixmap(":/images/pause.svg"))
-                elif value == "paused":
-                    self.owner.bt_paused = True
-                    self.btn_play.setPixmap(QtGui.QPixmap(":/images/play.svg"))
-            elif prop == 'Track':
-                self.label_title.setText(value.get("Title", '-'))
-                self.label_artist.setText(value.get("Artist", '-'))
-                self.label_album.setText(value.get("Album", '-'))
