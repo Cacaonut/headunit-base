@@ -276,7 +276,7 @@ class Ui_content(object):
             dbus_interface='org.freedesktop.DBus.Properties')
 
         status = self.player_iface.Status
-        print("Status" + status)
+        print("Status" + str(status))
 
     def on_property_changed(self, interface, changed, invalidated):
         if interface != 'org.bluez.MediaPlayer1':
