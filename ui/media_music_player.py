@@ -270,19 +270,17 @@ class Ui_content(object):
         self.owner.rewind()
 
     def sliderPressed(self, event):
-        if not self.owner.useBluetooth:
-            self.slider_pressed = True
+        self.slider_pressed = True
 
     def sliderChanged(self, event):
-        if not self.owner.useBluetooth:
-            self.slider_pressed = False
-            if mixer.music.get_busy():
-                progress = self.music_slider.value()
-                current_pos = self.current_offset + mixer.music.get_pos() / 1000
-                new_pos = self.length_seconds * progress / 100
-                self.current_offset += new_pos - current_pos
-                mixer.music.rewind()
-                mixer.music.set_pos(new_pos)
+        self.slider_pressed = False
+        if mixer.music.get_busy():
+            progress = self.music_slider.value()
+            current_pos = self.current_offset + mixer.music.get_pos() / 1000
+            new_pos = self.length_seconds * progress / 100
+            self.current_offset += new_pos - current_pos
+            mixer.music.rewind()
+            mixer.music.set_pos(new_pos)
 
     def setupBluetooth(self):
         import dbus, dbus.mainloop.glib, sys
@@ -310,6 +308,8 @@ class Ui_content(object):
             sys.exit('Error: Media Player not found.')
         if not self.transport_prop_iface:
             sys.exit('Error: DBus.Properties iface not found.')
+
+        self.music_slider.setEnabled(False)
 
     def on_property_changed(self, interface, changed, invalidated):
         if interface != 'org.bluez.MediaPlayer1':
