@@ -260,6 +260,7 @@ class Ui_content(object):
                     bus.get_object('org.bluez', path),
                     'org.bluez.MediaPlayer1')
             elif 'org.bluez.MediaTransport1' in ifaces:
+                print(path)
                 self.transport_prop_iface = dbus.Interface(
                     bus.get_object('org.bluez', path),
                     'org.freedesktop.DBus.Properties')
@@ -274,7 +275,7 @@ class Ui_content(object):
             signal_name='PropertiesChanged',
             dbus_interface='org.freedesktop.DBus.Properties')
 
-        prop = dbus.Interface(bus.get_object('org.bluez', ""), "org.freedesktop.DBus.Properties")
+        prop = dbus.Interface(bus.get_object('org.bluez', "/"), "org.freedesktop.DBus.Properties")
         status = prop.GetAll("org.bluez.MediaPlayer1")
         print(status)
 
