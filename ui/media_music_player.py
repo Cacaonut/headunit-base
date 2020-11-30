@@ -169,7 +169,7 @@ class Ui_content(object):
                 self.label_title.setText(track["Title"])
                 self.label_artist.setText(track["Artist"])
                 self.label_album.setText(track["Album"])
-                
+
                 length = track["Duration"] / 1000.0
                 length_minutes = int(length / 60)
                 length_seconds = int(length - length_minutes * 60)
@@ -270,17 +270,19 @@ class Ui_content(object):
         self.owner.rewind()
 
     def sliderPressed(self, event):
-        self.slider_pressed = True
+        if not self.owner.useBluetooth:
+            self.slider_pressed = True
 
     def sliderChanged(self, event):
-        self.slider_pressed = False
-        if mixer.music.get_busy():
-            progress = self.music_slider.value()
-            current_pos = self.current_offset + mixer.music.get_pos() / 1000
-            new_pos = self.length_seconds * progress / 100
-            self.current_offset += new_pos - current_pos
-            mixer.music.rewind()
-            mixer.music.set_pos(new_pos)
+        if not self.owner.useBluetooth:
+            self.slider_pressed = False
+            if mixer.music.get_busy():
+                progress = self.music_slider.value()
+                current_pos = self.current_offset + mixer.music.get_pos() / 1000
+                new_pos = self.length_seconds * progress / 100
+                self.current_offset += new_pos - current_pos
+                mixer.music.rewind()
+                mixer.music.set_pos(new_pos)
 
     def setupBluetooth(self):
         import dbus, dbus.mainloop.glib, sys
