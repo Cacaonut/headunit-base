@@ -162,7 +162,7 @@ class Ui_content(object):
         self.fetching_info = True
 
         if self.owner.useBluetooth:
-            try:
+            if hasattr(self, "player_prop_iface"):
                 props = self.player_prop_iface.GetAll("org.bluez.MediaPlayer1")
                 if props["Status"] == "playing" or props["Status"] == "paused":
                     if props["Status"] == "playing":
@@ -200,9 +200,9 @@ class Ui_content(object):
                     self.music_slider.blockSignals(True)
                     self.music_slider.setValue(0)
                     self.music_slider.blockSignals(False)
-            except IndexError as e:
+            else:
                 print("Error retrieving bluetooth music info:")
-                print(e)
+                print("No Interface")
         else:
             if mixer.music.get_busy():
                 try:
