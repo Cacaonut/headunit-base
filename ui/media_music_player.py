@@ -170,6 +170,7 @@ class Ui_content(object):
                     else:
                         self.btn_play.setPixmap(QtGui.QPixmap(":/images/play.svg"))
                     track = props["Track"]
+                    print(track)
                     self.label_title.setText(track["Title"])
                     self.label_artist.setText(track["Artist"])
                     self.label_album.setText(track["Album"])
