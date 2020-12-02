@@ -188,6 +188,7 @@ class Ui_content(object):
 
     def play(self):
         if self.useBluetooth:
+            print("Play")
             self.ui_music_player.player_iface.Play()
         else:
             print("Playing file: " + self.current_file)
@@ -209,6 +210,7 @@ class Ui_content(object):
         if not self.cooldown:
             if self.useBluetooth:
                 if self.bt_paused:
+                    print("Play")
                     self.ui_music_player.player_iface.Play()
                     self.bt_paused = False
                 else:
