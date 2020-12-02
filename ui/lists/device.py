@@ -33,7 +33,7 @@ class Ui_widget(object):
             self.label_sound.setVisible(False)
         font = QtGui.QFont()
         font.setFamily("Avenir Next LT Pro")
-        font.setPointSize(14)
+        font.setPointSize(13)
         self.label_sound.setFont(font)
         self.label_sound.setStyleSheet("color: #CCC")
         self.label_sound.setText("")

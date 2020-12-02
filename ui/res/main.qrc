@@ -1,5 +1,16 @@
 <RCC>
   <qresource prefix="images">
+    <file>minus.svg</file>
+    <file>plus.svg</file>
+    <file>check.svg</file>
+    <file>station_cover.png</file>
+    <file>fav_empty.svg</file>
+    <file>fav_full.svg</file>
+    <file>frequency.svg</file>
+    <file>radio.svg</file>
+    <file>radio_down.svg</file>
+    <file>radio_up.svg</file>
+    <file>station.svg</file>
     <file>connect.svg</file>
     <file>sound_gray.svg</file>
     <file>sound_white.svg</file>

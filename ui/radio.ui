@@ -1,0 +1,603 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>content</class>
+ <widget class="QWidget" name="content">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>720</width>
+    <height>435</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">#content {
+	background: black;
+}
+
+* {
+	color: white;
+}</string>
+  </property>
+  <widget class="QLabel" name="station_cover">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>70</y>
+     <width>200</width>
+     <height>200</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="res/main.qrc">:/images/station_cover.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="station_icon">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>80</y>
+     <width>30</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="res/main.qrc">:/images/station.svg</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_station">
+   <property name="geometry">
+    <rect>
+     <x>355</x>
+     <y>80</y>
+     <width>300</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Comfortaa</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Title</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="frequency_icon">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>120</y>
+     <width>30</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="res/main.qrc">:/images/frequency.svg</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_frequency">
+   <property name="geometry">
+    <rect>
+     <x>355</x>
+     <y>120</y>
+     <width>300</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Comfortaa</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Title</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="info_icon">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>160</y>
+     <width>30</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="res/main.qrc">:/images/music.svg</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_info">
+   <property name="geometry">
+    <rect>
+     <x>355</x>
+     <y>160</y>
+     <width>300</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Comfortaa</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Title</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="btn_down">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>230</y>
+     <width>50</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="res/main.qrc">:/images/radio_down.svg</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="btn_play">
+   <property name="geometry">
+    <rect>
+     <x>450</x>
+     <y>230</y>
+     <width>50</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="res/main.qrc">:/images/play.svg</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="btn_up">
+   <property name="geometry">
+    <rect>
+     <x>520</x>
+     <y>230</y>
+     <width>50</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="res/main.qrc">:/images/radio_up.svg</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QWidget" name="btn_fav_1" native="true">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>51</x>
+     <y>345</y>
+     <width>122</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#btn_fav_1 {
+	background: #252525; color: white
+}
+
+#btn_fav_1::hover {
+	background: #303030;
+}
+
+#btn_fav_1::!enabled {
+	background: #595959;
+	border-bottom: 3px solid #E00000;
+}</string>
+   </property>
+   <widget class="QLabel" name="btn_fav_1_frequency">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>7</y>
+      <width>122</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Comfortaa</family>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>107.2 MHz</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="btn_fav_1_station">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>32</y>
+      <width>122</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Comfortaa</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Klassik Radio</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QWidget" name="btn_fav_2" native="true">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>175</x>
+     <y>345</y>
+     <width>122</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#btn_fav_2 {
+	background: #252525; color: white
+}
+
+#btn_fav_2::hover {
+	background: #303030;
+}
+
+#btn_fav_2::!enabled {
+	background: #595959;
+	border-bottom: 3px solid #E00000;
+}</string>
+   </property>
+   <widget class="QLabel" name="btn_fav_2_frequency">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>7</y>
+      <width>122</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Comfortaa</family>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>107.2 MHz</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="btn_fav_2_station">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>32</y>
+      <width>122</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Comfortaa</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Klassik Radio</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QWidget" name="btn_fav_3" native="true">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>299</x>
+     <y>345</y>
+     <width>122</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#btn_fav_3 {
+	background: #252525; color: white
+}
+
+#btn_fav_3::hover {
+	background: #303030;
+}
+
+#btn_fav_3::!enabled {
+	background: #595959;
+	border-bottom: 3px solid #E00000;
+}</string>
+   </property>
+   <widget class="QLabel" name="btn_fav_3_frequency">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>7</y>
+      <width>122</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Comfortaa</family>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>107.2 MHz</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="btn_fav_3_station">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>32</y>
+      <width>122</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Comfortaa</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Klassik Radio</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QWidget" name="btn_fav_4" native="true">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>423</x>
+     <y>345</y>
+     <width>122</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#btn_fav_4 {
+	background: #252525; color: white
+}
+
+#btn_fav_4::hover {
+	background: #303030;
+}
+
+#btn_fav_4::!enabled {
+	background: #595959;
+	border-bottom: 3px solid #E00000;
+}</string>
+   </property>
+   <widget class="QLabel" name="btn_fav_4_frequency">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>7</y>
+      <width>122</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Comfortaa</family>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>107.2 MHz</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="btn_fav_4_station">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>32</y>
+      <width>122</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Comfortaa</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Klassik Radio</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QWidget" name="btn_fav_5" native="true">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>547</x>
+     <y>345</y>
+     <width>122</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#btn_fav_5 {
+	background: #252525; color: white
+}
+
+#btn_fav_5::hover {
+	background: #303030;
+}
+
+#btn_fav_5::!enabled {
+	background: #595959;
+	border-bottom: 3px solid #E00000;
+}</string>
+   </property>
+   <widget class="QLabel" name="btn_fav_5_frequency">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>7</y>
+      <width>122</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Comfortaa</family>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>107.2 MHz</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="btn_fav_5_station">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>32</y>
+      <width>122</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Comfortaa</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Klassik Radio</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QLabel" name="btn_set_fav">
+   <property name="geometry">
+    <rect>
+     <x>620</x>
+     <y>80</y>
+     <width>40</width>
+     <height>40</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="res/main.qrc">:/images/fav_empty.svg</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+ </widget>
+ <resources>
+  <include location="res/main.qrc"/>
+ </resources>
+ <connections/>
+</ui>

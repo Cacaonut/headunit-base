@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>widget</class>
+ <widget class="QWidget" name="widget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>45</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">#widget {
+	background: black;
+	border-bottom: 1px solid #CCC
+}
+
+* {
+	color: white
+}</string>
+  </property>
+  <widget class="QLabel" name="label_title">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>15</y>
+     <width>471</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Montserrat</family>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="text">
+    <string>Title text</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+   </property>
+  </widget>
+  <widget class="QWidget" name="checkbox" native="true">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>555</x>
+     <y>7</y>
+     <width>30</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#checkbox {
+	background: #252525; color: white
+}
+
+#checkbox::hover {
+	background: #303030;
+}</string>
+   </property>
+   <widget class="QLabel" name="label_checkbox">
+    <property name="geometry">
+     <rect>
+      <x>3</x>
+      <y>3</y>
+      <width>24</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="../res/main.qrc">:/images/check.svg</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources>
+  <include location="../res/main.qrc"/>
+ </resources>
+ <connections/>
+</ui>

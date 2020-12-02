@@ -9,6 +9,9 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+import ui.lists.checkbox_setting
+import ui.lists.percentage_setting
+import ui.lists.favourite_setting
 
 
 class Ui_content(object):
@@ -16,35 +19,136 @@ class Ui_content(object):
         content.setObjectName("content")
         content.resize(720, 435)
         content.setStyleSheet("#content {\n"
-"    background: black;\n"
-"}\n"
-"\n"
-"* {\n"
-"    color: white;\n"
-"}")
-        self.label = QtWidgets.QLabel(content)
-        self.label.setGeometry(QtCore.QRect(260, 187, 200, 50))
+                              "    background: black;\n"
+                              "}\n"
+                              "\n"
+                              "* {\n"
+                              "    color: white;\n"
+                              "}")
+        self.btn_display = QtWidgets.QWidget(content)
+        self.btn_display.setEnabled(False)
+        self.btn_display.setGeometry(QtCore.QRect(30, 30, 180, 45))
+        self.btn_display.setStyleSheet("#btn_display {\n"
+                                       "    background: #252525; color: white\n"
+                                       "}\n"
+                                       "\n"
+                                       "#btn_display::hover {\n"
+                                       "    background: #303030;\n"
+                                       "}\n"
+                                       "\n"
+                                       "#btn_display::!enabled {\n"
+                                       "    background: #595959;\n"
+                                       "    border-bottom: 3px solid #E00000;\n"
+                                       "}")
+        self.btn_display.setObjectName("btn_display")
+        self.btn_display.mouseReleaseEvent = self.switchToDisplay
+        self.text_btn_display = QtWidgets.QLabel(self.btn_display)
+        self.text_btn_display.setGeometry(QtCore.QRect(20, 10, 140, 25))
         font = QtGui.QFont()
-        font.setFamily("Avenir Next LT Pro")
-        font.setPointSize(24)
-        self.label.setFont(font)
-        self.label.setAlignment(QtCore.Qt.AlignCenter)
-        self.label.setObjectName("label")
+        font.setFamily("Montserrat")
+        font.setPointSize(16)
+        self.text_btn_display.setFont(font)
+        self.text_btn_display.setLineWidth(1)
+        self.text_btn_display.setAlignment(QtCore.Qt.AlignCenter)
+        self.text_btn_display.setObjectName("text_btn_display")
+        self.btn_sound = QtWidgets.QWidget(content)
+        self.btn_sound.setEnabled(True)
+        self.btn_sound.setGeometry(QtCore.QRect(230, 30, 180, 45))
+        self.btn_sound.setStyleSheet("#btn_sound {\n"
+                                     "    background: #252525; color: white\n"
+                                     "}\n"
+                                     "\n"
+                                     "#btn_sound::hover {\n"
+                                     "    background: #303030;\n"
+                                     "}\n"
+                                     "\n"
+                                     "#btn_sound::!enabled {\n"
+                                     "    background: #595959;\n"
+                                     "    border-bottom: 3px solid #E00000;\n"
+                                     "}")
+        self.btn_sound.setObjectName("btn_sound")
+        self.text_btn_sound = QtWidgets.QLabel(self.btn_sound)
+        self.text_btn_sound.setGeometry(QtCore.QRect(20, 10, 140, 25))
+        font = QtGui.QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(16)
+        self.text_btn_sound.setFont(font)
+        self.text_btn_sound.setLineWidth(1)
+        self.text_btn_sound.setAlignment(QtCore.Qt.AlignCenter)
+        self.text_btn_sound.setObjectName("text_btn_sound")
+        self.btn_radio = QtWidgets.QWidget(content)
+        self.btn_radio.setEnabled(True)
+        self.btn_radio.setGeometry(QtCore.QRect(430, 30, 180, 45))
+        self.btn_radio.setStyleSheet("#btn_radio {\n"
+                                     "    background: #252525; color: white\n"
+                                     "}\n"
+                                     "\n"
+                                     "#btn_radio::hover {\n"
+                                     "    background: #303030;\n"
+                                     "}\n"
+                                     "\n"
+                                     "#btn_radio::!enabled {\n"
+                                     "    background: #595959;\n"
+                                     "    border-bottom: 3px solid #E00000;\n"
+                                     "}")
+        self.btn_radio.setObjectName("btn_radio")
+        self.text_btn_radio = QtWidgets.QLabel(self.btn_radio)
+        self.text_btn_radio.setGeometry(QtCore.QRect(20, 10, 140, 25))
+        font = QtGui.QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(16)
+        self.text_btn_radio.setFont(font)
+        self.text_btn_radio.setLineWidth(1)
+        self.text_btn_radio.setAlignment(QtCore.Qt.AlignCenter)
+        self.text_btn_radio.setObjectName("text_btn_radio")
+        self.label_version = QtWidgets.QLabel(content)
+        self.label_version.setGeometry(QtCore.QRect(30, 405, 200, 20))
+        font = QtGui.QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(10)
+        self.label_version.setFont(font)
+        self.label_version.setObjectName("label_version")
+        self.container = QtWidgets.QWidget(content)
+        self.container.setGeometry(QtCore.QRect(30, 100, 660, 281))
+        self.container.setObjectName("container")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.container)
+        self.verticalLayout.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout.setSpacing(0)
+        self.verticalLayout.setObjectName("verticalLayout")
 
         self.retranslateUi(content)
         QtCore.QMetaObject.connectSlotsByName(content)
+        self.switchToDisplay(None)
+        self.settings = QtCore.QSettings("Cacaonut", "Headunit")
 
     def retranslateUi(self, content):
         _translate = QtCore.QCoreApplication.translate
         content.setWindowTitle(_translate("content", "Form"))
-        self.label.setText(_translate("content", "Settings"))
+        self.text_btn_display.setText(_translate("content", "Display"))
+        self.text_btn_sound.setText(_translate("content", "Sound"))
+        self.text_btn_radio.setText(_translate("content", "Radio"))
+        self.label_version.setText(_translate("content", "Version 0.1.0-alpha"))
 
+    def switchToDisplay(self, event):
+        self.btn_display.setEnabled(False)
+        self.btn_sound.setEnabled(True)
+        self.btn_radio.setEnabled(True)
 
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    content = QtWidgets.QWidget()
-    ui = Ui_content()
-    ui.setupUi(content)
-    content.show()
-    sys.exit(app.exec_())
+        for i in reversed(range(self.verticalLayout.count())):
+            self.verticalLayout.itemAt(i).widget().setParent(None)
+
+        content_auto_brightness = QtWidgets.QWidget()
+        ui_auto_brightness = ui.lists.checkbox_setting.Ui_widget()
+        ui_auto_brightness.setupUi(content_auto_brightness)
+        ui_auto_brightness.label_title.setText("Automatically adapt brightness")
+        self.verticalLayout.addWidget(content_auto_brightness)
+
+        content_brightness = QtWidgets.QWidget()
+        ui_brightness = ui.lists.percentage_setting.Ui_widget()
+        ui_brightness.setupUi(content_brightness)
+        ui_brightness.label_title.setText("Brightness")
+        self.verticalLayout.addWidget(content_brightness)
+
+        self.container.setFixedHeight(self.verticalLayout.count() * 45)
+

@@ -14,6 +14,8 @@ from datetime import datetime
 import threading
 from sys import platform
 
+from ui import radio
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -22,7 +24,7 @@ class Ui_MainWindow(object):
         MainWindow.resize(800, 480)
         if platform == "linux" or platform == "linux2":
             MainWindow.showFullScreen()
-            #MainWindow.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
+            # MainWindow.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
         MainWindow.setStyleSheet("")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setStyleSheet("#centralwidget {background: #000}\n"
@@ -135,7 +137,7 @@ class Ui_MainWindow(object):
         self.image_btn_home.setScaledContents(True)
         self.image_btn_home.setObjectName("image_btn_home")
         self.btn_car = QtWidgets.QWidget(self.centralwidget)
-        self.btn_car.setGeometry(QtCore.QRect(720, 191, 80, 70))
+        self.btn_car.setGeometry(QtCore.QRect(720, 264, 80, 70))
         self.btn_car.setStyleSheet("#btn_car {\n"
                                    "    background: #252525; color: white\n"
                                    "}\n"
@@ -165,7 +167,7 @@ class Ui_MainWindow(object):
         self.image_btn_car.setScaledContents(True)
         self.image_btn_car.setObjectName("image_btn_car")
         self.btn_devices = QtWidgets.QWidget(self.centralwidget)
-        self.btn_devices.setGeometry(QtCore.QRect(720, 264, 80, 70))
+        self.btn_devices.setGeometry(QtCore.QRect(720, 337, 80, 70))
         self.btn_devices.setStyleSheet("#btn_devices {\n"
                                        "    background: #252525; color: white\n"
                                        "}\n"
@@ -194,48 +196,39 @@ class Ui_MainWindow(object):
         self.image_btn_devices.setPixmap(QtGui.QPixmap(":/images/devices.svg"))
         self.image_btn_devices.setScaledContents(True)
         self.image_btn_devices.setObjectName("image_btn_devices")
-        self.btn_android_auto = QtWidgets.QWidget(self.centralwidget)
-        self.btn_android_auto.setGeometry(QtCore.QRect(720, 337, 80, 70))
-        self.btn_android_auto.setStyleSheet("#btn_android_auto {\n"
-                                            "    background: #252525; color: white\n"
-                                            "}\n"
-                                            "\n"
-                                            "#btn_android_auto::hover {\n"
-                                            "    background: #303030;\n"
-                                            "}\n"
-                                            "\n"
-                                            "#btn_android_auto::!enabled {\n"
-                                            "    background: #595959;\n"
-                                            "    border-bottom: 3px solid #E00000;\n"
-                                            "}")
-        self.btn_android_auto.setObjectName("btn_android_auto")
-        self.text_btn_android_auto = QtWidgets.QLabel(self.btn_android_auto)
-        self.text_btn_android_auto.setGeometry(QtCore.QRect(10, 30, 60, 30))
+        self.btn_radio = QtWidgets.QWidget(self.centralwidget)
+        self.btn_radio.setGeometry(QtCore.QRect(720, 191, 80, 70))
+        self.btn_radio.setStyleSheet("#btn_radio {\n"
+                                     "    background: #252525; color: white\n"
+                                     "}\n"
+                                     "\n"
+                                     "#btn_radio::hover {\n"
+                                     "    background: #303030;\n"
+                                     "}\n"
+                                     "\n"
+                                     "#btn_radio::!enabled {\n"
+                                     "    background: #595959;\n"
+                                     "    border-bottom: 3px solid #E00000;\n"
+                                     "}")
+        self.btn_radio.setObjectName("btn_radio")
+        self.text_btn_radio = QtWidgets.QLabel(self.btn_radio)
+        self.text_btn_radio.setGeometry(QtCore.QRect(10, 47, 60, 15))
         font = QtGui.QFont()
         font.setFamily("Montserrat Light")
         font.setPointSize(11)
-        self.text_btn_android_auto.setFont(font)
-        self.text_btn_android_auto.setStyleSheet("")
-        self.text_btn_android_auto.setLineWidth(1)
-        self.text_btn_android_auto.setTextFormat(QtCore.Qt.AutoText)
-        self.text_btn_android_auto.setAlignment(QtCore.Qt.AlignCenter)
-        self.text_btn_android_auto.setWordWrap(False)
-        self.text_btn_android_auto.setObjectName("text_btn_android_auto")
-        self.text2_btn_android_auto = QtWidgets.QLabel(self.btn_android_auto)
-        self.text2_btn_android_auto.setGeometry(QtCore.QRect(10, 43, 60, 30))
-        self.text2_btn_android_auto.setFont(font)
-        self.text2_btn_android_auto.setStyleSheet("")
-        self.text2_btn_android_auto.setLineWidth(1)
-        self.text2_btn_android_auto.setTextFormat(QtCore.Qt.AutoText)
-        self.text2_btn_android_auto.setAlignment(QtCore.Qt.AlignCenter)
-        self.text2_btn_android_auto.setWordWrap(False)
-        self.text2_btn_android_auto.setObjectName("text2_btn_android_auto")
-        self.image_btn_android_auto = QtWidgets.QLabel(self.btn_android_auto)
-        self.image_btn_android_auto.setGeometry(QtCore.QRect(23, 3, 34, 34))
-        self.image_btn_android_auto.setText("")
-        self.image_btn_android_auto.setPixmap(QtGui.QPixmap(":/images/android_auto.png"))
-        self.image_btn_android_auto.setScaledContents(True)
-        self.image_btn_android_auto.setObjectName("image_btn_android_auto")
+        self.text_btn_radio.setFont(font)
+        self.text_btn_radio.setStyleSheet("")
+        self.text_btn_radio.setLineWidth(1)
+        self.text_btn_radio.setTextFormat(QtCore.Qt.AutoText)
+        self.text_btn_radio.setAlignment(QtCore.Qt.AlignCenter)
+        self.text_btn_radio.setWordWrap(False)
+        self.text_btn_radio.setObjectName("text_btn_radio")
+        self.image_btn_radio = QtWidgets.QLabel(self.btn_radio)
+        self.image_btn_radio.setGeometry(QtCore.QRect(20, 3, 40, 40))
+        self.image_btn_radio.setText("")
+        self.image_btn_radio.setPixmap(QtGui.QPixmap(":/images/radio.svg"))
+        self.image_btn_radio.setScaledContents(True)
+        self.image_btn_radio.setObjectName("image_btn_radio")
         self.btn_settings = QtWidgets.QWidget(self.centralwidget)
         self.btn_settings.setGeometry(QtCore.QRect(720, 410, 80, 70))
         self.btn_settings.setStyleSheet("#btn_settings {\n"
@@ -252,9 +245,9 @@ class Ui_MainWindow(object):
                                         "}")
         self.btn_settings.setObjectName("btn_settings")
         self.text_btn_settings = QtWidgets.QLabel(self.btn_settings)
-        self.text_btn_settings.setGeometry(QtCore.QRect(10, 47, 60, 20))
+        self.text_btn_settings.setGeometry(QtCore.QRect(10, 42, 60, 20))
         font = QtGui.QFont()
-        font.setFamily("Avenir Next LT Pro")
+        font.setFamily("Montserrat Light")
         font.setPointSize(11)
         self.text_btn_settings.setFont(font)
         self.text_btn_settings.setLineWidth(1)
@@ -283,6 +276,12 @@ class Ui_MainWindow(object):
         ui_media.setupUi(self.content_media)
         self.content.addWidget(self.content_media)
 
+        # Radio
+        self.content_radio = QtWidgets.QWidget()
+        ui_radio = radio.Ui_content()
+        ui_radio.setupUi(self.content_radio)
+        self.content.addWidget(self.content_radio)
+
         # Car
         self.content_car = QtWidgets.QWidget()
         ui_car = car.Ui_content()
@@ -298,10 +297,6 @@ class Ui_MainWindow(object):
         # Android Auto
         if platform == "linux" or platform == "linux2":
             subprocess.Popen(["sudo", "/home/pi/openauto/bin/autoapp"])
-        self.content_android_auto = QtWidgets.QWidget()
-        ui_android_auto = android_auto.Ui_content()
-        ui_android_auto.setupUi(self.content_android_auto, self)
-        self.content.addWidget(self.content_android_auto)
 
         # Settings
         self.content_settings = QtWidgets.QWidget()
@@ -314,17 +309,13 @@ class Ui_MainWindow(object):
         self.btn_media.mouseReleaseEvent = self.switchToMedia
         self.btn_car.mouseReleaseEvent = self.switchToCar
         self.btn_devices.mouseReleaseEvent = self.switchToDevices
-        self.btn_android_auto.mouseReleaseEvent = self.switchToAndroidAuto
+        self.btn_radio.mouseReleaseEvent = self.switchToRadio
         self.btn_settings.mouseReleaseEvent = self.switchToSettings
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.retranslateUi(MainWindow)
         self.updateTime()
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-
-        self.content.setCurrentWidget(self.content_android_auto)
-        time.sleep(1)
-        self.content.setCurrentWidget(self.content_home)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -335,8 +326,7 @@ class Ui_MainWindow(object):
         self.text_btn_home.setText(_translate("MainWindow", "Home"))
         self.text_btn_car.setText(_translate("MainWindow", "Car"))
         self.text_btn_devices.setText(_translate("MainWindow", "Devices"))
-        self.text_btn_android_auto.setText(_translate("MainWindow", "Android"))
-        self.text2_btn_android_auto.setText(_translate("MainWindow", "Auto"))
+        self.text_btn_radio.setText(_translate("MainWindow", "Radio"))
         self.text_btn_settings.setText(_translate("MainWindow", "Settings"))
 
     def switchToHome(self, event):
@@ -367,12 +357,12 @@ class Ui_MainWindow(object):
         self.label_title.setText("DEVICES")
         self.current_tab = self.btn_devices
 
-    def switchToAndroidAuto(self, event):
-        self.content.setCurrentWidget(self.content_android_auto)
-        self.btn_android_auto.setEnabled(False)
+    def switchToRadio(self, event):
+        self.content.setCurrentWidget(self.content_radio)
+        self.btn_radio.setEnabled(False)
         self.current_tab.setEnabled(True)
-        self.label_title.setText("ANDROID AUTO")
-        self.current_tab = self.btn_android_auto
+        self.label_title.setText("RADIO")
+        self.current_tab = self.btn_radio
 
     def switchToSettings(self, event):
         self.content.setCurrentWidget(self.content_settings)

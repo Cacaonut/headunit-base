@@ -22,29 +22,209 @@
 	color: white;
 }</string>
   </property>
-  <widget class="QLabel" name="label">
+  <widget class="QWidget" name="btn_display" native="true">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="geometry">
     <rect>
-     <x>260</x>
-     <y>187</y>
+     <x>30</x>
+     <y>30</y>
+     <width>180</width>
+     <height>45</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#btn_display {
+	background: #252525; color: white
+}
+
+#btn_display::hover {
+	background: #303030;
+}
+
+#btn_display::!enabled {
+	background: #595959;
+	border-bottom: 3px solid #E00000;
+}</string>
+   </property>
+   <widget class="QLabel" name="text_btn_display">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>10</y>
+      <width>140</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Montserrat</family>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="lineWidth">
+     <number>1</number>
+    </property>
+    <property name="text">
+     <string>Display</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QWidget" name="btn_sound" native="true">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>30</y>
+     <width>180</width>
+     <height>45</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#btn_sound {
+	background: #252525; color: white
+}
+
+#btn_sound::hover {
+	background: #303030;
+}
+
+#btn_sound::!enabled {
+	background: #595959;
+	border-bottom: 3px solid #E00000;
+}</string>
+   </property>
+   <widget class="QLabel" name="text_btn_sound">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>10</y>
+      <width>140</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Montserrat</family>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="lineWidth">
+     <number>1</number>
+    </property>
+    <property name="text">
+     <string>Sound</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QWidget" name="btn_radio" native="true">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>430</x>
+     <y>30</y>
+     <width>180</width>
+     <height>45</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#btn_radio {
+	background: #252525; color: white
+}
+
+#btn_radio::hover {
+	background: #303030;
+}
+
+#btn_radio::!enabled {
+	background: #595959;
+	border-bottom: 3px solid #E00000;
+}</string>
+   </property>
+   <widget class="QLabel" name="text_btn_radio">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>10</y>
+      <width>140</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Montserrat</family>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="lineWidth">
+     <number>1</number>
+    </property>
+    <property name="text">
+     <string>Radio</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QLabel" name="label_version">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>405</y>
      <width>200</width>
-     <height>50</height>
+     <height>20</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Avenir Next LT Pro</family>
-     <pointsize>24</pointsize>
+     <family>Montserrat</family>
+     <pointsize>10</pointsize>
     </font>
    </property>
    <property name="text">
-    <string>Settings</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
+    <string>Version 0.1.0-alpha</string>
    </property>
   </widget>
+  <widget class="QWidget" name="container" native="true">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>100</y>
+     <width>660</width>
+     <height>281</height>
+    </rect>
+   </property>
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>-1</x>
+      <y>-1</y>
+      <width>661</width>
+      <height>281</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetDefaultConstraint</enum>
+     </property>
+    </layout>
+   </widget>
+  </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="res/main.qrc"/>
+ </resources>
  <connections/>
 </ui>
