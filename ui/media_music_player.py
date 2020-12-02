@@ -164,7 +164,7 @@ class Ui_content(object):
         if self.owner.useBluetooth:
             try:
                 props = self.player_prop_iface.GetAll("org.bluez.MediaPlayer1")
-                print(props)
+                #print(props)
                 if props["Status"] == "playing" or props["Status"] == "paused":
                     if props["Status"] == "playing":
                         self.btn_play.setPixmap(QtGui.QPixmap(":/images/pause.svg"))
