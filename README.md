@@ -37,7 +37,7 @@ Create a file called `machine-info`:
 ```
 sudo nano /etc/machine-info
 ```
-Set the device name in the line that says `PRETTY_HOSTNAME`:
+Fill it with the following content:
 ```
 PRETTY_HOSTNAME=[device name]
 ```
