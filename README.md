@@ -33,7 +33,7 @@ Edit the line starting with `ExecStart` and edit it to match below:
 ExecStart=/usr/bin/bluealsa -p a2dp-sink
 ```
 ### Changing device name
-Open the machine info file:
+Create a file called `machine-info`:
 ```
 sudo nano /etc/machine-info
 ```
