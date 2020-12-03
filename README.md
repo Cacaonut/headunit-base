@@ -22,6 +22,27 @@ sudo apt-get -y install python3-pyqt5 python3-mutagen
 
 git clone https://github.com/Cacaonut/headunit-base
 ```
+## Configuration
+### Enabling Bluetooth audio streaming
+Open the bluealsa configuration file:
+```
+sudo nano /lib/systemd/system/bluealsa.service
+```
+Edit the line starting with `ExecStart` and edit it to match below:
+```
+ExecStart=/usr/bin/bluealsa -p a2dp-sink
+```
+### Changing device name
+Open the machine info file:
+```
+sudo nano /etc/machine-info
+```
+Set the device name in the line that says `PRETTY_HOSTNAME`:
+```
+PRETTY_HOSTNAME=[device name]
+```
+### Restart
+__IMPORTANT: Don't forget to restart your Pi after making configuration changes!__
 ## Run
 ```
 python3 main.py
