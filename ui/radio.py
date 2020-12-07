@@ -403,8 +403,7 @@ class Ui_content(object):
         self.playing = True
         command = 'rtl_fm -M fm -l 0 -A std -p 0 -s 171k -g 20 -F 9 -f 105.7M | reads --feed-through | aplay -r ' \
                   '171000 -f S16_LE '
-        print(command)
-        self.process = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
+        self.process = subprocess.Popen(command, stderr=subprocess.PIPE, shell=True)
         thread = threading.Thread(target=self.fetchRDSOutput)
         thread.start()
 
@@ -424,7 +423,8 @@ class Ui_content(object):
 
     def fetchRDSOutput(self):
         while self.playing:
-            output = self.process.stdout.readline()
-            if output != "":
+            output = self.process.stderr.readline().decode("utf-8")
+            if output == "" and self.process.poll() is not None:
                 break
-                #print(output.strip())
+            if output.startswith("{") and output.endswith("}"):
+                print(output)
