@@ -426,5 +426,5 @@ class Ui_content(object):
             output = self.process.stderr.readline().decode("utf-8")
             if output == "" and self.process.poll() is not None:
                 break
-            if output.startswith("{") and output.endswith("}"):
+            if True or output.startswith("{") and output.endswith("}"):
                 print(output)
