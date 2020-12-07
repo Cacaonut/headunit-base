@@ -287,8 +287,8 @@ class Ui_content(object):
         self.label_frequency.setText(format(self.current_freq, ".1f") + " MHz")
 
         if self.playing:
-            self.stop()
-            self.play()
+            #self.stop()
+            #self.play()
 
         self.btn_fav_1.setEnabled(True)
         self.btn_fav_2.setEnabled(True)
@@ -401,17 +401,13 @@ class Ui_content(object):
 
     def play(self):
         self.playing = True
-        thread = threading.Thread(target=self.startRadio)
-        thread.start()
-
-        self.btn_play.setPixmap(QtGui.QPixmap(":/images/pause.svg"))
-
-    def startRadio(self):
         command = 'rtl_fm -M fm -l 0 -A std -p 0 -s 171k -g 20 -F 9 -f 105.7M | readsea --feed-through | aplay -r ' \
                   '171000 -f S16_LE '
         self.process = subprocess.Popen(command, stderr=subprocess.PIPE, shell=True)
         thread = threading.Thread(target=self.fetchRDSOutput)
         thread.start()
+
+        self.btn_play.setPixmap(QtGui.QPixmap(":/images/pause.svg"))
 
     def stop(self):
         self.playing = False
