@@ -10,6 +10,7 @@ import json
 import subprocess
 import threading
 
+import psutil
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
@@ -416,8 +417,10 @@ class Ui_content(object):
         self.playing = False
         self.btn_play.setPixmap(QtGui.QPixmap(":/images/play.svg"))
         if hasattr(self, "process"):
-            print("Stopping process " + str(self.process.pid))
-            self.process.kill()
+            for process in psutil.process_iter():
+                if process.name() == "rtl_fm":
+                    process.kill()
+                print("Stopping process " + str(process.pid))
 
     def up(self, event):
         self.changeFrequency(self.current_freq + 0.1)
