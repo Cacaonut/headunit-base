@@ -426,4 +426,5 @@ class Ui_content(object):
         while self.playing:
             output = self.process.stdout.readline()
             if output != "":
-                print(output.strip())
+                break
+                #print(output.strip())
