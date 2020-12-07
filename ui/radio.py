@@ -401,7 +401,7 @@ class Ui_content(object):
 
     def play(self):
         self.playing = True
-        command = 'rtl_fm -M fm -l 0 -A std -p 0 -s 171k -g 20 -F 9 -f 105.7M | reads --feed-through | aplay -r ' \
+        command = 'rtl_fm -M fm -l 0 -A std -p 0 -s 171k -g 20 -F 9 -f 105.7M | readsea --feed-through | aplay -r ' \
                   '171000 -f S16_LE '
         self.process = subprocess.Popen(command, stderr=subprocess.PIPE, shell=True)
         thread = threading.Thread(target=self.fetchRDSOutput)
