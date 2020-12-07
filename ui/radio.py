@@ -402,7 +402,7 @@ class Ui_content(object):
         self.playing = True
         self.process = subprocess.Popen(shlex.split('rtl_fm -M fm -l 0 -A std -p 0 -s 171k -g 20 -F 9 -f 105.7M '
                                                     '| redsea --feed-through '
-                                                    '| aplay -r 171000 -f S16_LE'), stdout=subprocess.PIPE)
+                                                    '| aplay -r 171000 -f S16_LE'), stdout=subprocess.PIPE, shell=True)
         # self.fetchRDSOutput()
 
         self.btn_play.setPixmap(QtGui.QPixmap(":/images/pause.svg"))
