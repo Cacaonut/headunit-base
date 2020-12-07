@@ -291,7 +291,6 @@ class Ui_content(object):
 
         if self.playing:
             self.stop()
-            self.play()
 
         self.btn_fav_1.setEnabled(True)
         self.btn_fav_2.setEnabled(True)
