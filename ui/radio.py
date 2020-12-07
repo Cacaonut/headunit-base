@@ -427,4 +427,4 @@ class Ui_content(object):
             if output == "" and self.process.poll() is not None:
                 break
             if True or output.startswith("{") and output.endswith("}"):
-                print(output)
+                print(">" + output)
