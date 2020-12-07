@@ -412,9 +412,11 @@ class Ui_content(object):
         self.btn_play.setPixmap(QtGui.QPixmap(":/images/pause.svg"))
 
     def stop(self):
+        print("Stop")
         self.playing = False
         self.btn_play.setPixmap(QtGui.QPixmap(":/images/play.svg"))
         if hasattr(self, "process"):
+            print("Stopping process")
             self.process.kill()
 
     def up(self, event):
