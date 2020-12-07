@@ -404,7 +404,7 @@ class Ui_content(object):
                                          '-g', '20', '-F', '9', '-f', '105.7M',
                                          '|', 'redsea', '--feed-through',
                                          '|', 'aplay', '-r', '171000', '-f', 'S16_LE'], stdout=subprocess.PIPE)
-        self.fetchRDSOutput()
+        #self.fetchRDSOutput()
 
         self.btn_play.setPixmap(QtGui.QPixmap(":/images/pause.svg"))
 
