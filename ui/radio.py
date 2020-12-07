@@ -286,7 +286,7 @@ class Ui_content(object):
         self.settings.setValue("radio/current_freq", self.current_freq)
         self.label_frequency.setText(format(self.current_freq, ".1f") + " MHz")
 
-        if self.playing:
+        #if self.playing:
             #self.stop()
             #self.play()
 
