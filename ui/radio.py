@@ -287,9 +287,9 @@ class Ui_content(object):
         self.settings.setValue("radio/current_freq", self.current_freq)
         self.label_frequency.setText(format(self.current_freq, ".1f") + " MHz")
 
-        #if self.playing:
-            #self.stop()
-            #self.play()
+        if self.playing:
+            self.stop()
+            self.play()
 
         self.btn_fav_1.setEnabled(True)
         self.btn_fav_2.setEnabled(True)
@@ -402,6 +402,9 @@ class Ui_content(object):
 
     def play(self):
         self.playing = True
+        command = 'rtl_fm -M fm -l 0 -A std -p 0 -s 171k -g 20 -F 9 -f 105.7M | redsea --feed-through | aplay -r ' \
+                  '171000 -f S16_LE'
+        self.process = subprocess.Popen(command, stderr=subprocess.PIPE, shell=True)
         thread = threading.Thread(target=self.fetchRDSOutput)
         thread.start()
 
@@ -420,9 +423,6 @@ class Ui_content(object):
         self.changeFrequency(self.current_freq - 0.1)
 
     def fetchRDSOutput(self):
-        command = 'rtl_fm -M fm -l 0 -A std -p 0 -s 171k -g 20 -F 9 -f 105.7M | redsea --feed-through | aplay -r ' \
-                  '171000 -f S16_LE'
-        self.process = subprocess.Popen(command, stderr=subprocess.PIPE, shell=True)
         while True:
             output = self.process.stderr.readline().decode("utf-8")
             if output == "" and self.process.poll() is not None:
