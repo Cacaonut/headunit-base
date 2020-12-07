@@ -9,6 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from ui import fuel, cockpit, diagnostics
 
 
 class Ui_content(object):
@@ -16,20 +17,111 @@ class Ui_content(object):
         content.setObjectName("content")
         content.resize(720, 435)
         content.setStyleSheet("#content {\n"
-"    background: black;\n"
-"}\n"
-"\n"
-"* {\n"
-"    color: white;\n"
-"}")
-        self.label = QtWidgets.QLabel(content)
-        self.label.setGeometry(QtCore.QRect(260, 187, 200, 50))
+                              "    background: black;\n"
+                              "}\n"
+                              "\n"
+                              "* {\n"
+                              "    color: white;\n"
+                              "}")
+        self.btn_cockpit = QtWidgets.QWidget(content)
+        self.btn_cockpit.setEnabled(False)
+        self.btn_cockpit.setGeometry(QtCore.QRect(30, 30, 180, 45))
+        self.btn_cockpit.setStyleSheet("#btn_cockpit {\n"
+                                       "    background: #252525; color: white\n"
+                                       "}\n"
+                                       "\n"
+                                       "#btn_cockpit::hover {\n"
+                                       "    background: #303030;\n"
+                                       "}\n"
+                                       "\n"
+                                       "#btn_cockpit::!enabled {\n"
+                                       "    background: #595959;\n"
+                                       "    border-bottom: 3px solid #E00000;\n"
+                                       "}")
+        self.btn_cockpit.setObjectName("btn_cockpit")
+        self.btn_cockpit.mouseReleaseEvent = self.switchToCockpit
+        self.text_btn_cockpit = QtWidgets.QLabel(self.btn_cockpit)
+        self.text_btn_cockpit.setGeometry(QtCore.QRect(20, 10, 140, 25))
         font = QtGui.QFont()
-        font.setFamily("Avenir Next LT Pro")
-        font.setPointSize(24)
-        self.label.setFont(font)
-        self.label.setAlignment(QtCore.Qt.AlignCenter)
-        self.label.setObjectName("label")
+        font.setFamily("Montserrat")
+        font.setPointSize(16)
+        self.text_btn_cockpit.setFont(font)
+        self.text_btn_cockpit.setLineWidth(1)
+        self.text_btn_cockpit.setAlignment(QtCore.Qt.AlignCenter)
+        self.text_btn_cockpit.setObjectName("text_btn_cockpit")
+        self.btn_fuel = QtWidgets.QWidget(content)
+        self.btn_fuel.setEnabled(True)
+        self.btn_fuel.setGeometry(QtCore.QRect(230, 30, 180, 45))
+        self.btn_fuel.setStyleSheet("#btn_fuel {\n"
+                                    "    background: #252525; color: white\n"
+                                    "}\n"
+                                    "\n"
+                                    "#btn_fuel::hover {\n"
+                                    "    background: #303030;\n"
+                                    "}\n"
+                                    "\n"
+                                    "#btn_fuel::!enabled {\n"
+                                    "    background: #595959;\n"
+                                    "    border-bottom: 3px solid #E00000;\n"
+                                    "}")
+        self.btn_fuel.setObjectName("btn_fuel")
+        self.btn_fuel.mouseReleaseEvent = self.switchToFuel
+        self.text_btn_fuel = QtWidgets.QLabel(self.btn_fuel)
+        self.text_btn_fuel.setGeometry(QtCore.QRect(20, 10, 140, 25))
+        font = QtGui.QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(16)
+        self.text_btn_fuel.setFont(font)
+        self.text_btn_fuel.setLineWidth(1)
+        self.text_btn_fuel.setAlignment(QtCore.Qt.AlignCenter)
+        self.text_btn_fuel.setObjectName("text_btn_fuel")
+        self.btn_diagnostics = QtWidgets.QWidget(content)
+        self.btn_diagnostics.setEnabled(True)
+        self.btn_diagnostics.setGeometry(QtCore.QRect(430, 30, 180, 45))
+        self.btn_diagnostics.setStyleSheet("#btn_diagnostics {\n"
+                                           "    background: #252525; color: white\n"
+                                           "}\n"
+                                           "\n"
+                                           "#btn_diagnostics::hover {\n"
+                                           "    background: #303030;\n"
+                                           "}\n"
+                                           "\n"
+                                           "#btn_diagnostics::!enabled {\n"
+                                           "    background: #595959;\n"
+                                           "    border-bottom: 3px solid #E00000;\n"
+                                           "}")
+        self.btn_diagnostics.setObjectName("btn_diagnostics")
+        self.btn_diagnostics.mouseReleaseEvent = self.switchToDiagnostics
+        self.text_btn_diagnostics = QtWidgets.QLabel(self.btn_diagnostics)
+        self.text_btn_diagnostics.setGeometry(QtCore.QRect(20, 10, 140, 25))
+        font = QtGui.QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(16)
+        self.text_btn_diagnostics.setFont(font)
+        self.text_btn_diagnostics.setLineWidth(1)
+        self.text_btn_diagnostics.setAlignment(QtCore.Qt.AlignCenter)
+        self.text_btn_diagnostics.setObjectName("text_btn_diagnostics")
+        self.container = QtWidgets.QStackedWidget(content)
+        self.container.setGeometry(QtCore.QRect(30, 100, 660, 300))
+        self.container.setObjectName("container")
+
+        # Cockpit
+        content_cockpit = QtWidgets.QWidget()
+        self.ui_cockpit = cockpit.Ui_content()
+        self.ui_cockpit.setupUi(content_cockpit)
+        self.container.addWidget(content_cockpit)
+
+        # Fuel
+        content_fuel = QtWidgets.QWidget()
+        self.ui_fuel = fuel.Ui_content()
+        self.ui_fuel.setupUi(content_fuel)
+        self.container.addWidget(content_fuel)
+
+        # Diagnostics
+        content_diagnostics = QtWidgets.QWidget()
+        self.ui_diagnostics = diagnostics.Ui_content()
+        self.ui_diagnostics.setupUi(content_diagnostics)
+        self.container.addWidget(content_diagnostics)
 
         self.retranslateUi(content)
         QtCore.QMetaObject.connectSlotsByName(content)
@@ -37,14 +129,24 @@ class Ui_content(object):
     def retranslateUi(self, content):
         _translate = QtCore.QCoreApplication.translate
         content.setWindowTitle(_translate("content", "Form"))
-        self.label.setText(_translate("content", "Car"))
+        self.text_btn_cockpit.setText(_translate("content", "Cockpit"))
+        self.text_btn_fuel.setText(_translate("content", "Fuel"))
+        self.text_btn_diagnostics.setText(_translate("content", "Diagnostics"))
 
+    def switchToCockpit(self, event):
+        self.container.setCurrentIndex(0)
+        self.btn_cockpit.setEnabled(False)
+        self.btn_fuel.setEnabled(True)
+        self.btn_diagnostics.setEnabled(True)
 
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    content = QtWidgets.QWidget()
-    ui = Ui_content()
-    ui.setupUi(content)
-    content.show()
-    sys.exit(app.exec_())
+    def switchToFuel(self, event):
+        self.container.setCurrentIndex(1)
+        self.btn_cockpit.setEnabled(True)
+        self.btn_fuel.setEnabled(False)
+        self.btn_diagnostics.setEnabled(True)
+
+    def switchToDiagnostics(self, event):
+        self.container.setCurrentIndex(2)
+        self.btn_cockpit.setEnabled(True)
+        self.btn_fuel.setEnabled(True)
+        self.btn_diagnostics.setEnabled(False)

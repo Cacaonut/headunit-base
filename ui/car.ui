@@ -22,29 +22,175 @@
 	color: white;
 }</string>
   </property>
-  <widget class="QLabel" name="label">
+  <widget class="QWidget" name="btn_cockpit" native="true">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="geometry">
     <rect>
-     <x>260</x>
-     <y>187</y>
-     <width>200</width>
-     <height>50</height>
+     <x>30</x>
+     <y>30</y>
+     <width>180</width>
+     <height>45</height>
     </rect>
    </property>
-   <property name="font">
-    <font>
-     <family>Avenir Next LT Pro</family>
-     <pointsize>24</pointsize>
-    </font>
+   <property name="styleSheet">
+    <string notr="true">#btn_cockpit {
+	background: #252525; color: white
+}
+
+#btn_cockpit::hover {
+	background: #303030;
+}
+
+#btn_cockpit::!enabled {
+	background: #595959;
+	border-bottom: 3px solid #E00000;
+}</string>
    </property>
-   <property name="text">
-    <string>Car</string>
+   <widget class="QLabel" name="text_btn_cockpit">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>10</y>
+      <width>140</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Montserrat</family>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="lineWidth">
+     <number>1</number>
+    </property>
+    <property name="text">
+     <string>Cockpit</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QWidget" name="btn_fuel" native="true">
+   <property name="enabled">
+    <bool>true</bool>
    </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>30</y>
+     <width>180</width>
+     <height>45</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#btn_fuel {
+	background: #252525; color: white
+}
+
+#btn_fuel::hover {
+	background: #303030;
+}
+
+#btn_fuel::!enabled {
+	background: #595959;
+	border-bottom: 3px solid #E00000;
+}</string>
+   </property>
+   <widget class="QLabel" name="text_btn_fuel">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>10</y>
+      <width>140</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Montserrat</family>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="lineWidth">
+     <number>1</number>
+    </property>
+    <property name="text">
+     <string>Fuel</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QWidget" name="btn_diagnostics" native="true">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>430</x>
+     <y>30</y>
+     <width>180</width>
+     <height>45</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#btn_diagnostics {
+	background: #252525; color: white
+}
+
+#btn_diagnostics::hover {
+	background: #303030;
+}
+
+#btn_diagnostics::!enabled {
+	background: #595959;
+	border-bottom: 3px solid #E00000;
+}</string>
+   </property>
+   <widget class="QLabel" name="text_btn_diagnostics">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>10</y>
+      <width>140</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Montserrat</family>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="lineWidth">
+     <number>1</number>
+    </property>
+    <property name="text">
+     <string>Diagnostics</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QWidget" name="container" native="true">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>100</y>
+     <width>660</width>
+     <height>301</height>
+    </rect>
    </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="res/main.qrc"/>
+ </resources>
  <connections/>
 </ui>

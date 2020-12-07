@@ -10,8 +10,9 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 import ui.lists.checkbox_setting
-import ui.lists.percentage_setting
+import ui.lists.number_setting
 import ui.lists.favourite_setting
+import screen_brightness_control as screen
 
 
 class Ui_content(object):
@@ -67,6 +68,7 @@ class Ui_content(object):
                                      "    border-bottom: 3px solid #E00000;\n"
                                      "}")
         self.btn_sound.setObjectName("btn_sound")
+        self.btn_sound.mouseReleaseEvent = self.switchToSound
         self.text_btn_sound = QtWidgets.QLabel(self.btn_sound)
         self.text_btn_sound.setGeometry(QtCore.QRect(20, 10, 140, 25))
         font = QtGui.QFont()
@@ -92,6 +94,7 @@ class Ui_content(object):
                                      "    border-bottom: 3px solid #E00000;\n"
                                      "}")
         self.btn_radio.setObjectName("btn_radio")
+        self.btn_radio.mouseReleaseEvent = self.switchToRadio
         self.text_btn_radio = QtWidgets.QLabel(self.btn_radio)
         self.text_btn_radio.setGeometry(QtCore.QRect(20, 10, 140, 25))
         font = QtGui.QFont()
@@ -119,8 +122,8 @@ class Ui_content(object):
 
         self.retranslateUi(content)
         QtCore.QMetaObject.connectSlotsByName(content)
-        self.switchToDisplay(None)
         self.settings = QtCore.QSettings("Cacaonut", "Headunit")
+        self.switchToDisplay(None)
 
     def retranslateUi(self, content):
         _translate = QtCore.QCoreApplication.translate
@@ -140,15 +143,84 @@ class Ui_content(object):
 
         content_auto_brightness = QtWidgets.QWidget()
         ui_auto_brightness = ui.lists.checkbox_setting.Ui_widget()
-        ui_auto_brightness.setupUi(content_auto_brightness)
+        ui_auto_brightness.setupUi(content_auto_brightness, "display/auto_brightness", self.settings)
         ui_auto_brightness.label_title.setText("Automatically adapt brightness")
         self.verticalLayout.addWidget(content_auto_brightness)
 
         content_brightness = QtWidgets.QWidget()
-        ui_brightness = ui.lists.percentage_setting.Ui_widget()
-        ui_brightness.setupUi(content_brightness)
+        ui_brightness = ui.lists.number_setting.Ui_widget()
+        ui_brightness.setupUi(content_brightness, "display/brightness", self.settings, 10, 10, 100, unit="%")
+        ui_brightness.onValueChange = lambda value: screen.set_brightness(value)
         ui_brightness.label_title.setText("Brightness")
         self.verticalLayout.addWidget(content_brightness)
+
+        self.container.setFixedHeight(self.verticalLayout.count() * 45)
+
+    def switchToSound(self, event):
+        self.btn_display.setEnabled(True)
+        self.btn_sound.setEnabled(False)
+        self.btn_radio.setEnabled(True)
+
+        for i in reversed(range(self.verticalLayout.count())):
+            self.verticalLayout.itemAt(i).widget().setParent(None)
+
+        content_volume = QtWidgets.QWidget()
+        ui_volume = ui.lists.number_setting.Ui_widget()
+        ui_volume.setupUi(content_volume, "sound/volume", self.settings, 2, 0, 100)
+        ui_volume.label_title.setText("Volume")
+        self.verticalLayout.addWidget(content_volume)
+
+        content_balance_left_right = QtWidgets.QWidget()
+        ui_balance_left_right = ui.lists.number_setting.Ui_widget()
+        ui_balance_left_right.setupUi(content_balance_left_right, "sound/balance_left_right", self.settings, 1, -5, 5)
+        ui_balance_left_right.label_title.setText("Balance left - right")
+        self.verticalLayout.addWidget(content_balance_left_right)
+
+        content_balance_front_back = QtWidgets.QWidget()
+        ui_balance_front_back = ui.lists.number_setting.Ui_widget()
+        ui_balance_front_back.setupUi(content_balance_front_back, "sound/balance_front_back", self.settings, 1, -5, 5)
+        ui_balance_front_back.label_title.setText("Balance front - back")
+        self.verticalLayout.addWidget(content_balance_front_back)
+
+        self.container.setFixedHeight(self.verticalLayout.count() * 45)
+
+    def switchToRadio(self, event):
+        self.btn_display.setEnabled(True)
+        self.btn_sound.setEnabled(True)
+        self.btn_radio.setEnabled(False)
+
+        for i in reversed(range(self.verticalLayout.count())):
+            self.verticalLayout.itemAt(i).widget().setParent(None)
+
+        content_favourite_1 = QtWidgets.QWidget()
+        ui_favourite_1 = ui.lists.favourite_setting.Ui_widget()
+        ui_favourite_1.setupUi(content_favourite_1, "radio/favourite_1", self.settings)
+        ui_favourite_1.label_title.setText("Favourite #1")
+        self.verticalLayout.addWidget(content_favourite_1)
+
+        content_favourite_2 = QtWidgets.QWidget()
+        ui_favourite_2 = ui.lists.favourite_setting.Ui_widget()
+        ui_favourite_2.setupUi(content_favourite_2, "radio/favourite_2", self.settings)
+        ui_favourite_2.label_title.setText("Favourite #2")
+        self.verticalLayout.addWidget(content_favourite_2)
+
+        content_favourite_3 = QtWidgets.QWidget()
+        ui_favourite_3 = ui.lists.favourite_setting.Ui_widget()
+        ui_favourite_3.setupUi(content_favourite_3, "radio/favourite_3", self.settings)
+        ui_favourite_3.label_title.setText("Favourite #3")
+        self.verticalLayout.addWidget(content_favourite_3)
+
+        content_favourite_4 = QtWidgets.QWidget()
+        ui_favourite_4 = ui.lists.favourite_setting.Ui_widget()
+        ui_favourite_4.setupUi(content_favourite_4, "radio/favourite_4", self.settings)
+        ui_favourite_4.label_title.setText("Favourite #4")
+        self.verticalLayout.addWidget(content_favourite_4)
+
+        content_favourite_5 = QtWidgets.QWidget()
+        ui_favourite_5 = ui.lists.favourite_setting.Ui_widget()
+        ui_favourite_5.setupUi(content_favourite_5, "radio/favourite_5", self.settings)
+        ui_favourite_5.label_title.setText("Favourite #5")
+        self.verticalLayout.addWidget(content_favourite_5)
 
         self.container.setFixedHeight(self.verticalLayout.count() * 45)
 

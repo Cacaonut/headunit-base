@@ -278,8 +278,8 @@ class Ui_MainWindow(object):
 
         # Radio
         self.content_radio = QtWidgets.QWidget()
-        ui_radio = radio.Ui_content()
-        ui_radio.setupUi(self.content_radio)
+        self.ui_radio = radio.Ui_content()
+        self.ui_radio.setupUi(self.content_radio)
         self.content.addWidget(self.content_radio)
 
         # Car
@@ -363,6 +363,7 @@ class Ui_MainWindow(object):
         self.current_tab.setEnabled(True)
         self.label_title.setText("RADIO")
         self.current_tab = self.btn_radio
+        self.ui_radio.loadFavourites()
 
     def switchToSettings(self, event):
         self.content.setCurrentWidget(self.content_settings)

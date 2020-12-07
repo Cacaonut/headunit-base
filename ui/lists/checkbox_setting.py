@@ -12,7 +12,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_widget(object):
-    def setupUi(self, widget):
+    def setupUi(self, widget, key, settings):
+        self.key = key
+        self.settings = settings
         widget.setObjectName("widget")
         widget.resize(600, 45)
         widget.setStyleSheet("#widget {\n"
@@ -24,7 +26,7 @@ class Ui_widget(object):
                              "    color: white\n"
                              "}")
         self.label_title = QtWidgets.QLabel(widget)
-        self.label_title.setGeometry(QtCore.QRect(20, 15, 471, 16))
+        self.label_title.setGeometry(QtCore.QRect(20, 10, 471, 25))
         font = QtGui.QFont()
         font.setFamily("Montserrat")
         font.setPointSize(13)
@@ -43,12 +45,14 @@ class Ui_widget(object):
                                     "    background: #303030;\n"
                                     "}")
         self.checkbox.setObjectName("checkbox")
+        self.checkbox.mouseReleaseEvent = self.onCheckboxClicked
         self.label_checkbox = QtWidgets.QLabel(self.checkbox)
         self.label_checkbox.setGeometry(QtCore.QRect(3, 3, 24, 24))
         self.label_checkbox.setText("")
         self.label_checkbox.setPixmap(QtGui.QPixmap(":/images/check.svg"))
         self.label_checkbox.setScaledContents(True)
         self.label_checkbox.setObjectName("label_checkbox")
+        self.label_checkbox.setVisible(self.settings.value(key, "true") == "true")
 
         self.retranslateUi(widget)
         QtCore.QMetaObject.connectSlotsByName(widget)
@@ -57,3 +61,12 @@ class Ui_widget(object):
         _translate = QtCore.QCoreApplication.translate
         widget.setWindowTitle(_translate("widget", "Form"))
         self.label_title.setText(_translate("widget", "Title text"))
+
+    def onCheckboxClicked(self, event):
+        state = not self.label_checkbox.isVisible()
+        self.label_checkbox.setVisible(state)
+        self.settings.setValue(self.key, state)
+        self.onValueChange(state)
+
+    def onValueChange(self, value):
+        return

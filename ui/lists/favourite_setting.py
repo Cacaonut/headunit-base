@@ -12,7 +12,10 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_widget(object):
-    def setupUi(self, widget):
+    def setupUi(self, widget, key, settings):
+        self.key = key
+        self.settings = settings
+        self.current_value = float(self.settings.value(key, 0))
         widget.setObjectName("widget")
         widget.resize(600, 45)
         widget.setStyleSheet("#widget {\n"
@@ -24,7 +27,7 @@ class Ui_widget(object):
                              "    color: white\n"
                              "}")
         self.label_title = QtWidgets.QLabel(widget)
-        self.label_title.setGeometry(QtCore.QRect(20, 15, 391, 16))
+        self.label_title.setGeometry(QtCore.QRect(20, 10, 390, 25))
         font = QtGui.QFont()
         font.setFamily("Montserrat")
         font.setPointSize(14)
@@ -58,23 +61,26 @@ class Ui_widget(object):
         self.btn_decrease.setPixmap(QtGui.QPixmap(":/images/minus.svg"))
         self.btn_decrease.setScaledContents(True)
         self.btn_decrease.setObjectName("btn_decrease")
+        self.btn_decrease.mouseReleaseEvent = self.decrease
         self.btn_increase = QtWidgets.QLabel(self.frequency_box)
         self.btn_increase.setGeometry(QtCore.QRect(101, 3, 24, 24))
         self.btn_increase.setText("")
         self.btn_increase.setPixmap(QtGui.QPixmap(":/images/plus.svg"))
         self.btn_increase.setScaledContents(True)
         self.btn_increase.setObjectName("btn_increase")
+        self.btn_increase.mouseReleaseEvent = self.increase
         self.btn_delete = QtWidgets.QWidget(widget)
         self.btn_delete.setEnabled(True)
         self.btn_delete.setGeometry(QtCore.QRect(555, 7, 30, 30))
-        self.btn_delete.setStyleSheet("#checkbox {\n"
+        self.btn_delete.setStyleSheet("#btn_delete {\n"
                                       "    background: #252525; color: white\n"
                                       "}\n"
                                       "\n"
-                                      "#checkbox::hover {\n"
+                                      "#btn_delete::hover {\n"
                                       "    background: #303030;\n"
                                       "}")
         self.btn_delete.setObjectName("btn_delete")
+        self.btn_delete.mouseReleaseEvent = self.delete
         self.label_delete = QtWidgets.QLabel(self.btn_delete)
         self.label_delete.setGeometry(QtCore.QRect(3, 3, 24, 24))
         self.label_delete.setText("")
@@ -89,4 +95,36 @@ class Ui_widget(object):
         _translate = QtCore.QCoreApplication.translate
         widget.setWindowTitle(_translate("widget", "Form"))
         self.label_title.setText(_translate("widget", "Title text"))
-        self.label_frequency.setText(_translate("widget", "80 %"))
+        if self.current_value == 0:
+            self.label_frequency.setText("-")
+        else:
+            self.label_frequency.setText(format(self.current_value, ".1f"))
+
+    def increase(self, event):
+        if self.current_value == 0:
+            self.current_value = 108.0
+        self.current_value += 0.1
+        if self.current_value > 108.0:
+            self.current_value = 108.0
+        self.settings.setValue(self.key, self.current_value)
+        self.label_frequency.setText(format(self.current_value, ".1f"))
+        self.onValueChange(self.current_value)
+
+    def decrease(self, event):
+        if self.current_value == 0:
+            self.current_value = 87.5
+        self.current_value -= 0.1
+        if self.current_value < 87.5:
+            self.current_value = 87.5
+        self.settings.setValue(self.key, self.current_value)
+        self.label_frequency.setText(format(self.current_value, ".1f"))
+        self.onValueChange(self.current_value)
+
+    def delete(self, event):
+        self.current_value = 0
+        self.settings.setValue(self.key, self.current_value)
+        self.label_frequency.setText("-")
+        self.onValueChange(self.current_value)
+
+    def onValueChange(self, value):
+        return
