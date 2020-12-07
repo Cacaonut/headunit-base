@@ -19,6 +19,7 @@ bluetool: https://github.com/shoeffner/bluetool (using python3 setup.py install)
 Then install it:
 ```
 sudo apt-get -y install python3-pyqt5 python3-mutagen rtl-sdr
+pip3 install screen-brightness-control
 
 git clone https://github.com/Cacaonut/headunit-base
 ```
