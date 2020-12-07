@@ -416,7 +416,7 @@ class Ui_content(object):
         self.playing = False
         self.btn_play.setPixmap(QtGui.QPixmap(":/images/play.svg"))
         if hasattr(self, "process"):
-            print("Stopping process")
+            print("Stopping process " + str(self.process.pid))
             self.process.kill()
 
     def up(self, event):
