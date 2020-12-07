@@ -404,7 +404,7 @@ class Ui_content(object):
                   '171000 -f S16_LE '
         print(command)
         self.process = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
-        # self.fetchRDSOutput()
+        self.fetchRDSOutput()
 
         self.btn_play.setPixmap(QtGui.QPixmap(":/images/pause.svg"))
 
