@@ -404,8 +404,8 @@ class Ui_content(object):
 
     def play(self):
         self.playing = True
-        command = 'rtl_fm -M fm -l 0 -A std -p 0 -s 171k -g 20 -F 9 -f 105.7M | redsea --feed-through | aplay -r ' \
-                  '171000 -f S16_LE'
+        command = 'rtl_fm -M fm -l 0 -A std -p 0 -s 171k -g 20 -F 9 -f ' + format(self.current_freq, ".1f")\
+                  + 'M | redsea --feed-through | aplay -r 171000 -f S16_LE'
         self.process = subprocess.Popen(command, stderr=subprocess.PIPE, shell=True)
         thread = threading.Thread(target=self.fetchRDSOutput)
         thread.start()
@@ -413,14 +413,14 @@ class Ui_content(object):
         self.btn_play.setPixmap(QtGui.QPixmap(":/images/pause.svg"))
 
     def stop(self):
-        print("Stop")
         self.playing = False
         self.btn_play.setPixmap(QtGui.QPixmap(":/images/play.svg"))
+        self.label_station.setText("-")
+        self.label_info.setText("-")
         if hasattr(self, "process"):
             for process in psutil.process_iter():
                 if process.name() == "rtl_fm":
                     process.kill()
-                print("Stopping process " + str(process.pid))
 
     def up(self, event):
         self.changeFrequency(self.current_freq + 0.1)
