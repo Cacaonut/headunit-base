@@ -431,7 +431,13 @@ class Ui_content(object):
 
             try:
                 rds = json.loads(output)
-                print("Station: " + rds["ps"])
-                print("Radio text: " + rds["radiotext"])
+                try:
+                    print("Station: " + rds["ps"])
+                except KeyError:
+                    print("Station: -")
+                try:
+                    print("Radio text: " + rds["radiotext"])
+                except KeyError:
+                    print("Radio text: -")
             except json.JSONDecodeError:
                 pass
