@@ -437,8 +437,8 @@ class Ui_content(object):
 
         if next_freq != 108.0:
             self.changeFrequency(next_freq)
-        elif self.current_freq + 4 < 108.0:
-            self.current_freq += 4
+        elif self.current_freq + 2 < 108.0:
+            self.current_freq += 2
             self.up(None)
 
 
@@ -454,8 +454,8 @@ class Ui_content(object):
 
         if next_freq != 87.5:
             self.changeFrequency(next_freq)
-        elif self.current_freq - 4 < 87.5:
-            self.current_freq -= 4
+        elif self.current_freq - 2 < 87.5:
+            self.current_freq -= 2
             self.down(None)
 
     def fetchRDSOutput(self):
@@ -480,7 +480,7 @@ class Ui_content(object):
                 pass
 
     def scan(self, center_freq):
-        border = -30
+        border = -35
         sdr = RtlSdr()
 
         sdr.sample_rate = 2.7e6
