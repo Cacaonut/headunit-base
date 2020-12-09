@@ -454,7 +454,7 @@ class Ui_content(object):
 
         if next_freq != 87.5:
             self.changeFrequency(next_freq)
-        elif self.current_freq - 2 < 87.5:
+        elif self.current_freq - 2 > 87.5:
             self.current_freq -= 2
             self.down(None)
 
@@ -480,7 +480,7 @@ class Ui_content(object):
                 pass
 
     def scan(self, center_freq):
-        border = -35
+        border = self.settings.value("radio_limit", -30)
         sdr = RtlSdr()
 
         sdr.sample_rate = 2.7e6

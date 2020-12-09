@@ -22,6 +22,7 @@
     <list default="true" id="8721f21b-a18e-4131-9aaa-b09c049b5ac3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/radio.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/radio.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,7 +180,7 @@
       <workItem from="1607007452746" duration="11129000" />
       <workItem from="1607272122952" duration="6462000" />
       <workItem from="1607337522957" duration="14539000" />
-      <workItem from="1607509567660" duration="1765000" />
+      <workItem from="1607509567660" duration="2955000" />
     </task>
     <servers />
   </component>

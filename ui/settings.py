@@ -222,5 +222,11 @@ class Ui_content(object):
         ui_favourite_5.label_title.setText("Favourite #5")
         self.verticalLayout.addWidget(content_favourite_5)
 
+        content_limit = QtWidgets.QWidget()
+        ui_limit = ui.lists.number_setting.Ui_widget()
+        ui_limit.setupUi(content_limit, "radio/limit", self.settings, 1, -40, -10, unit="dB")
+        ui_limit.label_title.setText("Scan power limit")
+        self.verticalLayout.addWidget(content_limit)
+
         self.container.setFixedHeight(self.verticalLayout.count() * 45)
 
