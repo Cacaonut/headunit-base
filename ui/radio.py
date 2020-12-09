@@ -426,6 +426,8 @@ class Ui_content(object):
                     process.kill()
 
     def up(self, event):
+        if self.playing:
+            self.stop()
         stations = self.scan(self.current_freq + 2)
         print(stations)
         next_freq = 108.0
@@ -435,6 +437,9 @@ class Ui_content(object):
 
         if next_freq != 108.0:
             self.changeFrequency(next_freq)
+        elif self.current_freq + 4 < 108.0:
+            self.current_freq += 4
+            self.up(None)
 
 
     def down(self, event):
