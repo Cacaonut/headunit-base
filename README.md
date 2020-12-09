@@ -19,7 +19,7 @@ bluetool: https://github.com/shoeffner/bluetool (using python3 setup.py install)
 Then install it:
 ```
 sudo apt-get -y install python3-pyqt5 python3-mutagen rtl-sdr libatlas-base-dev
-pip3 install screen-brightness-control pyrtlsdr numpy scipy python-matplotlib ipython python-pandas sympy python-nose atlas-devel
+pip3 install screen-brightness-control pyrtlsdr numpy scipy matplotlib ipython jupyter pandas sympy nose
 
 git clone https://github.com/Cacaonut/headunit-base
 ```
