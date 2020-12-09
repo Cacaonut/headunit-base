@@ -443,7 +443,20 @@ class Ui_content(object):
 
 
     def down(self, event):
-        self.changeFrequency(self.current_freq - 0.1)
+        if self.playing:
+            self.stop()
+        stations = self.scan(self.current_freq - 2)
+        print(stations)
+        next_freq = 87.5
+        for freq in stations:
+            if freq < self.current_freq and freq > next_freq:
+                next_freq = freq
+
+        if next_freq != 87.5:
+            self.changeFrequency(next_freq)
+        elif self.current_freq - 4 < 87.5:
+            self.current_freq -= 4
+            self.down(None)
 
     def fetchRDSOutput(self):
         while True:
