@@ -9,9 +9,13 @@
 import json
 import subprocess
 import threading
+import math
 
 import psutil
 from PyQt5 import QtCore, QtGui, QtWidgets
+from rtlsdr import *
+from pylab import *
+from scipy import signal
 
 
 class Ui_content(object):
@@ -403,7 +407,7 @@ class Ui_content(object):
 
     def play(self):
         self.playing = True
-        command = 'rtl_fm -M fm -l 0 -A std -p 0 -s 171k -g 20 -F 9 -f ' + format(self.current_freq, ".1f")\
+        command = 'rtl_fm -M fm -l 0 -A std -p 0 -s 171k -g 20 -F 9 -f ' + format(self.current_freq, ".1f") \
                   + 'M | redsea --feed-through | aplay -r 171000 -f S16_LE'
         self.process = subprocess.Popen(command, stderr=subprocess.PIPE, shell=True)
         thread = threading.Thread(target=self.fetchRDSOutput)
@@ -422,7 +426,16 @@ class Ui_content(object):
                     process.kill()
 
     def up(self, event):
-        self.changeFrequency(self.current_freq + 0.1)
+        stations = self.scan(self.current_freq + 2)
+        print(stations)
+        next_freq = 108.0
+        for freq in stations:
+            if freq > self.current_freq and freq < next_freq:
+                next_freq = freq
+
+        if next_freq != 108.0:
+            self.changeFrequency(next_freq)
+
 
     def down(self, event):
         self.changeFrequency(self.current_freq - 0.1)
@@ -447,3 +460,27 @@ class Ui_content(object):
                     pass
             except json.JSONDecodeError:
                 pass
+
+    def scan(self, center_freq):
+        border = -30
+        sdr = RtlSdr()
+
+        sdr.sample_rate = 2.7e6
+        sdr.center_freq = center_freq * 1e6
+        sdr.gain = 4
+
+        samples = sdr.read_samples(256 * 1024)
+        sdr.close()
+        freqs, Pxx = signal.welch(samples, fs=sdr.sample_rate / 1e6)
+        freqs += center_freq
+
+        stations = []
+        for i in range(len(freqs)):
+            power = 10 * math.log10(Pxx[i])
+            if power > border:
+                print(str(freqs[i]) + ": " + str(power))
+                freq = round(freqs[i], 1)
+                if freq not in stations:
+                    stations.append(freq)
+
+        return stations
