@@ -124,8 +124,8 @@ class Ui_content(object):
         QtCore.QMetaObject.connectSlotsByName(content)
 
         self.settings = QtCore.QSettings("Cacaonut", "Headunit")
-        self.volume = self.settings.value("sound/volume", 0)
-        self.balance = self.settings.value("sound/balance_left_right", 0)
+        self.volume = int(self.settings.value("sound/volume", 0))
+        self.balance = int(self.settings.value("sound/balance_left_right", 0))
 
         self.switchToDisplay(None)
 
