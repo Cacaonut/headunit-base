@@ -83,7 +83,7 @@ class Ui_content(object):
         self.btn_down.setPixmap(QtGui.QPixmap(":/images/radio_down.svg"))
         self.btn_down.setScaledContents(True)
         self.btn_down.setObjectName("btn_down")
-        self.btn_down.mouseReleaseEvent = self.down
+        self.btn_down.mouseReleaseEvent = self.downClicked
         self.btn_play = QtWidgets.QLabel(content)
         self.btn_play.setGeometry(QtCore.QRect(450, 230, 50, 50))
         self.btn_play.setText("")
@@ -97,7 +97,7 @@ class Ui_content(object):
         self.btn_up.setPixmap(QtGui.QPixmap(":/images/radio_up.svg"))
         self.btn_up.setScaledContents(True)
         self.btn_up.setObjectName("btn_up")
-        self.btn_up.mouseReleaseEvent = self.up
+        self.btn_up.mouseReleaseEvent = self.upClicked
         self.btn_fav_1 = QtWidgets.QWidget(content)
         self.btn_fav_1.setEnabled(True)
         self.btn_fav_1.setGeometry(QtCore.QRect(51, 345, 122, 61))
