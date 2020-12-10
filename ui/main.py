@@ -272,8 +272,8 @@ class Ui_MainWindow(object):
 
         # Media
         self.content_media = QtWidgets.QWidget()
-        ui_media = media.Ui_content()
-        ui_media.setupUi(self.content_media)
+        self.ui_media = media.Ui_content()
+        self.ui_media.setupUi(self.content_media)
         self.content.addWidget(self.content_media)
 
         # Radio
@@ -342,6 +342,8 @@ class Ui_MainWindow(object):
         self.current_tab.setEnabled(True)
         self.label_title.setText("MEDIA")
         self.current_tab = self.btn_media
+        if self.ui_media.useBluetooth:
+            self.ui_media.switchToBluetooth(None)
 
     def switchToCar(self, event):
         self.content.setCurrentWidget(self.content_car)
@@ -377,3 +379,9 @@ class Ui_MainWindow(object):
         current_time = now.strftime("%H:%M")
         self.label_clock.setText(current_time)
         threading.Timer(0.5, self.updateTime).start()
+
+    def tempChanged(self, t):
+        if not t.is_null():
+            temp = str(t).split(" ")[0]
+            print("Temp: " + temp)
+            self.label_temperature.setText(temp + " °C")

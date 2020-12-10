@@ -468,7 +468,7 @@ class Ui_content(object):
             self.changeFrequency(next_freq)
             self.searching = False
             self.btn_down.setVisible(True)
-        elif self.current_freq + 1 < 108.0:
+        elif self.current_freq + 1 <= 108.0:
             self.current_freq += 1
             self.up()
         else:
@@ -493,7 +493,7 @@ class Ui_content(object):
             self.changeFrequency(next_freq)
             self.searching = False
             self.btn_up.setVisible(True)
-        elif self.current_freq - 1 > 87.5:
+        elif self.current_freq - 1 >= 87.5:
             self.current_freq -= 1
             self.down()
         else:

@@ -10,6 +10,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from ui import fuel, cockpit, diagnostics
+import obd
 
 
 class Ui_content(object):
@@ -105,10 +106,14 @@ class Ui_content(object):
         self.container.setGeometry(QtCore.QRect(30, 100, 660, 300))
         self.container.setObjectName("container")
 
+        # Setup OBD2 connection
+        obd.logger.setLevel(obd.logging.DEBUG)
+        self.obd_conn = obd.Async(fast=False)
+
         # Cockpit
         content_cockpit = QtWidgets.QWidget()
         self.ui_cockpit = cockpit.Ui_content()
-        self.ui_cockpit.setupUi(content_cockpit)
+        self.ui_cockpit.setupUi(content_cockpit, self.obd_conn)
         self.container.addWidget(content_cockpit)
 
         # Fuel
@@ -123,6 +128,9 @@ class Ui_content(object):
         self.ui_diagnostics.setupUi(content_diagnostics)
         self.container.addWidget(content_diagnostics)
 
+        # Start OBD2 connection
+        self.obd_conn.start()
+
         self.retranslateUi(content)
         QtCore.QMetaObject.connectSlotsByName(content)
 
@@ -130,7 +138,7 @@ class Ui_content(object):
         _translate = QtCore.QCoreApplication.translate
         content.setWindowTitle(_translate("content", "Form"))
         self.text_btn_cockpit.setText(_translate("content", "Cockpit"))
-        self.text_btn_fuel.setText(_translate("content", "Fuel"))
+        self.text_btn_fuel.setText(_translate("content", "Rear camera"))
         self.text_btn_diagnostics.setText(_translate("content", "Diagnostics"))
 
     def switchToCockpit(self, event):
