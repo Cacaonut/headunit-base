@@ -325,57 +325,72 @@ class Ui_content(object):
             self.btn_fav_1_frequency.setText("-")
         else:
             self.btn_fav_1_frequency.setText(format(self.slot1_freq, ".1f") + " MHz")
+        self.btn_fav_1_station.setText(self.settings.value("radio/favourite_1_name", ""))
 
         self.slot2_freq = float(self.settings.value("radio/favourite_2", 0))
         if self.slot2_freq == 0:
             self.btn_fav_2_frequency.setText("-")
         else:
             self.btn_fav_2_frequency.setText(format(self.slot2_freq, ".1f") + " MHz")
+        self.btn_fav_2_station.setText(self.settings.value("radio/favourite_2_name", ""))
 
         self.slot3_freq = float(self.settings.value("radio/favourite_3", 0))
         if self.slot3_freq == 0:
             self.btn_fav_3_frequency.setText("-")
         else:
             self.btn_fav_3_frequency.setText(format(self.slot3_freq, ".1f") + " MHz")
+        self.btn_fav_3_station.setText(self.settings.value("radio/favourite_3_name", ""))
 
         self.slot4_freq = float(self.settings.value("radio/favourite_4", 0))
         if self.slot4_freq == 0:
             self.btn_fav_4_frequency.setText("-")
         else:
             self.btn_fav_4_frequency.setText(format(self.slot4_freq, ".1f") + " MHz")
+        self.btn_fav_4_station.setText(self.settings.value("radio/favourite_4_name", ""))
 
         self.slot5_freq = float(self.settings.value("radio/favourite_5", 0))
         if self.slot5_freq == 0:
             self.btn_fav_5_frequency.setText("-")
         else:
             self.btn_fav_5_frequency.setText(format(self.slot5_freq, ".1f") + " MHz")
+        self.btn_fav_5_station.setText(self.settings.value("radio/favourite_5_name", ""))
 
     def saveFavourite(self, event):
         if self.current_freq == self.slot1_freq:
             self.settings.setValue("radio/favourite_1", 0)
+            self.settings.setValue("radio/favourite_1_name", "")
         elif self.current_freq == self.slot2_freq:
             self.settings.setValue("radio/favourite_2", 0)
+            self.settings.setValue("radio/favourite_2_name", "")
         elif self.current_freq == self.slot3_freq:
             self.settings.setValue("radio/favourite_3", 0)
+            self.settings.setValue("radio/favourite_3_name", "")
         elif self.current_freq == self.slot4_freq:
             self.settings.setValue("radio/favourite_4", 0)
+            self.settings.setValue("radio/favourite_4_name", "")
         elif self.current_freq == self.slot5_freq:
             self.settings.setValue("radio/favourite_5", 0)
+            self.settings.setValue("radio/favourite_5_name", "")
         elif self.slot1_freq == 0:
             self.slot1_freq = self.current_freq
             self.settings.setValue("radio/favourite_1", self.current_freq)
+            self.settings.setValue("radio/favourite_1_name", "")
         elif self.slot2_freq == 0:
             self.slot2_freq = self.current_freq
             self.settings.setValue("radio/favourite_2", self.current_freq)
+            self.settings.setValue("radio/favourite_2_name", "")
         elif self.slot3_freq == 0:
             self.slot3_freq = self.current_freq
             self.settings.setValue("radio/favourite_3", self.current_freq)
+            self.settings.setValue("radio/favourite_3_name", "")
         elif self.slot4_freq == 0:
             self.slot4_freq = self.current_freq
             self.settings.setValue("radio/favourite_4", self.current_freq)
+            self.settings.setValue("radio/favourite_4_name", "")
         elif self.slot5_freq == 0:
             self.slot5_freq = self.current_freq
             self.settings.setValue("radio/favourite_5", self.current_freq)
+            self.settings.setValue("radio/favourite_5_name", "")
         self.loadFavourites()
         self.changeFrequency(self.current_freq)
 
@@ -469,6 +484,17 @@ class Ui_content(object):
                 try:
                     print("Station: " + rds["ps"])
                     self.label_station.setText(rds["ps"])
+                    if self.current_freq == self.slot1_freq:
+                        self.settings.setValue("radio/favourite_1_name", rds["ps"])
+                    elif self.current_freq == self.slot2_freq:
+                        self.settings.setValue("radio/favourite_2_name", rds["ps"])
+                    elif self.current_freq == self.slot3_freq:
+                        self.settings.setValue("radio/favourite_3_name", rds["ps"])
+                    elif self.current_freq == self.slot4_freq:
+                        self.settings.setValue("radio/favourite_4_name", rds["ps"])
+                    elif self.current_freq == self.slot5_freq:
+                        self.settings.setValue("radio/favourite_5_name", rds["ps"])
+                    self.loadFavourites()
                 except KeyError:
                     pass
                 try:
