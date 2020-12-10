@@ -42,6 +42,35 @@ Fill it with the following content:
 ```
 PRETTY_HOSTNAME=[device name]
 ```
+### Configure autostart
+__IMPORTANT: After these changes you won't be able to control the Pi from the desktop environment any more. Therefore enable SSH and change the admin password for security reasons.__ 
+Open the lxsession autostart file:
+```
+sudo nano /etc/xdg/lxsession/LXDE-pi/autostart
+```
+Replace its content with the following line:
+```
+@/usr/bin/python3 /home/pi/headunit-base/main.py
+```
+### Disable bootup messages
+Open the boot cmdline file:
+```
+sudo nano /boot/cmdline.txt
+```
+Change `console=tty1` to `console=tty3` and add `logo.nologo loglevel=3 vt.global_cursor_default=0`.
+### Change splash screen
+Open the boot config file:
+```
+sudo nano /boot/config.txt
+```
+Add the following line to disable the gpu test resolving in a rainbow screen:
+```
+disable_splash=1
+```
+Create a custom image matching your screen size and copy it the the following location:
+```
+sudo cp ~/my_splash.png /usr/share/plymouth/themes/pix/splash.png
+```
 ### Restart
 __IMPORTANT: Don't forget to restart your Pi after making configuration changes!__
 ## Run
