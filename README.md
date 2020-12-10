@@ -37,6 +37,12 @@ Edit the line starting with `ExecStart` and edit it to match below:
 ```
 ExecStart=/usr/bin/bluealsa -p a2dp-sink
 ```
+### Fixing bug that leads to sound cutting of on low volumes
+Open the pulse audio config file:
+```
+sudo nano /etc/pulse/default.pa
+```
+Find the line starting with `load-module module-udev-detect` and append `ignore_dB=1`.
 ### Changing device name
 Create a file called `machine-info`:
 ```
