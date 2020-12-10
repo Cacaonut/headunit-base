@@ -12,7 +12,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 import ui.lists.checkbox_setting
 import ui.lists.number_setting
 import ui.lists.favourite_setting
-import screen_brightness_control as screen
+from rpi_backlight import Backlight
 
 
 class Ui_content(object):
@@ -150,11 +150,15 @@ class Ui_content(object):
         content_brightness = QtWidgets.QWidget()
         ui_brightness = ui.lists.number_setting.Ui_widget()
         ui_brightness.setupUi(content_brightness, "display/brightness", self.settings, 10, 10, 100, unit="%")
-        ui_brightness.onValueChange = lambda value: screen.set_brightness(value)
+        self.backlight = Backlight()
+        ui_brightness.onValueChange = self.changeScreenBrightness
         ui_brightness.label_title.setText("Brightness")
         self.verticalLayout.addWidget(content_brightness)
 
         self.container.setFixedHeight(self.verticalLayout.count() * 45)
+
+    def changeScreenBrightness(self, value):
+        self.backlight.brightness = value
 
     def switchToSound(self, event):
         self.btn_display.setEnabled(True)
