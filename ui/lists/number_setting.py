@@ -41,7 +41,7 @@ class Ui_widget(object):
         self.label_title.setObjectName("label_title")
         self.number_box = QtWidgets.QWidget(widget)
         self.number_box.setEnabled(True)
-        self.number_box.setGeometry(QtCore.QRect(455, 7, 130, 30))
+        self.number_box.setGeometry(QtCore.QRect(415, 7, 170, 30))
         self.number_box.setStyleSheet("#number_box {\n"
                                       "    background: #252525; color: white\n"
                                       "}\n"
@@ -51,7 +51,7 @@ class Ui_widget(object):
                                       "}")
         self.number_box.setObjectName("number_box")
         self.label_number = QtWidgets.QLabel(self.number_box)
-        self.label_number.setGeometry(QtCore.QRect(40, 5, 50, 20))
+        self.label_number.setGeometry(QtCore.QRect(40, 5, 90, 20))
         font = QtGui.QFont()
         font.setFamily("Montserrat")
         font.setPointSize(14)
@@ -67,7 +67,7 @@ class Ui_widget(object):
         self.btn_decrease.setObjectName("btn_decrease")
         self.btn_decrease.mouseReleaseEvent = self.decrease
         self.btn_increase = QtWidgets.QLabel(self.number_box)
-        self.btn_increase.setGeometry(QtCore.QRect(101, 3, 24, 24))
+        self.btn_increase.setGeometry(QtCore.QRect(141, 3, 24, 24))
         self.btn_increase.setText("")
         self.btn_increase.setPixmap(QtGui.QPixmap(":/images/plus.svg"))
         self.btn_increase.setScaledContents(True)
