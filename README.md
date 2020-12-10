@@ -19,11 +19,15 @@ bluetool: https://github.com/shoeffner/bluetool (using python3 setup.py install)
 Then install it:
 ```
 sudo apt-get -y install python3-pyqt5 python3-mutagen rtl-sdr libatlas-base-dev
-pip3 install screen-brightness-control pyrtlsdr numpy scipy matplotlib ipython jupyter pandas sympy nose
+pip3 install pyrtlsdr numpy scipy matplotlib ipython jupyter pandas sympy nose rpi-backlight
 
 git clone https://github.com/Cacaonut/headunit-base
 ```
 ## Configuration
+### Allowing screen brightness adjustments
+```
+echo 'SUBSYSTEM=="backlight",RUN+="/bin/chmod 666 /sys/class/backlight/%k/brightness /sys/class/backlight/%k/bl_power"' | sudo tee -a /etc/udev/rules.d/backlight-permissions.rules
+```
 ### Enabling Bluetooth audio streaming
 Open the bluealsa configuration file:
 ```
