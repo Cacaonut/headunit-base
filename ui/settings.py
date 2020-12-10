@@ -122,7 +122,11 @@ class Ui_content(object):
 
         self.retranslateUi(content)
         QtCore.QMetaObject.connectSlotsByName(content)
+
         self.settings = QtCore.QSettings("Cacaonut", "Headunit")
+        self.volume = self.settings.value("sound/volume", 0)
+        self.balance = self.settings.value("sound/balance_left_right", 0)
+
         self.switchToDisplay(None)
 
     def retranslateUi(self, content):
@@ -174,13 +178,14 @@ class Ui_content(object):
         ui_volume = ui.lists.number_setting.Ui_widget()
         ui_volume.setupUi(content_volume, "sound/volume", self.settings, 2, 0, 100)
         ui_volume.label_title.setText("Volume")
-        ui_volume.onValueChange = lambda value: os.system("amixer set Master " + str(value) + "%")
+        ui_volume.onValueChange = self.changeVolume
         self.verticalLayout.addWidget(content_volume)
 
         content_balance_left_right = QtWidgets.QWidget()
         ui_balance_left_right = ui.lists.number_setting.Ui_widget()
         ui_balance_left_right.setupUi(content_balance_left_right, "sound/balance_left_right", self.settings, 1, -5, 5)
         ui_balance_left_right.label_title.setText("Balance left - right")
+        ui_balance_left_right.onValueChange = self.changeBalance
         self.verticalLayout.addWidget(content_balance_left_right)
 
         #content_balance_front_back = QtWidgets.QWidget()
@@ -190,6 +195,29 @@ class Ui_content(object):
         #self.verticalLayout.addWidget(content_balance_front_back)
 
         self.container.setFixedHeight(self.verticalLayout.count() * 45)
+
+    def changeVolume(self, value):
+        self.volume = value
+        self.applyVolume()
+
+    def changeBalance(self, value):
+        self.balance = value
+        self.applyVolume()
+
+    def applyVolume(self):
+        volume_left = self.volume - 5 * self.balance
+        if volume_left < 0:
+            volume_left = 0
+        if volume_left > 100:
+            volume_left = 100
+
+        volume_right = self.volume + 5 * self.balance
+        if volume_right < 0:
+            volume_right = 0
+        if volume_right > 100:
+            volume_right = 100
+
+        os.system("amixer set Master " + str(volume_left) + "%," + str(volume_right) + "%")
 
     def switchToRadio(self, event):
         self.btn_display.setEnabled(True)
