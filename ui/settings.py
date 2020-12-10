@@ -176,11 +176,11 @@ class Ui_content(object):
         ui_balance_left_right.label_title.setText("Balance left - right")
         self.verticalLayout.addWidget(content_balance_left_right)
 
-        content_balance_front_back = QtWidgets.QWidget()
-        ui_balance_front_back = ui.lists.number_setting.Ui_widget()
-        ui_balance_front_back.setupUi(content_balance_front_back, "sound/balance_front_back", self.settings, 1, -5, 5)
-        ui_balance_front_back.label_title.setText("Balance front - back")
-        self.verticalLayout.addWidget(content_balance_front_back)
+        #content_balance_front_back = QtWidgets.QWidget()
+        #ui_balance_front_back = ui.lists.number_setting.Ui_widget()
+        #ui_balance_front_back.setupUi(content_balance_front_back, "sound/balance_front_back", self.settings, 1, -5, 5)
+        #ui_balance_front_back.label_title.setText("Balance front - back")
+        #self.verticalLayout.addWidget(content_balance_front_back)
 
         self.container.setFixedHeight(self.verticalLayout.count() * 45)
 
