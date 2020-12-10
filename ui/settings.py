@@ -151,6 +151,7 @@ class Ui_content(object):
         ui_brightness = ui.lists.number_setting.Ui_widget()
         ui_brightness.setupUi(content_brightness, "display/brightness", self.settings, 10, 10, 100, unit="%")
         self.backlight = Backlight()
+        self.backlight.fade_duration = 0.5
         ui_brightness.onValueChange = self.changeScreenBrightness
         ui_brightness.label_title.setText("Brightness")
         self.verticalLayout.addWidget(content_brightness)
