@@ -453,7 +453,7 @@ class Ui_content(object):
 
     def up(self):
         self.searching = True
-        self.btn_up.setVisible(False)
+        self.btn_down.setVisible(False)
         self.label_frequency.setText("Searching...")
         if self.playing:
             self.stop()
@@ -467,18 +467,18 @@ class Ui_content(object):
         if next_freq != 108.0:
             self.changeFrequency(next_freq)
             self.searching = False
-            self.btn_up.setVisible(True)
+            self.btn_down.setVisible(True)
         elif self.current_freq + 2 < 108.0:
             self.current_freq += 2
             self.up()
         else:
             self.searching = False
             self.label_frequency.setText(format(self.current_freq, ".1f") + " MHz")
-            self.btn_up.setVisible(True)
+            self.btn_down.setVisible(True)
 
     def down(self):
         self.searching = True
-        self.btn_down.setVisible(False)
+        self.btn_up.setVisible(False)
         self.label_frequency.setText("Searching...")
         if self.playing:
             self.stop()
@@ -492,14 +492,14 @@ class Ui_content(object):
         if next_freq != 87.5:
             self.changeFrequency(next_freq)
             self.searching = False
-            self.btn_down.setVisible(True)
+            self.btn_up.setVisible(True)
         elif self.current_freq - 2 > 87.5:
             self.current_freq -= 2
             self.down()
         else:
             self.searching = False
             self.label_frequency.setText(format(self.current_freq, ".1f") + " MHz")
-            self.btn_down.setVisible(True)
+            self.btn_up.setVisible(True)
 
 
     def fetchRDSOutput(self):
