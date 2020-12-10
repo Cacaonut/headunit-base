@@ -276,6 +276,7 @@ class Ui_content(object):
         self.loadFavourites()
 
         self.playing = False
+        self.searching = False
 
         self.changeFrequency(float(self.settings.value("radio/current_freq", 87.5)))
 
@@ -440,38 +441,68 @@ class Ui_content(object):
                 if process.name() == "rtl_fm":
                     process.kill()
 
-    def up(self, event):
+    def upClicked(self, event):
+        if not self.searching:
+            thread = threading.Thread(target=self.up)
+            thread.start()
+
+    def downClicked(self, event):
+        if not self.searching:
+            thread = threading.Thread(target=self.down)
+            thread.start()
+
+    def up(self):
+        self.searching = True
+        self.btn_up.setVisible(False)
+        self.btn_down.setVisible(False)
         if self.playing:
             self.stop()
         stations = self.scan(self.current_freq + 2)
         print(stations)
         next_freq = 108.0
         for freq in stations:
-            if freq > self.current_freq and freq < next_freq:
+            if self.current_freq < freq < next_freq:
                 next_freq = freq
 
         if next_freq != 108.0:
             self.changeFrequency(next_freq)
+            self.searching = False
+            self.btn_up.setVisible(True)
+            self.btn_down.setVisible(True)
         elif self.current_freq + 2 < 108.0:
             self.current_freq += 2
-            self.up(None)
+            self.up()
+        else:
+            self.searching = False
+            self.btn_up.setVisible(True)
+            self.btn_down.setVisible(True)
 
-
-    def down(self, event):
+    def down(self):
+        self.searching = True
+        self.btn_up.setVisible(False)
+        self.btn_down.setVisible(False)
         if self.playing:
             self.stop()
         stations = self.scan(self.current_freq - 2)
         print(stations)
         next_freq = 87.5
         for freq in stations:
-            if freq < self.current_freq and freq > next_freq:
+            if self.current_freq > freq > next_freq:
                 next_freq = freq
 
         if next_freq != 87.5:
             self.changeFrequency(next_freq)
+            self.searching = False
+            self.btn_up.setVisible(True)
+            self.btn_down.setVisible(True)
         elif self.current_freq - 2 > 87.5:
             self.current_freq -= 2
-            self.down(None)
+            self.down()
+        else:
+            self.searching = False
+            self.btn_up.setVisible(True)
+            self.btn_down.setVisible(True)
+
 
     def fetchRDSOutput(self):
         while True:
