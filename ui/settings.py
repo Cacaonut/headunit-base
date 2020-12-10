@@ -158,6 +158,7 @@ class Ui_content(object):
         self.container.setFixedHeight(self.verticalLayout.count() * 45)
 
     def changeScreenBrightness(self, value):
+        print("Setting screen brightness to " + str(value))
         self.backlight.brightness = value
 
     def switchToSound(self, event):
