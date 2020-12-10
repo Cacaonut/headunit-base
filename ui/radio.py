@@ -457,7 +457,7 @@ class Ui_content(object):
         self.label_frequency.setText("Searching...")
         if self.playing:
             self.stop()
-        stations = self.scan(self.current_freq + 2)
+        stations = self.scan(self.current_freq + 1)
         print(stations)
         next_freq = 108.0
         for freq in stations:
@@ -468,8 +468,8 @@ class Ui_content(object):
             self.changeFrequency(next_freq)
             self.searching = False
             self.btn_down.setVisible(True)
-        elif self.current_freq + 2 < 108.0:
-            self.current_freq += 2
+        elif self.current_freq + 1 < 108.0:
+            self.current_freq += 1
             self.up()
         else:
             self.searching = False
@@ -482,7 +482,7 @@ class Ui_content(object):
         self.label_frequency.setText("Searching...")
         if self.playing:
             self.stop()
-        stations = self.scan(self.current_freq - 2)
+        stations = self.scan(self.current_freq - 1)
         print(stations)
         next_freq = 87.5
         for freq in stations:
@@ -493,8 +493,8 @@ class Ui_content(object):
             self.changeFrequency(next_freq)
             self.searching = False
             self.btn_up.setVisible(True)
-        elif self.current_freq - 2 > 87.5:
-            self.current_freq -= 2
+        elif self.current_freq - 1 > 87.5:
+            self.current_freq -= 1
             self.down()
         else:
             self.searching = False
