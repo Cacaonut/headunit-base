@@ -43,7 +43,7 @@ Fill it with the following content:
 PRETTY_HOSTNAME=[device name]
 ```
 ### Configure autostart
-__IMPORTANT: After these changes you won't be able to control the Pi from the desktop environment any more. Therefore enable SSH and change the admin password for security reasons.__
+__IMPORTANT: After these changes you won't be able to control the Pi from the desktop environment any more. Therefore enable SSH and change the admin password for security reasons.__ 
 Open the lxsession autostart file:
 ```
 sudo nano /etc/xdg/lxsession/LXDE-pi/autostart
