@@ -106,7 +106,6 @@ class Ui_content(object):
         qt_gauge = ImageQt(gauge)
         pixmap = QtGui.QPixmap.fromImage(qt_gauge)
         self.speed_gauge.setPixmap(pixmap)
-        self.speed_gauge.setText("0 km/h")
 
         # RPM
         percent = 0
@@ -119,4 +118,3 @@ class Ui_content(object):
         qt_gauge = ImageQt(gauge)
         pixmap = QtGui.QPixmap.fromImage(qt_gauge)
         self.rotation_gauge.setPixmap(pixmap)
-        self.rotation_gauge.setText("0 rpm")
