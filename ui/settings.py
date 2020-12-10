@@ -174,7 +174,7 @@ class Ui_content(object):
         ui_volume = ui.lists.number_setting.Ui_widget()
         ui_volume.setupUi(content_volume, "sound/volume", self.settings, 2, 0, 100)
         ui_volume.label_title.setText("Volume")
-        ui_volume.onValueChange = lambda value: os.system("amixer set Master " + value + "%")
+        ui_volume.onValueChange = lambda value: os.system("amixer set Master " + str(value) + "%")
         self.verticalLayout.addWidget(content_volume)
 
         content_balance_left_right = QtWidgets.QWidget()
