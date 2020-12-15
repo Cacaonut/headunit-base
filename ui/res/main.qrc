@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="images">
+    <file>check_green.svg</file>
     <file>rotation_gauge.png</file>
     <file>speed_gauge.png</file>
     <file>minus.svg</file>

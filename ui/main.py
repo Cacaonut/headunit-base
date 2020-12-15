@@ -267,7 +267,7 @@ class Ui_MainWindow(object):
         # Home
         self.content_home = QtWidgets.QWidget()
         ui_home = home.Ui_content()
-        ui_home.setupUi(self.content_home)
+        ui_home.setupUi(self.content_home, self)
         self.content.addWidget(self.content_home)
 
         # Media
@@ -284,8 +284,8 @@ class Ui_MainWindow(object):
 
         # Car
         self.content_car = QtWidgets.QWidget()
-        ui_car = car.Ui_content()
-        ui_car.setupUi(self.content_car)
+        self.ui_car = car.Ui_content()
+        self.ui_car.setupUi(self.content_car)
         self.content.addWidget(self.content_car)
 
         # Devices

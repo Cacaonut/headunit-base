@@ -46,6 +46,9 @@ class Ui_content(object):
         self.label_gear.setAlignment(QtCore.Qt.AlignCenter)
         self.label_gear.setObjectName("label_gear")
 
+        self.speed = 0
+        self.rpm = 0
+
         obd_conn.watch(obd.commands.RPM, callback=self.rpmChanged)
         obd_conn.watch(obd.commands.SPEED, callback=self.speedChanged)
 
@@ -61,9 +64,9 @@ class Ui_content(object):
 
     def rpmChanged(self, r):
         if not r.is_null():
-            rpm = float(str(r).split(" ")[0])
-            print("RPM: " + str(rpm))
-            percent = rpm / 7000
+            self.rpm = float(str(r).split(" ")[0])
+            print("RPM: " + str(self.rpm))
+            percent = self.rpm / 7000
             rotation = 120 - 240 * percent
             scriptDir = os.path.dirname(__file__)
             dial = Image.open(os.path.join(scriptDir, "res/needle.png")).convert("RGBA")
@@ -77,9 +80,9 @@ class Ui_content(object):
 
     def speedChanged(self, s):
         if not s.is_null():
-            speed = float(str(s).split(" ")[0])
-            print("RPM: " + str(speed))
-            percent = speed / 220
+            self.speed = float(str(s).split(" ")[0])
+            print("RPM: " + str(self.speed))
+            percent = self.speed / 220
             rotation = 120 - 240 * percent
             scriptDir = os.path.dirname(__file__)
             dial = Image.open(os.path.join(scriptDir, "res/needle.png")).convert("RGBA")

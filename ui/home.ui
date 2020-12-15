@@ -22,29 +22,512 @@
 	color: white;
 }</string>
   </property>
+  <widget class="QWidget" name="widget_car" native="true">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>20</y>
+     <width>210</width>
+     <height>190</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background: #262626</string>
+   </property>
+   <widget class="QLabel" name="label_speed">
+    <property name="geometry">
+     <rect>
+      <x>55</x>
+      <y>25</y>
+      <width>100</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Montserrat</family>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Speed</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_speed_value">
+    <property name="geometry">
+     <rect>
+      <x>55</x>
+      <y>55</y>
+      <width>100</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Montserrat</family>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: #D9D9D9</string>
+    </property>
+    <property name="text">
+     <string>0 km/h</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_rotation">
+    <property name="geometry">
+     <rect>
+      <x>55</x>
+      <y>105</y>
+      <width>100</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Montserrat</family>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Rotation</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_rotation_value">
+    <property name="geometry">
+     <rect>
+      <x>55</x>
+      <y>135</y>
+      <width>100</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Montserrat</family>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: #D9D9D9</string>
+    </property>
+    <property name="text">
+     <string>0 rpm</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QWidget" name="widget_radio" native="true">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>230</y>
+     <width>210</width>
+     <height>190</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background: #262626</string>
+   </property>
+   <widget class="QLabel" name="label_radio">
+    <property name="geometry">
+     <rect>
+      <x>55</x>
+      <y>15</y>
+      <width>100</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Montserrat</family>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Radio</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="btn_play_radio">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>115</y>
+      <width>50</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="res/main.qrc">:/images/play.svg</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_station">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>70</y>
+      <width>130</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Montserrat</family>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: #D9D9D9</string>
+    </property>
+    <property name="text">
+     <string>B5 akt</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="btn_up_radio">
+    <property name="geometry">
+     <rect>
+      <x>135</x>
+      <y>115</y>
+      <width>50</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="res/main.qrc">:/images/radio_up.svg</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="btn_down_radio">
+    <property name="geometry">
+     <rect>
+      <x>25</x>
+      <y>115</y>
+      <width>50</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="res/main.qrc">:/images/radio_down.svg</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QWidget" name="widget_2" native="true">
+   <property name="geometry">
+    <rect>
+     <x>490</x>
+     <y>20</y>
+     <width>210</width>
+     <height>190</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background: #262626</string>
+   </property>
+   <widget class="QLabel" name="label_diagnostics">
+    <property name="geometry">
+     <rect>
+      <x>25</x>
+      <y>15</y>
+      <width>160</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Montserrat</family>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Diagnostics</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_diagnostics_desc">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>110</y>
+      <width>170</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Montserrat</family>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: #D9D9D9</string>
+    </property>
+    <property name="text">
+     <string>All tests were
+successful</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="btn_play_media_2">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>60</y>
+      <width>50</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="res/main.qrc">:/images/check_green.svg</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QWidget" name="widget_media" native="true">
+   <property name="geometry">
+    <rect>
+     <x>255</x>
+     <y>230</y>
+     <width>210</width>
+     <height>190</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background: #262626</string>
+   </property>
+   <widget class="QLabel" name="label_media">
+    <property name="geometry">
+     <rect>
+      <x>55</x>
+      <y>15</y>
+      <width>100</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Montserrat</family>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Media</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="btn_play_media">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>115</y>
+      <width>50</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="res/main.qrc">:/images/play.svg</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_song">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>70</y>
+      <width>170</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Montserrat</family>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: #D9D9D9</string>
+    </property>
+    <property name="text">
+     <string>Yoda's Theme</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="btn_next_media">
+    <property name="geometry">
+     <rect>
+      <x>135</x>
+      <y>115</y>
+      <width>50</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="res/main.qrc">:/images/next.svg</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="btn_last_media">
+    <property name="geometry">
+     <rect>
+      <x>25</x>
+      <y>115</y>
+      <width>50</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="res/main.qrc">:/images/last.svg</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QWidget" name="widget_android_auto" native="true">
+   <property name="geometry">
+    <rect>
+     <x>490</x>
+     <y>230</y>
+     <width>210</width>
+     <height>190</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background: #262626</string>
+   </property>
+   <widget class="QLabel" name="label_android_auto">
+    <property name="geometry">
+     <rect>
+      <x>25</x>
+      <y>15</y>
+      <width>160</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Montserrat</family>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Android Auto</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_android_auto_desc">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>60</y>
+      <width>170</width>
+      <height>110</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Montserrat</family>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: #D9D9D9</string>
+    </property>
+    <property name="text">
+     <string>Connect your
+Android mobile
+phone to launch
+Android Auto</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+  </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>260</x>
-     <y>187</y>
-     <width>200</width>
-     <height>50</height>
+     <x>255</x>
+     <y>53</y>
+     <width>210</width>
+     <height>123</height>
     </rect>
    </property>
-   <property name="font">
-    <font>
-     <family>Avenir Next LT Pro</family>
-     <pointsize>24</pointsize>
-    </font>
-   </property>
    <property name="text">
-    <string>Home</string>
+    <string/>
    </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
+   <property name="pixmap">
+    <pixmap resource="res/main.qrc">:/images/toyota.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
    </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="res/main.qrc"/>
+ </resources>
  <connections/>
 </ui>
