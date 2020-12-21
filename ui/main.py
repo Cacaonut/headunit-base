@@ -1,19 +1,15 @@
-import os
-import time
-
-import ui.res.resources
 import subprocess
-import ui.android_auto as android_auto
+import threading
+from datetime import datetime
+from sys import platform
+
+from PyQt5 import QtCore, QtGui, QtWidgets
+
 import ui.car as car
 import ui.devices as devices
 import ui.home as home
 import ui.media as media
 import ui.settings as settings
-from PyQt5 import QtCore, QtGui, QtWidgets
-from datetime import datetime
-import threading
-from sys import platform
-
 from ui import radio
 
 
@@ -65,7 +61,7 @@ class Ui_MainWindow(object):
         self.label.setScaledContents(True)
         self.label.setObjectName("label")
         self.label_temperature = QtWidgets.QLabel(self.top_bar)
-        self.label_temperature.setGeometry(QtCore.QRect(625, 7, 80, 30))
+        self.label_temperature.setGeometry(QtCore.QRect(120, 7, 80, 30))
         font = QtGui.QFont()
         font.setFamily("Montserrat Light")
         font.setPointSize(16)
