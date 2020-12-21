@@ -193,7 +193,7 @@ class Ui_content(object):
         self.label.setScaledContents(True)
         self.label.setObjectName("label")
 
-        self.updateUI()
+        threading.Timer(0.1, self.updateUI).start()
 
         self.retranslateUi(content)
         QtCore.QMetaObject.connectSlotsByName(content)
