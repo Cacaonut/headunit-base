@@ -5,6 +5,7 @@ from sys import platform
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+import ui.res.resources
 import ui.car as car
 import ui.devices as devices
 import ui.home as home
