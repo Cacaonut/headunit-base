@@ -244,12 +244,10 @@ class Ui_content(object):
                     self.finishMediaSetup()
                 self.label_song.setText(self.owner.ui_media.ui_music_player.label_title.text())
                 playing = True
-                print("Using BT: " + str(self.owner.ui_media.useBluetooth))
                 if self.owner.ui_media.useBluetooth:
                     playing = not self.owner.ui_media.bt_paused
                 else:
                     playing = not self.owner.ui_media.paused
-                print("Playing: " + str(playing))
                 if playing:
                     self.btn_play_media.setPixmap(QtGui.QPixmap(":/images/pause.svg"))
                 else:
@@ -262,5 +260,6 @@ class Ui_content(object):
 
     def finishMediaSetup(self):
         self.finishedMediaSetup = True
-        print("Finished media setup")
         self.btn_play_media.mouseReleaseEvent = self.owner.ui_media.ui_music_player.playBtnPressed
+        self.btn_next_media.mouseReleaseEvent = self.owner.ui_media.ui_music_player.nextBtnPressed
+        self.btn_last_media.mouseReleaseEvent = self.owner.ui_media.ui_music_player.rewindBtnPressed
