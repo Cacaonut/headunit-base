@@ -328,7 +328,7 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Headunit"))
         self.label_title.setText(_translate("MainWindow", "HOME"))
-        self.label_volume_increase.setText(_translate("MainWindow", "21 °C"))
+        self.label_temperature.setText(_translate("MainWindow", "21 °C"))
         self.text_btn_media.setText(_translate("MainWindow", "Media"))
         self.text_btn_home.setText(_translate("MainWindow", "Home"))
         self.text_btn_car.setText(_translate("MainWindow", "Car"))
