@@ -411,11 +411,11 @@ class Ui_MainWindow(object):
         threading.Timer(0.5, self.updateUI).start()
 
     def volumeUpPressed(self, event):
-        self.ui_settings.switchToSound()
+        self.ui_settings.switchToSound(None)
         self.ui_settings.ui_volume.increase(event)
 
     def volumeDownPressed(self, event):
-        self.ui_settings.switchToSound()
+        self.ui_settings.switchToSound(None)
         self.ui_settings.ui_volume.decrease(event)
 
     def tempChanged(self, t):
