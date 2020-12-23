@@ -408,7 +408,7 @@ class Ui_MainWindow(object):
 
         volume = str(self.ui_settings.volume)
         self.label_volume.setText(volume)
-        threading.Timer(0.5, self.updateUI).start()
+        threading.Timer(0.1, self.updateUI).start()
 
     def volumeUpPressed(self, event):
         self.ui_settings.switchToSound(None)
