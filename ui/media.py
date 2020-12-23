@@ -163,10 +163,9 @@ class Ui_content(object):
         self.btn_file_browser.setVisible(False)
         self.stop()
         self.useBluetooth = True
-        if not self.current_bt_device == "":
-            #self.bt_process = subprocess.Popen(['bluealsa-aplay', self.current_bt_device])
-            self.ui_music_player.setupBluetooth()
-            self.ui_music_player.music_slider.setEnabled(False)
+        #self.bt_process = subprocess.Popen(['bluealsa-aplay', self.current_bt_device])
+        self.ui_music_player.setupBluetooth()
+        self.ui_music_player.music_slider.setEnabled(False)
 
     def switchToUSB(self, event):
         self.content.setCurrentIndex(0)

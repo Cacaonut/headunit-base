@@ -308,4 +308,4 @@ class Ui_content(object):
                     bus.get_object('org.bluez', path),
                     'org.freedesktop.DBus.Properties')
         if not self.player_iface:
-            sys.exit('Error: Media Player not found.')
+            print('Error: Media Player not found.')
