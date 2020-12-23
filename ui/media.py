@@ -144,6 +144,7 @@ class Ui_content(object):
         QtCore.QMetaObject.connectSlotsByName(content)
 
         mixer.init()
+        self.ui_music_player.setupBluetooth()
         self.ui_music_player.updateUI()
         pygame.init()
         self.cooldown = False
@@ -164,7 +165,6 @@ class Ui_content(object):
         self.stop()
         self.useBluetooth = True
         #self.bt_process = subprocess.Popen(['bluealsa-aplay', self.current_bt_device])
-        self.ui_music_player.setupBluetooth()
         self.ui_music_player.music_slider.setEnabled(False)
 
     def switchToUSB(self, event):
