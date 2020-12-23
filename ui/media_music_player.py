@@ -162,6 +162,10 @@ class Ui_content(object):
         self.fetching_info = True
 
         if self.owner.useBluetooth:
+            if not hasattr(self, "player_prop_iface"):
+                threading.Timer(0.1, self.updateUI).start()
+                return
+
             try:
                 props = self.player_prop_iface.GetAll("org.bluez.MediaPlayer1")
                 #print(props)
