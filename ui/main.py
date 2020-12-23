@@ -73,7 +73,7 @@ class Ui_MainWindow(object):
         self.label_temperature.setAlignment(QtCore.Qt.AlignCenter)
         self.label_temperature.setObjectName("label_temperature")
         self.label_volume_up = QtWidgets.QLabel(self.top_bar)
-        self.label_volume_up.setGeometry(QtCore.QRect(680, 7, 30, 30))
+        self.label_volume_up.setGeometry(QtCore.QRect(670, 7, 30, 30))
         self.label_volume_up.setText("")
         self.label_volume_up.setPixmap(QtGui.QPixmap(":/images/plus.svg"))
         self.label_volume_up.setScaledContents(True)
