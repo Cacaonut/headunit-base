@@ -217,9 +217,11 @@ class Ui_content(object):
                     self.music_slider.blockSignals(True)
                     self.music_slider.setValue(0)
                     self.music_slider.blockSignals(False)
-            except TypeError as e:
+            except Exception as e:
                 print("Error retrieving bluetooth music info:")
                 print(e)
+                if "DBusException" in str(e):
+                    cancel = True
         else:
             if mixer.music.get_busy():
                 try:
@@ -282,7 +284,8 @@ class Ui_content(object):
                 self.music_slider.blockSignals(False)
 
         self.fetching_info = False
-        threading.Timer(0.1, self.updateUI).start()
+        if not cancel:
+            threading.Timer(0.1, self.updateUI).start()
 
     def playBtnPressed(self, event):
         self.owner.pause()
