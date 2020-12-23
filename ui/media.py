@@ -149,7 +149,6 @@ class Ui_content(object):
         self.cooldown = False
         self.stopped = True
         self.checkForMusicStop()
-        self.switchToBluetooth(None)
 
     def retranslateUi(self, content):
         _translate = QtCore.QCoreApplication.translate

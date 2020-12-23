@@ -271,6 +271,8 @@ class Ui_MainWindow(object):
         self.content_media = QtWidgets.QWidget()
         self.ui_media = media.Ui_content()
         self.ui_media.setupUi(self.content_media)
+        if self.ui_media.useBluetooth:
+            self.ui_media.ui_music_player.setupBluetooth()
         self.content.addWidget(self.content_media)
 
         # Radio
