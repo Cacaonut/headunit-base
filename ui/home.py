@@ -251,7 +251,8 @@ class Ui_content(object):
                     self.btn_play_media.setPixmap(QtGui.QPixmap(":/images/pause.svg"))
                 else:
                     self.btn_play_media.setPixmap(QtGui.QPixmap(":/images/play.svg"))
-        except:
-            pass
-        
+        except Exception as e:
+            print("Error updating home view:")
+            print(e)
+
         threading.Timer(0.1, self.updateUI).start()
