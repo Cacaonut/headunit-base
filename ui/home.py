@@ -195,6 +195,7 @@ class Ui_content(object):
         self.label.setObjectName("label")
 
         self.finishedMediaSetup = False
+        self.finishedRadioSetup = False
         threading.Timer(0.1, self.updateUI).start()
 
         self.retranslateUi(content)
@@ -229,6 +230,8 @@ class Ui_content(object):
 
             # Radio
             if hasattr(self.owner, "ui_radio"):
+                if not self.finishedRadioSetup:
+                    self.finishRadioSetup()
                 radio_station = self.owner.ui_radio.label_station.text()
                 if radio_station == "-":
                     radio_station = self.owner.ui_radio.label_frequency.text()
@@ -263,3 +266,9 @@ class Ui_content(object):
         self.btn_play_media.mouseReleaseEvent = self.owner.ui_media.ui_music_player.playBtnPressed
         self.btn_next_media.mouseReleaseEvent = self.owner.ui_media.ui_music_player.nextBtnPressed
         self.btn_last_media.mouseReleaseEvent = self.owner.ui_media.ui_music_player.rewindBtnPressed
+
+    def finishRadioSetup(self):
+        self.finishedRadioSetup = True
+        self.btn_play_radio.mouseReleaseEvent = self.owner.ui_radio.playPressed
+        self.btn_up_radio.mouseReleaseEvent = self.owner.ui_radio.upClicked
+        self.btn_down_radio.mouseReleaseEvent = self.owner.ui_radio.downClicked
