@@ -155,10 +155,11 @@ class Ui_content(object):
         self.label_album.setText(_translate("content", ""))
 
     def updateUI(self):
-        self.updateThreadRunning = True
         if self.slider_pressed or self.fetching_info:
             threading.Timer(0.1, self.updateUI).start()
             return
+
+        self.updateThreadRunning = True
 
         self.fetching_info = True
 
@@ -287,6 +288,8 @@ class Ui_content(object):
         self.fetching_info = False
         if self.updateThreadRunning:
             threading.Timer(0.1, self.updateUI).start()
+        else
+            print("Update thread stopped")
 
     def playBtnPressed(self, event):
         self.owner.pause()
