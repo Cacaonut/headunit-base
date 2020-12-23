@@ -166,14 +166,23 @@ class Ui_content(object):
                 props = self.player_prop_iface.GetAll("org.bluez.MediaPlayer1")
                 #print(props)
                 if props["Status"] == "playing" or props["Status"] == "paused":
-                    if props["Status"] == "playing":
-                        self.btn_play.setPixmap(QtGui.QPixmap(":/images/pause.svg"))
-                    else:
-                        self.btn_play.setPixmap(QtGui.QPixmap(":/images/play.svg"))
+                    try:
+                        if props["Status"] == "playing":
+                            self.btn_play.setPixmap(QtGui.QPixmap(":/images/pause.svg"))
+                        else:
+                            self.btn_play.setPixmap(QtGui.QPixmap(":/images/play.svg"))
+                    except Exception e:
+                        print("Error retrieving bluetooth music status info:")
+                        print(e)
+
                     track = props["Track"]
-                    self.label_title.setText(track["Title"])
-                    self.label_artist.setText(track["Artist"])
-                    self.label_album.setText(track["Album"])
+                    try:
+                        self.label_title.setText(track["Title"])
+                        self.label_artist.setText(track["Artist"])
+                        self.label_album.setText(track["Album"])
+                    except Exception e:
+                        print("Error retrieving bluetooth music status info:")
+                        print(e)
 
                     length = track["Duration"] / 1000.0
                     length_minutes = int(length / 60)
