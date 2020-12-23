@@ -26,6 +26,7 @@ class Ui_content(object):
         self.widget_car.setGeometry(QtCore.QRect(20, 20, 210, 190))
         self.widget_car.setStyleSheet("background: #262626")
         self.widget_car.setObjectName("widget_car")
+        self.widget_car.mouseReleaseEvent = self.owner.switchToCar
         self.label_speed = QtWidgets.QLabel(self.widget_car)
         self.label_speed.setGeometry(QtCore.QRect(55, 25, 100, 30))
         font = QtGui.QFont()
@@ -64,6 +65,7 @@ class Ui_content(object):
         self.widget_radio.setGeometry(QtCore.QRect(20, 230, 210, 190))
         self.widget_radio.setStyleSheet("background: #262626")
         self.widget_radio.setObjectName("widget_radio")
+        self.widget_radio.mouseReleaseEvent = self.owner.switchToRadio
         self.label_radio = QtWidgets.QLabel(self.widget_radio)
         self.label_radio.setGeometry(QtCore.QRect(55, 15, 100, 30))
         font = QtGui.QFont()
