@@ -164,7 +164,7 @@ class Ui_content(object):
         if self.owner.useBluetooth:
             try:
                 props = self.player_prop_iface.GetAll("org.bluez.MediaPlayer1")
-                #print(props)
+                print(props)
                 if props["Status"] == "playing" or props["Status"] == "paused":
                     try:
                         if props["Status"] == "playing":
