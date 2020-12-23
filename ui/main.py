@@ -272,7 +272,7 @@ class Ui_MainWindow(object):
         self.ui_media = media.Ui_content()
         self.ui_media.setupUi(self.content_media)
         if self.ui_media.useBluetooth:
-            self.ui_media.switchToBluetooth()
+            self.ui_media.switchToBluetooth(None)
         self.content.addWidget(self.content_media)
 
         # Radio
