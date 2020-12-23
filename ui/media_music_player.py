@@ -155,10 +155,9 @@ class Ui_content(object):
         self.label_album.setText(_translate("content", ""))
 
     def updateUI(self):
-        print("updateUI called")
-
         if self.slider_pressed or self.fetching_info:
             threading.Timer(0.1, self.updateUI).start()
+            print("canceled")
             return
 
         self.fetching_info = True
