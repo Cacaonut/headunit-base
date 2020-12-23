@@ -130,6 +130,7 @@ class Ui_content(object):
         self.widget_media.setGeometry(QtCore.QRect(255, 230, 210, 190))
         self.widget_media.setStyleSheet("background: #262626")
         self.widget_media.setObjectName("widget_media")
+        self.widget_media.mouseReleaseEvent = self.owner.switchToMedia
         self.label_media = QtWidgets.QLabel(self.widget_media)
         self.label_media.setGeometry(QtCore.QRect(55, 15, 100, 30))
         font = QtGui.QFont()
