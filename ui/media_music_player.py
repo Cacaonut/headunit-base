@@ -163,6 +163,7 @@ class Ui_content(object):
 
         if self.owner.useBluetooth:
             if not hasattr(self, "player_prop_iface"):
+                print("no interface found")
                 threading.Timer(0.1, self.updateUI).start()
                 return
 
