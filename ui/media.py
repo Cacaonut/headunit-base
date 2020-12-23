@@ -144,12 +144,12 @@ class Ui_content(object):
         QtCore.QMetaObject.connectSlotsByName(content)
 
         mixer.init()
-        self.ui_music_player.setupBluetooth()
         self.ui_music_player.updateUI()
         pygame.init()
         self.cooldown = False
         self.stopped = True
         self.checkForMusicStop()
+        self.switchToBluetooth(None)
 
     def retranslateUi(self, content):
         _translate = QtCore.QCoreApplication.translate
@@ -164,6 +164,7 @@ class Ui_content(object):
         self.btn_file_browser.setVisible(False)
         self.stop()
         self.useBluetooth = True
+        self.ui_music_player.setupBluetooth()
         #self.bt_process = subprocess.Popen(['bluealsa-aplay', self.current_bt_device])
         self.ui_music_player.music_slider.setEnabled(False)
 
