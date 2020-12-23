@@ -220,29 +220,32 @@ class Ui_content(object):
 
     def updateUI(self):
         # Cockpit
-        self.label_speed_value.setText(str(self.owner.ui_car.ui_cockpit.speed) + " km/h")
-        self.label_rotation_value.setText(str(self.owner.ui_car.ui_cockpit.rpm) + "rpm")
+        if hasattr(self.owner, "ui_car") and hasattr(self.owner.ui_car, "ui_cockpit"):
+            self.label_speed_value.setText(str(self.owner.ui_car.ui_cockpit.speed) + " km/h")
+            self.label_rotation_value.setText(str(self.owner.ui_car.ui_cockpit.rpm) + "rpm")
 
         # Radio
-        radio_station = self.owner.ui_radio.label_station.text()
-        if radio_station == "-":
-            radio_station = self.owner.ui_radio.label_frequency.text()
-        self.label_station.setText(radio_station)
-        if self.owner.ui_radio.playing:
-            self.btn_play_radio.setPixmap(QtGui.QPixmap(":/images/pause.svg"))
-        else:
-            self.btn_play_radio.setPixmap(QtGui.QPixmap(":/images/play.svg"))
+        if hasattr(self.owner, "ui_radio"):
+            radio_station = self.owner.ui_radio.label_station.text()
+            if radio_station == "-":
+                radio_station = self.owner.ui_radio.label_frequency.text()
+            self.label_station.setText(radio_station)
+            if self.owner.ui_radio.playing:
+                self.btn_play_radio.setPixmap(QtGui.QPixmap(":/images/pause.svg"))
+            else:
+                self.btn_play_radio.setPixmap(QtGui.QPixmap(":/images/play.svg"))
 
         # Media
-        self.label_song.setText(self.owner.ui_media.ui_music_player.label_title.text())
-        playing = False
-        if self.owner.ui_media.useBluetooth:
-            playing = not self.owner.ui_media.bt_paused
-        else:
-            playing = not self.owner.ui_media.paused
-        if playing:
-            self.btn_play_media.setPixmap(QtGui.QPixmap(":/images/pause.svg"))
-        else:
-            self.btn_play_media.setPixmap(QtGui.QPixmap(":/images/play.svg"))
+        if hasattr(self.owner, "ui_media"):
+            self.label_song.setText(self.owner.ui_media.ui_music_player.label_title.text())
+            playing = False
+            if self.owner.ui_media.useBluetooth:
+                playing = not self.owner.ui_media.bt_paused
+            else:
+                playing = not self.owner.ui_media.paused
+            if playing:
+                self.btn_play_media.setPixmap(QtGui.QPixmap(":/images/pause.svg"))
+            else:
+                self.btn_play_media.setPixmap(QtGui.QPixmap(":/images/play.svg"))
 
         threading.Timer(0.1, self.updateUI).start()
