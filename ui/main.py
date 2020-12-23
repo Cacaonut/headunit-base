@@ -72,6 +72,14 @@ class Ui_MainWindow(object):
         self.label_temperature.setScaledContents(False)
         self.label_temperature.setAlignment(QtCore.Qt.AlignCenter)
         self.label_temperature.setObjectName("label_temperature")
+        self.label_volume_up = QtWidgets.QLabel(self.top_bar)
+        self.label_volume_up.setGeometry(QtCore.QRect(650, 7, 30, 30))
+        self.label_volume_up.setAutoFillBackground(False)
+        self.label_volume_up.setText("")
+        self.label_volume_up.setScaledContents(True)
+        self.label_volume_up.setPixmap(QtGui.QPixmap(":/images/plus.png"))
+        self.label_volume_up.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_volume_up.setObjectName("label_volume_up")
         self.btn_media = QtWidgets.QWidget(self.centralwidget)
         self.btn_media.setGeometry(QtCore.QRect(720, 118, 80, 70))
         self.btn_media.setStyleSheet("#btn_media {\n"
@@ -320,7 +328,7 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Headunit"))
         self.label_title.setText(_translate("MainWindow", "HOME"))
-        self.label_temperature.setText(_translate("MainWindow", "21 °C"))
+        self.label_volume_increase.setText(_translate("MainWindow", "21 °C"))
         self.text_btn_media.setText(_translate("MainWindow", "Media"))
         self.text_btn_home.setText(_translate("MainWindow", "Home"))
         self.text_btn_car.setText(_translate("MainWindow", "Car"))
