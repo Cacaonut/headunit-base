@@ -244,6 +244,7 @@ class Ui_content(object):
                 playing = not self.owner.ui_media.bt_paused
             else:
                 playing = not self.owner.ui_media.paused
+            print("Playing: " + str(playing))
             if playing:
                 self.btn_play_media.setPixmap(QtGui.QPixmap(":/images/pause.svg"))
             else:
