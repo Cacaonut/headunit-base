@@ -157,12 +157,12 @@ class Ui_content(object):
     def updateUI(self):
         if self.slider_pressed or self.fetching_info:
             threading.Timer(0.1, self.updateUI).start()
-            print("canceled")
             return
 
         self.fetching_info = True
 
         if self.owner.useBluetooth:
+            print("fetching BT")
             try:
                 props = self.player_prop_iface.GetAll("org.bluez.MediaPlayer1")
                 print(props)
@@ -215,6 +215,7 @@ class Ui_content(object):
                 print("Error retrieving bluetooth music info:")
                 print(e)
         else:
+            print("fetching USB")
             if mixer.music.get_busy():
                 try:
                     id3 = EasyID3(self.owner.current_file)
