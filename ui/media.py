@@ -163,7 +163,7 @@ class Ui_content(object):
         self.btn_file_browser.setVisible(False)
         self.stop()
         self.useBluetooth = True
-        if not self.current_bt_device == "lala":
+        if not self.current_bt_device == "":
             self.ui_music_player.setupBluetooth()
             #self.bt_process = subprocess.Popen(['bluealsa-aplay', self.current_bt_device])
             self.ui_music_player.music_slider.setEnabled(False)
@@ -174,8 +174,6 @@ class Ui_content(object):
         self.btn_usb.setEnabled(False)
         self.btn_file_browser.setEnabled(True)
         self.btn_file_browser.setVisible(True)
-        if hasattr(self, "bt_process"):
-            self.bt_process.kill()
         self.useBluetooth = False
         self.ui_music_player.music_slider.setEnabled(True)
 
