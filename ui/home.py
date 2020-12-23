@@ -221,7 +221,7 @@ class Ui_content(object):
 
     def updateUI(self):
         # Cockpit
-        if hasattr(self.owner, "ui_car") and hasattr(self.owner.ui_car, "ui_cockpit"):
+        if hasattr(self.owner, "ui_car") and hasattr(self.owner.ui_car, "ui_cockpit") and hasattr(self.owner.ui_car.ui_cockpit, "speed") and hasattr(self.owner.ui_car.ui_cockpit, "rpm"):
             self.label_speed_value.setText(str(self.owner.ui_car.ui_cockpit.speed) + " km/h")
             self.label_rotation_value.setText(str(self.owner.ui_car.ui_cockpit.rpm) + " rpm")
 
@@ -240,6 +240,7 @@ class Ui_content(object):
         if hasattr(self.owner, "ui_media"):
             self.label_song.setText(self.owner.ui_media.ui_music_player.label_title.text())
             playing = True
+            print("Using BT: " + str(self.owner.ui_media.btn_paused))
             if self.owner.ui_media.useBluetooth:
                 playing = not self.owner.ui_media.bt_paused
             else:
