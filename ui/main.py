@@ -79,7 +79,7 @@ class Ui_MainWindow(object):
         self.label_volume_up.setScaledContents(True)
         self.label_volume_up.setObjectName("label_volume_up")
         self.label_volume_down = QtWidgets.QLabel(self.top_bar)
-        self.label_volume_down.setGeometry(QtCore.QRect(580, 7, 30, 30))
+        self.label_volume_down.setGeometry(QtCore.QRect(590, 7, 30, 30))
         self.label_volume_down.setText("")
         self.label_volume_down.setPixmap(QtGui.QPixmap(":/images/minus.svg"))
         self.label_volume_down.setScaledContents(True)
