@@ -18,6 +18,7 @@ from mutagen.easyid3 import EasyID3
 import ui.media_music_player as media_music_player
 import ui.media_file_browser as media_file_browser
 from pygame import mixer
+import dbus.exceptions.DBusException as DBusException
 
 
 class Ui_content(object):
@@ -208,11 +209,17 @@ class Ui_content(object):
             if self.useBluetooth:
                 if self.bt_paused:
                     print("Play")
-                    self.ui_music_player.player_iface.Play()
-                    self.bt_paused = False
+                    try:
+                        self.ui_music_player.player_iface.Play()
+                        self.bt_paused = False
+                    except DBusException as e:
+                        pass
                 else:
-                    self.ui_music_player.player_iface.Pause()
-                    self.bt_paused = True
+                    try:
+                        self.ui_music_player.player_iface.Pause()
+                        self.bt_paused = True
+                    except DBusException as e:
+                        pass
             else:
                 if not self.paused:
                     mixer.music.pause()
@@ -228,14 +235,20 @@ class Ui_content(object):
     def next(self):
         if not self.cooldown:
             if self.useBluetooth:
-                self.ui_music_player.player_iface.Next()
+                try:
+                    self.ui_music_player.player_iface.Next()
+                except DBusException as e:
+                    pass
             else:
                 mixer.music.stop()
 
     def rewind(self):
         if not self.cooldown:
             if self.useBluetooth:
-                self.ui_music_player.player_iface.Previous()
+                try:
+                    self.ui_music_player.player_iface.Previous()
+                except DBusException as e:
+                    pass
             else:
                 mixer.music.stop()
                 self.play()
