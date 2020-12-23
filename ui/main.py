@@ -78,14 +78,12 @@ class Ui_MainWindow(object):
         self.label_volume_up.setPixmap(QtGui.QPixmap(":/images/plus.svg"))
         self.label_volume_up.setScaledContents(True)
         self.label_volume_up.setObjectName("label_volume_up")
-        self.label_volume_up.mouseReleaseEvent = self.ui_settings.ui_volume.increase
         self.label_volume_down = QtWidgets.QLabel(self.top_bar)
         self.label_volume_down.setGeometry(QtCore.QRect(580, 7, 30, 30))
         self.label_volume_down.setText("")
         self.label_volume_down.setPixmap(QtGui.QPixmap(":/images/minus.svg"))
         self.label_volume_down.setScaledContents(True)
         self.label_volume_down.setObjectName("label_volume_down")
-        self.label_volume_down.mouseReleaseEvent = self.ui_settings.ui_volume.decrease
         self.label_volume = QtWidgets.QLabel(self.top_bar)
         self.label_volume.setGeometry(QtCore.QRect(610, 7, 70, 30))
         font = QtGui.QFont()
@@ -327,6 +325,8 @@ class Ui_MainWindow(object):
         self.ui_settings = settings.Ui_content()
         self.ui_settings.setupUi(self.content_settings)
         self.content.addWidget(self.content_settings)
+        self.label_volume_up.mouseReleaseEvent = self.ui_settings.ui_volume.increase
+        self.label_volume_down.mouseReleaseEvent = self.ui_settings.ui_volume.decrease
 
         # Set button actions
         self.btn_home.mouseReleaseEvent = self.switchToHome
