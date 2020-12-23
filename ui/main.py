@@ -78,12 +78,25 @@ class Ui_MainWindow(object):
         self.label_volume_up.setPixmap(QtGui.QPixmap(":/images/plus.svg"))
         self.label_volume_up.setScaledContents(True)
         self.label_volume_up.setObjectName("label_volume_up")
+        self.label_volume_up.mouseReleaseEvent = self.ui_settings.ui_volume.increase
         self.label_volume_down = QtWidgets.QLabel(self.top_bar)
-        self.label_volume_down.setGeometry(QtCore.QRect(630, 7, 30, 30))
+        self.label_volume_down.setGeometry(QtCore.QRect(580, 7, 30, 30))
         self.label_volume_down.setText("")
         self.label_volume_down.setPixmap(QtGui.QPixmap(":/images/minus.svg"))
         self.label_volume_down.setScaledContents(True)
         self.label_volume_down.setObjectName("label_volume_down")
+        self.label_volume_down.mouseReleaseEvent = self.ui_settings.ui_volume.decrease
+        self.label_volume = QtWidgets.QLabel(self.top_bar)
+        self.label_volume.setGeometry(QtCore.QRect(610, 7, 70, 30))
+        font = QtGui.QFont()
+        font.setFamily("Montserrat Light")
+        font.setPointSize(16)
+        self.label_volume.setFont(font)
+        self.label_volume.setAutoFillBackground(False)
+        self.label_volume.setStyleSheet("")
+        self.label_volume.setScaledContents(False)
+        self.label_volume.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_volume.setObjectName("label_volume")
         self.btn_media = QtWidgets.QWidget(self.centralwidget)
         self.btn_media.setGeometry(QtCore.QRect(720, 118, 80, 70))
         self.btn_media.setStyleSheet("#btn_media {\n"
@@ -311,8 +324,8 @@ class Ui_MainWindow(object):
 
         # Settings
         self.content_settings = QtWidgets.QWidget()
-        ui_settings = settings.Ui_content()
-        ui_settings.setupUi(self.content_settings)
+        self.ui_settings = settings.Ui_content()
+        self.ui_settings.setupUi(self.content_settings)
         self.content.addWidget(self.content_settings)
 
         # Set button actions
@@ -325,7 +338,7 @@ class Ui_MainWindow(object):
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.retranslateUi(MainWindow)
-        self.updateTime()
+        self.updateUI()
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -333,6 +346,7 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "Headunit"))
         self.label_title.setText(_translate("MainWindow", "HOME"))
         self.label_temperature.setText(_translate("MainWindow", "21 °C"))
+        self.label_volume.setText(_translate("MainWindow", "80"))
         self.text_btn_media.setText(_translate("MainWindow", "Media"))
         self.text_btn_home.setText(_translate("MainWindow", "Home"))
         self.text_btn_car.setText(_translate("MainWindow", "Car"))
@@ -387,11 +401,14 @@ class Ui_MainWindow(object):
         self.label_title.setText("SETTINGS")
         self.current_tab = self.btn_settings
 
-    def updateTime(self):
+    def updateUI(self):
         now = datetime.now()
         current_time = now.strftime("%H:%M")
         self.label_clock.setText(current_time)
-        threading.Timer(0.5, self.updateTime).start()
+
+        volume = str(self.ui_settings.volume)
+        self.label_volume.setText(volume)
+        threading.Timer(0.5, self.updateUI).start()
 
     def tempChanged(self, t):
         if not t.is_null():

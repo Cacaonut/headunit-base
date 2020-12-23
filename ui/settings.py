@@ -175,10 +175,10 @@ class Ui_content(object):
             self.verticalLayout.itemAt(i).widget().setParent(None)
 
         content_volume = QtWidgets.QWidget()
-        ui_volume = ui.lists.number_setting.Ui_widget()
-        ui_volume.setupUi(content_volume, "sound/volume", self.settings, 2, 0, 100)
-        ui_volume.label_title.setText("Volume")
-        ui_volume.onValueChange = self.changeVolume
+        self.ui_volume = ui.lists.number_setting.Ui_widget()
+        self.ui_volume.setupUi(content_volume, "sound/volume", self.settings, 2, 0, 100)
+        self.ui_volume.label_title.setText("Volume")
+        self.ui_volume.onValueChange = self.changeVolume
         self.verticalLayout.addWidget(content_volume)
 
         content_balance_left_right = QtWidgets.QWidget()

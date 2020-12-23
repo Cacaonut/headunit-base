@@ -222,8 +222,7 @@ class Ui_content(object):
             except Exception as e:
                 print("Error retrieving bluetooth music info:")
                 print(e)
-                if "DBusException" in str(e):
-                    self.updateThreadRunning = False
+                self.updateThreadRunning = False
         else:
             if mixer.music.get_busy():
                 try:
