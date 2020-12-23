@@ -241,7 +241,7 @@ class Ui_content(object):
             if hasattr(self.owner, "ui_media"):
                 self.label_song.setText(self.owner.ui_media.ui_music_player.label_title.text())
                 playing = True
-                print("Using BT: " + str(self.owner.ui_media.btn_paused))
+                print("Using BT: " + str(self.owner.ui_media.useBluetooth))
                 if self.owner.ui_media.useBluetooth:
                     playing = not self.owner.ui_media.bt_paused
                 else:
