@@ -151,7 +151,7 @@ class Ui_content(object):
         font.setPointSize(14)
         self.label_song.setFont(font)
         self.label_song.setStyleSheet("color: #D9D9D9")
-        self.label_song.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_song.setAlignment(QtCore.Qt.AlignLeft)
         self.label_song.setObjectName("label_song")
         self.btn_next_media = QtWidgets.QLabel(self.widget_media)
         self.btn_next_media.setGeometry(QtCore.QRect(135, 115, 50, 50))
@@ -222,7 +222,7 @@ class Ui_content(object):
         # Cockpit
         if hasattr(self.owner, "ui_car") and hasattr(self.owner.ui_car, "ui_cockpit"):
             self.label_speed_value.setText(str(self.owner.ui_car.ui_cockpit.speed) + " km/h")
-            self.label_rotation_value.setText(str(self.owner.ui_car.ui_cockpit.rpm) + "rpm")
+            self.label_rotation_value.setText(str(self.owner.ui_car.ui_cockpit.rpm) + " rpm")
 
         # Radio
         if hasattr(self.owner, "ui_radio"):
