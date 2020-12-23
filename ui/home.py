@@ -145,6 +145,7 @@ class Ui_content(object):
         self.btn_play_media.setPixmap(QtGui.QPixmap(":/images/play.svg"))
         self.btn_play_media.setScaledContents(True)
         self.btn_play_media.setObjectName("btn_play_media")
+        self.btn_play_media.mouseReleaseEvent = self.owner.ui_media.ui_music_player.playBtnPressed
         self.label_song = QtWidgets.QLabel(self.widget_media)
         self.label_song.setGeometry(QtCore.QRect(20, 70, 170, 30))
         font = QtGui.QFont()
