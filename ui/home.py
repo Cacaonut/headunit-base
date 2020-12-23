@@ -194,6 +194,7 @@ class Ui_content(object):
         self.label.setScaledContents(True)
         self.label.setObjectName("label")
 
+        self.finishedMediaSetup = False
         threading.Timer(0.1, self.updateUI).start()
 
         self.retranslateUi(content)
@@ -239,7 +240,8 @@ class Ui_content(object):
 
             # Media
             if hasattr(self.owner, "ui_media"):
-                self.btn_play_media.mouseReleaseEvent = self.owner.ui_media.ui_music_player.playBtnPressed
+                if not self.finishedMediaSetup:
+                    self.finishMediaSetup()
                 self.label_song.setText(self.owner.ui_media.ui_music_player.label_title.text())
                 playing = True
                 print("Using BT: " + str(self.owner.ui_media.useBluetooth))
@@ -257,3 +259,7 @@ class Ui_content(object):
             print(e)
 
         threading.Timer(0.1, self.updateUI).start()
+
+    def finishMediaSetup(self):
+        self.finishedMediaSetup = True
+        self.btn_play_media.mouseReleaseEvent = self.owner.ui_media.ui_music_player.playBtnPressed
