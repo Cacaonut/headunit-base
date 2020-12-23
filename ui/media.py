@@ -26,7 +26,7 @@ class Ui_content(object):
     def setupUi(self, content):
         self.paused = True
         self.bt_paused = True
-        self.useBluetooth = True
+        self.useBluetooth = False
         self.current_file = ""
         self.queue = []
         self.current_dir = ""
