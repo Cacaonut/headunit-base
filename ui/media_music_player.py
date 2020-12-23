@@ -288,7 +288,7 @@ class Ui_content(object):
         self.fetching_info = False
         if self.updateThreadRunning:
             threading.Timer(0.1, self.updateUI).start()
-        else
+        else:
             print("Update thread stopped")
 
     def playBtnPressed(self, event):
