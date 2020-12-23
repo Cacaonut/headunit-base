@@ -325,8 +325,8 @@ class Ui_MainWindow(object):
         self.ui_settings = settings.Ui_content()
         self.ui_settings.setupUi(self.content_settings)
         self.content.addWidget(self.content_settings)
-        self.label_volume_up.mouseReleaseEvent = self.ui_settings.ui_volume.increase
-        self.label_volume_down.mouseReleaseEvent = self.ui_settings.ui_volume.decrease
+        self.label_volume_up.mouseReleaseEvent = self.volumeUpPressed
+        self.label_volume_down.mouseReleaseEvent = self.volumeDownPressed
 
         # Set button actions
         self.btn_home.mouseReleaseEvent = self.switchToHome
@@ -409,6 +409,14 @@ class Ui_MainWindow(object):
         volume = str(self.ui_settings.volume)
         self.label_volume.setText(volume)
         threading.Timer(0.5, self.updateUI).start()
+
+    def volumeUpPressed(self, event):
+        self.ui_settings.switchToSound()
+        self.ui_settings.ui_volume.increase(event)
+
+    def volumeDownPressed(self, event):
+        self.ui_settings.switchToSound()
+        self.ui_settings.ui_volume.decrease(event)
 
     def tempChanged(self, t):
         if not t.is_null():
