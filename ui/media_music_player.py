@@ -155,6 +155,7 @@ class Ui_content(object):
         self.label_album.setText(_translate("content", ""))
 
     def updateUI(self):
+        self.updateThreadRunning = True
         if self.slider_pressed or self.fetching_info:
             threading.Timer(0.1, self.updateUI).start()
             return
@@ -221,7 +222,7 @@ class Ui_content(object):
                 print("Error retrieving bluetooth music info:")
                 print(e)
                 if "DBusException" in str(e):
-                    cancel = True
+                    self.updateThreadRunning = False
         else:
             if mixer.music.get_busy():
                 try:
@@ -284,7 +285,7 @@ class Ui_content(object):
                 self.music_slider.blockSignals(False)
 
         self.fetching_info = False
-        if not cancel:
+        if self.updateThreadRunning:
             threading.Timer(0.1, self.updateUI).start()
 
     def playBtnPressed(self, event):

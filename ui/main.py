@@ -355,6 +355,8 @@ class Ui_MainWindow(object):
         self.current_tab = self.btn_media
         if self.ui_media.useBluetooth:
             self.ui_media.switchToBluetooth(None)
+        if not self.ui_media.ui_music_player.updateThreadRunning:
+            self.ui_media.ui_music_player.updateUI()
 
     def switchToCar(self, event):
         self.content.setCurrentWidget(self.content_car)
