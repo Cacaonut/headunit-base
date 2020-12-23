@@ -168,8 +168,10 @@ class Ui_content(object):
                 if props["Status"] == "playing" or props["Status"] == "paused":
                     try:
                         if props["Status"] == "playing":
+                            self.owner.bt_paused = False
                             self.btn_play.setPixmap(QtGui.QPixmap(":/images/pause.svg"))
                         else:
+                            self.owner.bt_paused = True
                             self.btn_play.setPixmap(QtGui.QPixmap(":/images/play.svg"))
                     except Exception as e:
                         print("Error retrieving bluetooth music status info:")
