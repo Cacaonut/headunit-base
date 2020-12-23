@@ -262,4 +262,5 @@ class Ui_content(object):
 
     def finishMediaSetup(self):
         self.finishedMediaSetup = True
+        print("Finished media setup")
         self.btn_play_media.mouseReleaseEvent = self.owner.ui_media.ui_music_player.playBtnPressed
