@@ -181,7 +181,7 @@ class Ui_content(object):
                         self.label_artist.setText(track["Artist"])
                         self.label_album.setText(track["Album"])
                     except Exception e:
-                        print("Error retrieving bluetooth music status info:")
+                        print("Error retrieving bluetooth music track info:")
                         print(e)
 
                     length = track["Duration"] / 1000.0
