@@ -81,6 +81,14 @@ Create a custom image matching your screen size and copy it the the following lo
 ```
 sudo cp ~/my_splash.png /usr/share/plymouth/themes/pix/splash.png
 ```
+### Disable screen blanking
+Open the start menu, then go to `Preferences`, then to `Raspberry Pi Configuration`. In there select `Display` from the top bar and disable `Screen Blanking`
+### Disable mouse pointer
+Open the LXDE configuration file:
+```
+sudo nano /etc/lightdm/lightdm.conf
+```
+Search for the line starting with `x-server-command`. UNcomment it and add `-nocursor` to the end of it.
 ### Restart
 __IMPORTANT: Don't forget to restart your Pi after making configuration changes!__
 ## Run
