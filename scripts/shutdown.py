@@ -8,6 +8,6 @@ GPIO.setup(3, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 while True:
     GPIO.wait_for_edge(3, GPIO.FALLING)
     time.sleep(10)
-    if not GPIO.input(3):
+    if GPIO.input(3):
         subprocess.call(['shutdown', '-h', 'now'], shell=False)
 
