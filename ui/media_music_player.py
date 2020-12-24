@@ -333,6 +333,3 @@ class Ui_content(object):
             self.current_offset += new_pos - current_pos
             mixer.music.rewind()
             mixer.music.set_pos(new_pos)
-
-    def setupBluetooth(self):
-        
