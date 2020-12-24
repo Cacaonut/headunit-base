@@ -158,160 +158,149 @@ class Ui_content(object):
         self.label_album.setText(_translate("content", ""))
 
     def updateUI(self):
-        if self.slider_pressed or self.fetching_info:
-            threading.Timer(0.1, self.updateUI).start()
-            return
+        while self.updateThreadRunning:
+            if not self.slider_pressed and not self.fetching_info:
+                self.updateThreadRunning = True
+                self.fetching_info = True
 
-        self.updateThreadRunning = True
+                if self.owner.useBluetooth:
+                    if self.setupBluetooth:
+                        print("setting up bluetooth")
+                        dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
+                        bus = dbus.SystemBus()
+                        obj = bus.get_object('org.bluez', "/")
+                        mgr = dbus.Interface(obj, 'org.freedesktop.DBus.ObjectManager')
+                        self.player_iface = None
+                        self.player_prop_iface = None
+                        for path, ifaces in mgr.GetManagedObjects().items():
+                            if 'org.bluez.MediaPlayer1' in ifaces:
+                                self.player_iface = dbus.Interface(
+                                    bus.get_object('org.bluez', path),
+                                    'org.bluez.MediaPlayer1')
+                                self.player_prop_iface = dbus.Interface(
+                                    bus.get_object('org.bluez', path),
+                                    'org.freedesktop.DBus.Properties')
+                        if not self.player_iface:
+                            print('Error: Media Player not found.')
+                        self.setupBluetooth = False
 
-        self.fetching_info = True
-
-        if self.owner.useBluetooth:
-            if self.setupBluetooth:
-                print("setting up bluetooth")
-                dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
-                bus = dbus.SystemBus()
-                obj = bus.get_object('org.bluez', "/")
-                mgr = dbus.Interface(obj, 'org.freedesktop.DBus.ObjectManager')
-                self.player_iface = None
-                self.player_prop_iface = None
-                for path, ifaces in mgr.GetManagedObjects().items():
-                    if 'org.bluez.MediaPlayer1' in ifaces:
-                        self.player_iface = dbus.Interface(
-                            bus.get_object('org.bluez', path),
-                            'org.bluez.MediaPlayer1')
-                        self.player_prop_iface = dbus.Interface(
-                            bus.get_object('org.bluez', path),
-                            'org.freedesktop.DBus.Properties')
-                if not self.player_iface:
-                    print('Error: Media Player not found.')
-                self.setupBluetooth = False
-
-            if not hasattr(self, "player_prop_iface") or not self.player_prop_iface:
-                threading.Timer(0.1, self.updateUI).start()
-                self.fetching_info = False
-                return
-
-            try:
-                props = self.player_prop_iface.GetAll("org.bluez.MediaPlayer1")
-                #print(props)
-                if props["Status"] == "playing" or props["Status"] == "paused":
                     try:
-                        if props["Status"] == "playing":
-                            self.owner.bt_paused = False
-                            self.btn_play.setPixmap(QtGui.QPixmap(":/images/pause.svg"))
+                        props = self.player_prop_iface.GetAll("org.bluez.MediaPlayer1")
+                        #print(props)
+                        if props["Status"] == "playing" or props["Status"] == "paused":
+                            try:
+                                if props["Status"] == "playing":
+                                    self.owner.bt_paused = False
+                                    self.btn_play.setPixmap(QtGui.QPixmap(":/images/pause.svg"))
+                                else:
+                                    self.owner.bt_paused = True
+                                    self.btn_play.setPixmap(QtGui.QPixmap(":/images/play.svg"))
+                            except Exception as e:
+                                print("Error retrieving bluetooth music status info:")
+                                print(e)
+
+                            track = props["Track"]
+                            try:
+                                self.label_title.setText(track["Title"])
+                                self.label_artist.setText(track["Artist"])
+                                self.label_album.setText(track["Album"])
+                            except Exception as e:
+                                print("Error retrieving bluetooth music track info:")
+                                print(e)
+
+                            length = track["Duration"] / 1000.0
+                            length_minutes = int(length / 60)
+                            length_seconds = int(length - length_minutes * 60)
+                            self.label_length.setText(str(length_minutes) + ":" + f"{length_seconds:02d}")
+
+                            pos = props["Position"] / 1000.0
+                            pos_minutes = int(pos / 60)
+                            pos_seconds = int(pos - pos_minutes * 60)
+                            self.label_music_pos.setText(str(pos_minutes) + ":" + f"{pos_seconds:02d}")
+
+                            progress = (pos * 100) / length
+                            self.music_slider.blockSignals(True)
+                            self.music_slider.setValue(progress)
+                            self.music_slider.blockSignals(False)
+
                         else:
-                            self.owner.bt_paused = True
                             self.btn_play.setPixmap(QtGui.QPixmap(":/images/play.svg"))
+                            self.label_title.setText("")
+                            self.label_album.setText("")
+                            self.label_artist.setText("")
+                            self.label_music_pos.setText("0:00")
+                            self.label_length.setText("0:00")
+                            self.disc_cover.setPixmap(QtGui.QPixmap(":/images/cover.png"))
+                            self.music_slider.blockSignals(True)
+                            self.music_slider.setValue(0)
+                            self.music_slider.blockSignals(False)
                     except Exception as e:
-                        print("Error retrieving bluetooth music status info:")
+                        print("Error retrieving bluetooth music info:")
                         print(e)
-
-                    track = props["Track"]
-                    try:
-                        self.label_title.setText(track["Title"])
-                        self.label_artist.setText(track["Artist"])
-                        self.label_album.setText(track["Album"])
-                    except Exception as e:
-                        print("Error retrieving bluetooth music track info:")
-                        print(e)
-
-                    length = track["Duration"] / 1000.0
-                    length_minutes = int(length / 60)
-                    length_seconds = int(length - length_minutes * 60)
-                    self.label_length.setText(str(length_minutes) + ":" + f"{length_seconds:02d}")
-
-                    pos = props["Position"] / 1000.0
-                    pos_minutes = int(pos / 60)
-                    pos_seconds = int(pos - pos_minutes * 60)
-                    self.label_music_pos.setText(str(pos_minutes) + ":" + f"{pos_seconds:02d}")
-
-                    progress = (pos * 100) / length
-                    self.music_slider.blockSignals(True)
-                    self.music_slider.setValue(progress)
-                    self.music_slider.blockSignals(False)
-
+                        #self.updateThreadRunning = False
                 else:
-                    self.btn_play.setPixmap(QtGui.QPixmap(":/images/play.svg"))
-                    self.label_title.setText("")
-                    self.label_album.setText("")
-                    self.label_artist.setText("")
-                    self.label_music_pos.setText("0:00")
-                    self.label_length.setText("0:00")
-                    self.disc_cover.setPixmap(QtGui.QPixmap(":/images/cover.png"))
-                    self.music_slider.blockSignals(True)
-                    self.music_slider.setValue(0)
-                    self.music_slider.blockSignals(False)
-            except Exception as e:
-                print("Error retrieving bluetooth music info:")
-                print(e)
-                self.updateThreadRunning = False
-        else:
-            if mixer.music.get_busy():
-                try:
-                    id3 = EasyID3(self.owner.current_file)
-                    self.label_title.setText(id3["title"][0])
+                    if mixer.music.get_busy():
+                        try:
+                            id3 = EasyID3(self.owner.current_file)
+                            self.label_title.setText(id3["title"][0])
 
-                    try:
-                        self.label_artist.setText(id3["artist"][0])
-                    except:
-                        self.label_artist.setText("-")
-                    try:
-                        self.label_album.setText(id3["album"][0])
-                    except:
-                        self.label_album.setText("-")
+                            try:
+                                self.label_artist.setText(id3["artist"][0])
+                            except:
+                                self.label_artist.setText("-")
+                            try:
+                                self.label_album.setText(id3["album"][0])
+                            except:
+                                self.label_album.setText("-")
 
-                except:
-                    self.label_title.setText(os.path.basename(self.owner.current_file))
-                    self.label_album.setText("-")
-                    self.label_artist.setText("-")
+                        except:
+                            self.label_title.setText(os.path.basename(self.owner.current_file))
+                            self.label_album.setText("-")
+                            self.label_artist.setText("-")
 
-                try:
-                    file = File(self.owner.current_file)
-                    artwork = file.tags['APIC:'].data
-                    pixmap = QtGui.QPixmap()
-                    pixmap.loadFromData(artwork)
-                    self.disc_cover.setPixmap(pixmap)
-                except:
-                    self.disc_cover.setPixmap(QtGui.QPixmap(":/images/cover.png"))
+                        try:
+                            file = File(self.owner.current_file)
+                            artwork = file.tags['APIC:'].data
+                            pixmap = QtGui.QPixmap()
+                            pixmap.loadFromData(artwork)
+                            self.disc_cover.setPixmap(pixmap)
+                        except:
+                            self.disc_cover.setPixmap(QtGui.QPixmap(":/images/cover.png"))
 
-                self.length_seconds = 0
-                try:
-                    mp3 = MP3(self.owner.current_file)
-                    self.length_seconds = mp3.info.length
-                    length_minutes = int(self.length_seconds / 60)
-                    seconds = int(self.length_seconds - length_minutes * 60)
-                    self.label_length.setText(str(length_minutes) + ":" + f"{seconds:02d}")
-                except:
-                    self.label_length.setText("")
+                        self.length_seconds = 0
+                        try:
+                            mp3 = MP3(self.owner.current_file)
+                            self.length_seconds = mp3.info.length
+                            length_minutes = int(self.length_seconds / 60)
+                            seconds = int(self.length_seconds - length_minutes * 60)
+                            self.label_length.setText(str(length_minutes) + ":" + f"{seconds:02d}")
+                        except:
+                            self.label_length.setText("")
 
-                pos_seconds = self.current_offset + mixer.music.get_pos() / 1000
-                pos_minutes = int(pos_seconds / 60)
-                seconds = int(pos_seconds - pos_minutes * 60)
-                self.label_music_pos.setText(str(pos_minutes) + ":" + f"{seconds:02d}")
+                        pos_seconds = self.current_offset + mixer.music.get_pos() / 1000
+                        pos_minutes = int(pos_seconds / 60)
+                        seconds = int(pos_seconds - pos_minutes * 60)
+                        self.label_music_pos.setText(str(pos_minutes) + ":" + f"{seconds:02d}")
 
-                progress = (pos_seconds * 100) / self.length_seconds
-                self.music_slider.blockSignals(True)
-                self.music_slider.setValue(progress)
-                self.music_slider.blockSignals(False)
+                        progress = (pos_seconds * 100) / self.length_seconds
+                        self.music_slider.blockSignals(True)
+                        self.music_slider.setValue(progress)
+                        self.music_slider.blockSignals(False)
 
-            else:
-                self.btn_play.setPixmap(QtGui.QPixmap(":/images/play.svg"))
-                self.label_title.setText("")
-                self.label_album.setText("")
-                self.label_artist.setText("")
-                self.label_music_pos.setText("0:00")
-                self.label_length.setText("0:00")
-                self.disc_cover.setPixmap(QtGui.QPixmap(":/images/cover.png"))
-                self.music_slider.blockSignals(True)
-                self.music_slider.setValue(0)
-                self.music_slider.blockSignals(False)
+                    else:
+                        self.btn_play.setPixmap(QtGui.QPixmap(":/images/play.svg"))
+                        self.label_title.setText("")
+                        self.label_album.setText("")
+                        self.label_artist.setText("")
+                        self.label_music_pos.setText("0:00")
+                        self.label_length.setText("0:00")
+                        self.disc_cover.setPixmap(QtGui.QPixmap(":/images/cover.png"))
+                        self.music_slider.blockSignals(True)
+                        self.music_slider.setValue(0)
+                        self.music_slider.blockSignals(False)
 
-        self.fetching_info = False
-        if self.updateThreadRunning:
-            threading.Timer(0.1, self.updateUI).start()
-        else:
-            print("Update thread stopped")
+                self.fetching_info = False
+        print("Update thread stopped")
 
     def playBtnPressed(self, event):
         self.owner.pause()
