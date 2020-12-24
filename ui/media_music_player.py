@@ -158,6 +158,7 @@ class Ui_content(object):
         self.label_album.setText(_translate("content", ""))
 
     def updateUI(self):
+        self.updateThreadRunning = True
         while self.updateThreadRunning:
             if not self.slider_pressed and not self.fetching_info:
                 self.updateThreadRunning = True
