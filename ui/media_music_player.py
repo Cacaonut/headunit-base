@@ -145,6 +145,7 @@ class Ui_content(object):
         self.slider_pressed = False
         self.fetching_info = False
         self.setupBluetooth = False
+        self.updateThreadRunning = False
         self.current_offset = 0
 
     def retranslateUi(self, content):
