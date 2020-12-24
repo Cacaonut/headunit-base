@@ -14,6 +14,7 @@ from mutagen.easyid3 import EasyID3
 from mutagen import File
 from mutagen.mp3 import MP3
 from pygame import mixer
+import dbus, dbus.mainloop.glib, sys
 
 
 class Ui_content(object):
@@ -143,6 +144,7 @@ class Ui_content(object):
 
         self.slider_pressed = False
         self.fetching_info = False
+        self.setupBluetooth = False
         self.current_offset = 0
 
     def retranslateUi(self, content):
@@ -164,7 +166,27 @@ class Ui_content(object):
         self.fetching_info = True
 
         if self.owner.useBluetooth:
-            if not hasattr(self, "player_prop_iface"):
+            if self.setupBluetooth:
+                print("setting up bluetooth")
+                dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
+                bus = dbus.SystemBus()
+                obj = bus.get_object('org.bluez', "/")
+                mgr = dbus.Interface(obj, 'org.freedesktop.DBus.ObjectManager')
+                self.player_iface = None
+                self.player_prop_iface = None
+                for path, ifaces in mgr.GetManagedObjects().items():
+                    if 'org.bluez.MediaPlayer1' in ifaces:
+                        self.player_iface = dbus.Interface(
+                            bus.get_object('org.bluez', path),
+                            'org.bluez.MediaPlayer1')
+                        self.player_prop_iface = dbus.Interface(
+                            bus.get_object('org.bluez', path),
+                            'org.freedesktop.DBus.Properties')
+                if not self.player_iface:
+                    print('Error: Media Player not found.')
+                self.setupBluetooth = False
+
+            if not hasattr(self, "player_prop_iface") or not self.player_prop_iface:
                 threading.Timer(0.1, self.updateUI).start()
                 self.fetching_info = False
                 return
@@ -313,21 +335,4 @@ class Ui_content(object):
             mixer.music.set_pos(new_pos)
 
     def setupBluetooth(self):
-        import dbus, dbus.mainloop.glib, sys
-        print("setting up bluetooth")
-        dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
-        bus = dbus.SystemBus()
-        obj = bus.get_object('org.bluez', "/")
-        mgr = dbus.Interface(obj, 'org.freedesktop.DBus.ObjectManager')
-        self.player_iface = None
-        self.player_prop_iface = None
-        for path, ifaces in mgr.GetManagedObjects().items():
-            if 'org.bluez.MediaPlayer1' in ifaces:
-                self.player_iface = dbus.Interface(
-                    bus.get_object('org.bluez', path),
-                    'org.bluez.MediaPlayer1')
-                self.player_prop_iface = dbus.Interface(
-                    bus.get_object('org.bluez', path),
-                    'org.freedesktop.DBus.Properties')
-        if not self.player_iface:
-            print('Error: Media Player not found.')
+        
