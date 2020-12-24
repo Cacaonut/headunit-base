@@ -198,7 +198,7 @@ class Ui_content(object):
 
         self.finishedMediaSetup = False
         self.finishedRadioSetup = False
-        threading.Timer(0.1, self.updateUI).start()
+        #threading.Timer(0.1, self.updateUI).start()
 
         self.retranslateUi(content)
         QtCore.QMetaObject.connectSlotsByName(content)
