@@ -89,6 +89,11 @@ Open the LXDE configuration file:
 sudo nano /etc/lightdm/lightdm.conf
 ```
 Search for the line starting with `x-server-command`. UNcomment it and add `-nocursor` to the end of it.
+### Change permission for uinput directory
+Execute the following command:
+```
+sudo chmod 77 /dev/uinput
+```
 ### Restart
 __IMPORTANT: Don't forget to restart your Pi after making configuration changes!__
 ## Run
