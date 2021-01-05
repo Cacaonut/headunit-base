@@ -18,8 +18,8 @@ bluetool: https://github.com/shoeffner/bluetool (using python3 setup.py install)
 
 Then install it:
 ```
-sudo apt-get -y install python3-pyqt5 python3-mutagen rtl-sdr libatlas-base-dev
-pip3 install pyrtlsdr numpy scipy matplotlib ipython jupyter pandas sympy nose rpi-backlight
+sudo apt-get -y install python3-pyqt5 python3-mutagen rtl-sdr libatlas-base-dev minicom python-serial
+pip3 install pyrtlsdr numpy scipy matplotlib ipython jupyter pandas sympy nose rpi-backlight python-uinput
 
 git clone https://github.com/Cacaonut/headunit-base
 ```
