@@ -162,6 +162,7 @@ class Ui_content(object):
         while self.updateThreadRunning:
             print("UPDATETHREAD: pos 1")
             if not self.slider_pressed and not self.fetching_info:
+                print("UPDATETHREAD: pos 1a")
                 self.updateThreadRunning = True
                 self.fetching_info = True
 
