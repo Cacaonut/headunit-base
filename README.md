@@ -18,8 +18,8 @@ bluetool: https://github.com/shoeffner/bluetool (using python3 setup.py install)
 
 Then install it:
 ```
-sudo apt-get -y install python3-pyqt5 python3-mutagen rtl-sdr libatlas-base-dev
-pip3 install pyrtlsdr numpy scipy matplotlib ipython jupyter pandas sympy nose rpi-backlight
+sudo apt-get -y install python3-pyqt5 python3-mutagen rtl-sdr libatlas-base-dev minicom python-serial
+pip3 install pyrtlsdr numpy scipy matplotlib ipython jupyter pandas sympy nose rpi-backlight python-uinput
 
 git clone https://github.com/Cacaonut/headunit-base
 ```
@@ -89,6 +89,11 @@ Open the LXDE configuration file:
 sudo nano /etc/lightdm/lightdm.conf
 ```
 Search for the line starting with `x-server-command`. UNcomment it and add `-nocursor` to the end of it.
+### Change permission for uinput directory
+Execute the following command:
+```
+sudo chmod 777 /dev/uinput
+```
 ### Restart
 __IMPORTANT: Don't forget to restart your Pi after making configuration changes!__
 ## Run
