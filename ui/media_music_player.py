@@ -164,9 +164,12 @@ class Ui_content(object):
             if not self.slider_pressed and not self.fetching_info:
                 print("UPDATETHREAD: pos 1a")
                 self.updateThreadRunning = True
+                print("UPDATETHREAD: pos 1b")
                 self.fetching_info = True
+                print("UPDATETHREAD: pos 1c")
 
                 if self.owner.useBluetooth:
+                    print("UPDATETHREAD: pos 1d")
                     if self.setupBluetooth:
                         print("UPDATETHREAD: pos 2")
                         print("setting up bluetooth")
