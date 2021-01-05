@@ -148,6 +148,10 @@ class Ui_content(object):
         self.updateThreadRunning = False
         self.current_offset = 0
 
+        self.updateTimer = QtCore.QTimer(self)
+        self.updateTimer.setInterval(100)
+        self.updateTimer.timeout.connect(self.updateUI)
+
     def retranslateUi(self, content):
         _translate = QtCore.QCoreApplication.translate
         content.setWindowTitle(_translate("content", "Form"))
@@ -159,7 +163,7 @@ class Ui_content(object):
 
     def updateUI(self):
         self.updateThreadRunning = True
-        while self.updateThreadRunning:
+        if self.updateThreadRunning:
             print("UPDATETHREAD: pos 1")
             if not self.slider_pressed and not self.fetching_info:
                 print("UPDATETHREAD: pos 1a")
