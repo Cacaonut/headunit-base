@@ -2,6 +2,9 @@ import subprocess
 import threading
 from datetime import datetime
 from sys import platform
+import serial
+import uinput
+import time
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
@@ -21,7 +24,7 @@ class Ui_MainWindow(object):
         MainWindow.resize(800, 480)
         if platform == "linux" or platform == "linux2":
             MainWindow.showFullScreen()
-            MainWindow.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
+            #MainWindow.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
         MainWindow.setStyleSheet("")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setStyleSheet("#centralwidget {background: #000}\n"
@@ -424,3 +427,58 @@ class Ui_MainWindow(object):
             temp = str(t).split(" ")[0]
             print("Temp: " + temp)
             self.label_temperature.setText(temp + " °C")
+
+    def steeringWheelControls(self):
+        longpress = 1.0
+
+        s = serial.Serial("/dev/ttyACM0", 9600)
+        s.isOpen()
+
+        virtual_kb = uinput.Device([uinput.KEY_P, uinput.KEY_O, uinput.KEY_V, uinput.KEY_N, uinput.KEY_B, uinput.KEY_M])
+
+        time.sleep(5)
+        while True:
+            line = s.readline().decode("utf-8")
+            command, duration_string = line.split("|")
+            duration = float(duration_string)
+
+            if duration >= 0.1:
+                print("Command received: '" + command + "' (" + str(duration) + ")")
+            
+                if command == "VOL+":
+                    self.ui_settings.switchToSound(None)
+                    if duration >= longpress:
+                        for i in range(10):
+                            self.ui_settings.ui_volume.increase(None)
+                    else:
+                        self.ui_settings.ui_volume.increase(None)
+                elif command == "VOL-":
+                    self.ui_settings.switchToSound(None)
+                    if duration >= longpress:
+                        for i in range(10):
+                            self.ui_settings.ui_volume.decrease(None)
+                    else:
+                        self.ui_settings.ui_volume.decrease(None)
+                elif command == "SEEK+":
+                    if duration >= longpress:
+                        self.ui_radio.upClicked(None)
+                    else:
+                        self.ui_media.ui_music_player.nextBtnPressed(None)
+                elif command == "SEEK-":
+                    if duration >= longpress:
+                        self.ui_radio.downClicked(None)
+                    else:
+                        self.ui_media.ui_music_player.rewindBtnPressed(None)
+                elif command == "MODE":
+                    # Switch between AA and CarSystem
+                    pass
+                elif command == "CALL END":
+                    virtual_kb.emit_click(uinput.KEY_O)
+                elif command == "CALL START":
+                    virtual_kb.emit_click(uinput.KEY_P)
+                elif command == "VOICE":
+                    if duration >= longpress:
+                        virtual_kb.emit_click(uinput.KEY_M)
+                    else:
+                        self.ui_media.ui_music_player.playBtnPressed(None)
+                
