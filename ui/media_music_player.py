@@ -148,7 +148,7 @@ class Ui_content(object):
         self.updateThreadRunning = False
         self.current_offset = 0
 
-        self.updateTimer = QtCore.QTimer(self)
+        self.updateTimer = QtCore.QTimer(content)
         self.updateTimer.setInterval(100)
         self.updateTimer.timeout.connect(self.updateUI)
 
