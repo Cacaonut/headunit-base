@@ -160,12 +160,14 @@ class Ui_content(object):
     def updateUI(self):
         self.updateThreadRunning = True
         while self.updateThreadRunning:
+            print("UPDATETHREAD: pos 1")
             if not self.slider_pressed and not self.fetching_info:
                 self.updateThreadRunning = True
                 self.fetching_info = True
 
                 if self.owner.useBluetooth:
                     if self.setupBluetooth:
+                        print("UPDATETHREAD: pos 2")
                         print("setting up bluetooth")
                         dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
                         bus = dbus.SystemBus()
@@ -186,6 +188,7 @@ class Ui_content(object):
                         self.setupBluetooth = False
 
                     try:
+                        print("UPDATETHREAD: pos 3")
                         props = self.player_prop_iface.GetAll("org.bluez.MediaPlayer1")
                         #print(props)
                         if props["Status"] == "playing" or props["Status"] == "paused":
@@ -236,11 +239,14 @@ class Ui_content(object):
                             self.music_slider.setValue(0)
                             self.music_slider.blockSignals(False)
                     except Exception as e:
+                        print("UPDATETHREAD: pos 4")
                         print("Error retrieving bluetooth music info:")
                         print(e)
                         #self.updateThreadRunning = False
                 else:
+                    print("UPDATETHREAD: pos 5")
                     if mixer.music.get_busy():
+                        print("UPDATETHREAD: pos 6")
                         try:
                             id3 = EasyID3(self.owner.current_file)
                             self.label_title.setText(id3["title"][0])
@@ -260,6 +266,7 @@ class Ui_content(object):
                             self.label_artist.setText("-")
 
                         try:
+                            print("UPDATETHREAD: pos 7")
                             file = File(self.owner.current_file)
                             artwork = file.tags['APIC:'].data
                             pixmap = QtGui.QPixmap()
@@ -289,6 +296,7 @@ class Ui_content(object):
                         self.music_slider.blockSignals(False)
 
                     else:
+                        print("UPDATETHREAD: pos 8")
                         self.btn_play.setPixmap(QtGui.QPixmap(":/images/play.svg"))
                         self.label_title.setText("")
                         self.label_album.setText("")
@@ -299,8 +307,10 @@ class Ui_content(object):
                         self.music_slider.blockSignals(True)
                         self.music_slider.setValue(0)
                         self.music_slider.blockSignals(False)
+                        
 
                 self.fetching_info = False
+            print("UPDATETHREAD: pos 8")
         print("Update thread stopped")
 
     def playBtnPressed(self, event):
