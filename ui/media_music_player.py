@@ -151,6 +151,7 @@ class Ui_content(object):
         self.updateTimer = QtCore.QTimer(content)
         self.updateTimer.setInterval(100)
         self.updateTimer.timeout.connect(self.updateUI)
+        self.updateTimer.start()
 
     def retranslateUi(self, content):
         _translate = QtCore.QCoreApplication.translate
