@@ -351,6 +351,8 @@ class Ui_MainWindow(object):
         self.updateTimer.timeout.connect(self.updateUI)
         self.updateTimer.start()
 
+        threading.Thread(target=self.steeringWheelControls).start()
+
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Headunit"))
@@ -437,6 +439,7 @@ class Ui_MainWindow(object):
             self.label_temperature.setText(temp + " °C")
 
     def steeringWheelControls(self):
+        print("Steering wheel controls client started")
         longpress = 1.0
 
         s = serial.Serial("/dev/ttyACM0", 9600)
