@@ -493,11 +493,11 @@ class Ui_MainWindow(object):
                             self.ui_media.ui_music_player.rewindBtnPressed(None)
                 elif command == "MODE":
                     virtual_kb.emit_combo([uinput.KEY_LEFTALT, uinput.KEY_TAB])
-                    screen.force_update()
-                    active_window = screen.get_active_window()
-                    if active_window.get_name() == "Error":
-                        virtual_kb.emit_click(uinput.KEY_ENTER)
-                        virtual_kb.emit_combo([uinput.KEY_LEFTALT, uinput.KEY_TAB])
+                    #screen.force_update()
+                    #active_window = screen.get_active_window()
+                    #if active_window.get_name() == "Error":
+                        #virtual_kb.emit_click(uinput.KEY_ENTER)
+                        #virtual_kb.emit_combo([uinput.KEY_LEFTALT, uinput.KEY_TAB])
                 elif command == "CALL END":
                     virtual_kb.emit_click(uinput.KEY_O)
                 elif command == "CALL START":
