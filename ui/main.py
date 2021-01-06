@@ -5,9 +5,6 @@ from sys import platform
 import serial
 import uinput
 import time
-import gi
-gi.require_version("Wnck", "3.0")
-from gi.repository import Wnck
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
@@ -438,7 +435,10 @@ class Ui_MainWindow(object):
             print("Temp: " + temp)
             self.label_temperature.setText(temp + " °C")
 
-    def steeringWheelControls(self):
+    def steeringWheelControls(self):       
+        import gi
+        gi.require_version("Wnck", "3.0")
+        from gi.repository import Wnck
         print("Steering wheel controls client started")
         longpress = 1.0
 
