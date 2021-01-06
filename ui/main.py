@@ -348,7 +348,7 @@ class Ui_MainWindow(object):
         self.updateTimer.timeout.connect(self.updateUI)
         self.updateTimer.start()
 
-        #threading.Thread(target=self.steeringWheelControls).start()
+        threading.Thread(target=self.steeringWheelControls).start()
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
