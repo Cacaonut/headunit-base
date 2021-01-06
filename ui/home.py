@@ -198,7 +198,10 @@ class Ui_content(object):
 
         self.finishedMediaSetup = False
         self.finishedRadioSetup = False
-        threading.Timer(0.1, self.updateUI).start()
+        self.updateTimer = QtCore.QTimer(content)
+        self.updateTimer.setInterval(100)
+        self.updateTimer.timeout.connect(self.updateUI)
+        self.updateTimer.start()
 
         self.retranslateUi(content)
         QtCore.QMetaObject.connectSlotsByName(content)
@@ -260,8 +263,6 @@ class Ui_content(object):
         except Exception as e:
             print("Error updating home view:")
             print(e)
-
-        threading.Timer(0.1, self.updateUI).start()
 
     def finishMediaSetup(self):
         self.finishedMediaSetup = True

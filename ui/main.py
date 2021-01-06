@@ -344,6 +344,11 @@ class Ui_MainWindow(object):
         self.updateUI()
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
+        self.updateTimer = QtCore.QTimer(MainWindow)
+        self.updateTimer.setInterval(100)
+        self.updateTimer.timeout.connect(self.updateUI)
+        self.updateTimer.start()
+
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Headunit"))
@@ -412,7 +417,6 @@ class Ui_MainWindow(object):
 
         volume = str(self.ui_settings.volume)
         self.label_volume.setText(volume)
-        threading.Timer(0.1, self.updateUI).start()
 
     def volumeUpPressed(self, event):
         self.ui_settings.switchToSound(None)
