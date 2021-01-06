@@ -5,6 +5,9 @@ from sys import platform
 import serial
 import uinput
 import time
+import gi
+gi.require_version("Wnck", "3.0")
+from gi.repository import Wnck
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
@@ -439,7 +442,7 @@ class Ui_MainWindow(object):
         s = serial.Serial("/dev/ttyACM0", 9600)
         s.isOpen()
 
-        virtual_kb = uinput.Device([uinput.KEY_P, uinput.KEY_O, uinput.KEY_V, uinput.KEY_N, uinput.KEY_B, uinput.KEY_M])
+        virtual_kb = uinput.Device([uinput.KEY_P, uinput.KEY_O, uinput.KEY_V, uinput.KEY_N, uinput.KEY_B, uinput.KEY_M, uinput.KEY_LEFTALT, uinput.KEY_TAB, uinput.KEY_ENTER])
 
         time.sleep(5)
         while True:
@@ -449,6 +452,10 @@ class Ui_MainWindow(object):
 
             if duration >= 0.1:
                 print("Command received: '" + command + "' (" + str(duration) + ")")
+                screen = Wnck.Screen.get_default()
+                screen.force_update()
+                active_window = screen.get_active_window()
+                in_aa = active_window.get_name() == "autoapp"
             
                 if command == "VOL+":
                     self.ui_settings.switchToSound(None)
@@ -468,22 +475,37 @@ class Ui_MainWindow(object):
                     if duration >= longpress:
                         self.ui_radio.upClicked(None)
                     else:
-                        self.ui_media.ui_music_player.nextBtnPressed(None)
+                        if in_aa:
+                            virtual_kb.emit_click(uinput.KEY_N)
+                        else:
+                            self.ui_media.ui_music_player.nextBtnPressed(None)
                 elif command == "SEEK-":
                     if duration >= longpress:
                         self.ui_radio.downClicked(None)
                     else:
-                        self.ui_media.ui_music_player.rewindBtnPressed(None)
+                        if in_aa:
+                            virtual_kb.emit_click(uinput.KEY_V)
+                        else:
+                            self.ui_media.ui_music_player.rewindBtnPressed(None)
                 elif command == "MODE":
-                    # Switch between AA and CarSystem
-                    pass
+                    virtual_kb.emit_combo([uinput.KEY_LEFTALT, uinput.KEY_TAB])
+                    screen.force_update()
+                    active_window = screen.get_active_window()
+                    if active_window.get_name() == "Error":
+                        virtual_kb.emit_click(uinput.KEY_ENTER)
+                        virtual_kb.emit_combo([uinput.KEY_LEFTALT, uinput.KEY_TAB])
                 elif command == "CALL END":
                     virtual_kb.emit_click(uinput.KEY_O)
                 elif command == "CALL START":
                     virtual_kb.emit_click(uinput.KEY_P)
                 elif command == "VOICE":
-                    if duration >= longpress:
+                    if duration >= 10.0:
+                        subprocess.call(['shutdown', '-h', 'now'], shell=False)
+                    elif duration >= longpress:
                         virtual_kb.emit_click(uinput.KEY_M)
                     else:
-                        self.ui_media.ui_music_player.playBtnPressed(None)
+                        if in_aa:
+                            virtual_kb.emit_click(uinput.KEY_B)
+                        else:
+                            self.ui_media.ui_music_player.playBtnPressed(None)
                 
