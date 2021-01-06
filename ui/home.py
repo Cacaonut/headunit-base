@@ -223,7 +223,6 @@ class Ui_content(object):
                                                                    "Android Auto"))
 
     def updateUI(self):
-        print("Running home update")
         try:
             # Cockpit
             if hasattr(self.owner, "ui_car") and hasattr(self.owner.ui_car, "ui_cockpit"):
