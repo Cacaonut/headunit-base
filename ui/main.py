@@ -436,9 +436,9 @@ class Ui_MainWindow(object):
             self.label_temperature.setText(temp + " °C")
 
     def steeringWheelControls(self):       
-        #import gi
-        #gi.require_version("Wnck", "3.0")
-        #from gi.repository import Wnck
+        import gi
+        gi.require_version('Wnck', '3.0')
+        from gi.repository import Wnck
         print("Steering wheel controls client started")
         longpress = 1.0
 
