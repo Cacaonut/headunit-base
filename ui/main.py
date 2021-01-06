@@ -436,9 +436,9 @@ class Ui_MainWindow(object):
             self.label_temperature.setText(temp + " °C")
 
     def steeringWheelControls(self):       
-        import gi
+        #import gi
         #gi.require_version("Wnck", "3.0")
-        from gi.repository import Wnck
+        #from gi.repository import Wnck
         print("Steering wheel controls client started")
         longpress = 1.0
 
@@ -455,10 +455,11 @@ class Ui_MainWindow(object):
 
             if duration >= 0.1:
                 print("Command received: '" + command + "' (" + str(duration) + ")")
-                screen = Wnck.Screen.get_default()
-                screen.force_update()
-                active_window = screen.get_active_window()
-                in_aa = active_window.get_name() == "autoapp"
+                #screen = Wnck.Screen.get_default()
+                #screen.force_update()
+                #active_window = screen.get_active_window()
+                #in_aa = active_window.get_name() == "autoapp"
+                in_aa = True
             
                 if command == "VOL+":
                     self.ui_settings.switchToSound(None)
