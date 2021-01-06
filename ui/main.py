@@ -289,8 +289,8 @@ class Ui_MainWindow(object):
 
         # Home
         self.content_home = QtWidgets.QWidget()
-        ui_home = home.Ui_content()
-        ui_home.setupUi(self.content_home, self)
+        self.ui_home = home.Ui_content()
+        self.ui_home.setupUi(self.content_home, self)
         self.content.addWidget(self.content_home)
 
         # Media
@@ -416,6 +416,8 @@ class Ui_MainWindow(object):
 
         volume = str(self.ui_settings.volume)
         self.label_volume.setText(volume)
+
+        self.ui_home.updateUI()
 
     def volumeUpPressed(self, event):
         self.ui_settings.switchToSound(None)

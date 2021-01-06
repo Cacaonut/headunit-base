@@ -202,11 +202,6 @@ class Ui_content(object):
         self.finishedMediaSetup = False
         self.finishedRadioSetup = False
 
-        self.updateTimer = QtCore.QTimer(content)
-        self.updateTimer.setInterval(200)
-        self.updateTimer.timeout.connect(self.updateUI)
-        self.updateTimer.start()
-
     def retranslateUi(self, content):
         _translate = QtCore.QCoreApplication.translate
         content.setWindowTitle(_translate("content", "Form"))
