@@ -341,7 +341,6 @@ class Ui_MainWindow(object):
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.retranslateUi(MainWindow)
-        self.updateUI()
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
         self.updateTimer = QtCore.QTimer(MainWindow)

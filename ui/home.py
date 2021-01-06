@@ -196,15 +196,15 @@ class Ui_content(object):
         self.label.setScaledContents(True)
         self.label.setObjectName("label")
 
+        self.retranslateUi(content)
+        QtCore.QMetaObject.connectSlotsByName(content)
+
         self.finishedMediaSetup = False
         self.finishedRadioSetup = False
         self.updateTimer = QtCore.QTimer(content)
         self.updateTimer.setInterval(100)
         self.updateTimer.timeout.connect(self.updateUI)
         self.updateTimer.start()
-
-        self.retranslateUi(content)
-        QtCore.QMetaObject.connectSlotsByName(content)
 
     def retranslateUi(self, content):
         _translate = QtCore.QCoreApplication.translate
