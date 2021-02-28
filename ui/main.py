@@ -503,7 +503,7 @@ class Ui_MainWindow(object):
                 elif command == "CALL START":
                     virtual_kb.emit_click(uinput.KEY_P)
                 elif command == "VOICE":
-                    if duration >= 10.0:
+                    if duration >= 5.0:
                         subprocess.call(['shutdown', '-h', 'now'], shell=False)
                     elif duration >= longpress:
                         virtual_kb.emit_click(uinput.KEY_M)
