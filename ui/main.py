@@ -15,14 +15,13 @@ import ui.home as home
 import ui.media as media
 import ui.settings as settings
 from ui import radio
-
 import gi
-gi.require_version('Wnck', '3.0')
-from gi.repository import Wnck
 
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
+        gi.require_version('Wnck', '3.0')
+        from gi.repository import Wnck
         MainWindow.setObjectName("Headunit")
         MainWindow.setEnabled(True)
         MainWindow.resize(800, 480)
