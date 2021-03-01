@@ -452,11 +452,8 @@ class Ui_MainWindow(object):
 
             if duration >= 0.1:
                 print("Command received: '" + command + "' (" + str(duration) + ")")
-                #screen = Wnck.Screen.get_default()
-                #screen.force_update()
-                #active_window = screen.get_active_window()
-                #in_aa = active_window.get_name() == "autoapp"
-                in_aa = True
+                window_name = subprocess.check_output(["xdotool", "getactivewindow", "getwindowname"]).decode("utf-8")
+                in_aa = window_name == "autoapp"
             
                 if command == "VOL+":
                     self.ui_settings.switchToSound(None)
@@ -490,11 +487,11 @@ class Ui_MainWindow(object):
                             self.ui_media.ui_music_player.rewindBtnPressed(None)
                 elif command == "MODE":
                     virtual_kb.emit_combo([uinput.KEY_LEFTALT, uinput.KEY_TAB])
-                    #screen.force_update()
-                    #active_window = screen.get_active_window()
-                    #if active_window.get_name() == "Error":
-                        #virtual_kb.emit_click(uinput.KEY_ENTER)
-                        #virtual_kb.emit_combo([uinput.KEY_LEFTALT, uinput.KEY_TAB])
+
+                    window_name = subprocess.check_output(["xdotool", "getactivewindow", "getwindowname"]).decode("utf-8")
+                    if window_name == "Error":
+                        virtual_kb.emit_click(uinput.KEY_ENTER)
+                        virtual_kb.emit_combo([uinput.KEY_LEFTALT, uinput.KEY_TAB])
                 elif command == "CALL END":
                     virtual_kb.emit_click(uinput.KEY_O)
                 elif command == "CALL START":
