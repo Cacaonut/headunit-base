@@ -446,8 +446,8 @@ class Ui_MainWindow(object):
 
         time.sleep(5)
         while True:
-            print("Hello There")
             line = s.readline().decode("utf-8")
+            print("Hello There")
             command, duration_string = line.split("|")
             duration = float(duration_string)
 
