@@ -204,6 +204,7 @@ class Ui_content(object):
                             except Exception as e:
                                 #print("Error retrieving bluetooth music status info:")
                                 #print(e)
+                                pass
 
                             track = props["Track"]
                             try:
@@ -211,6 +212,7 @@ class Ui_content(object):
                                 self.label_artist.setText(track["Artist"])
                                 self.label_album.setText(track["Album"])
                             except Exception as e:
+                                pass
                                 #print("Error retrieving bluetooth music track info:")
                                 #print(e)
 
