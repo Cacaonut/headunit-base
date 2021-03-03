@@ -241,6 +241,7 @@ class Ui_content(object):
                             self.music_slider.setValue(0)
                             self.music_slider.blockSignals(False)
                     except Exception as e:
+                        pass
                         #print("Error retrieving bluetooth music info:")
                         #print(e)
                         #self.updateThreadRunning = False
