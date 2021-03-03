@@ -489,11 +489,13 @@ class Ui_MainWindow(object):
                                     self.ui_media.ui_music_player.rewindBtnPressed(None)
                         elif command == "MODE":
                             virtual_kb.emit_combo([uinput.KEY_LEFTALT, uinput.KEY_TAB])
+                            virtual_kb.emit_click(uinput.KEY_ENTER)
 
                             window_name = subprocess.check_output(["xdotool", "getactivewindow", "getwindowname"]).decode("utf-8")
                             if window_name == "Error":
                                 virtual_kb.emit_click(uinput.KEY_ENTER)
                                 virtual_kb.emit_combo([uinput.KEY_LEFTALT, uinput.KEY_TAB])
+                                virtual_kb.emit_click(uinput.KEY_ENTER)
                         elif command == "CALL END":
                             virtual_kb.emit_click(uinput.KEY_O)
                         elif command == "CALL START":
