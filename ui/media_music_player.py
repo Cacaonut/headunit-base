@@ -202,8 +202,8 @@ class Ui_content(object):
                                     self.owner.bt_paused = True
                                     self.btn_play.setPixmap(QtGui.QPixmap(":/images/play.svg"))
                             except Exception as e:
-                                print("Error retrieving bluetooth music status info:")
-                                print(e)
+                                #print("Error retrieving bluetooth music status info:")
+                                #print(e)
 
                             track = props["Track"]
                             try:
@@ -211,8 +211,8 @@ class Ui_content(object):
                                 self.label_artist.setText(track["Artist"])
                                 self.label_album.setText(track["Album"])
                             except Exception as e:
-                                print("Error retrieving bluetooth music track info:")
-                                print(e)
+                                #print("Error retrieving bluetooth music track info:")
+                                #print(e)
 
                             length = track["Duration"] / 1000.0
                             length_minutes = int(length / 60)
