@@ -439,72 +439,73 @@ class Ui_MainWindow(object):
         print("Steering wheel controls client started")
         longpress = 1.0
 
-        s = serial.Serial("/dev/ttyACM0", 9600)
+        s = serial.Serial("/dev/ttyACM0", 9600, timeout=1)
         s.isOpen()
 
         virtual_kb = uinput.Device([uinput.KEY_P, uinput.KEY_O, uinput.KEY_V, uinput.KEY_N, uinput.KEY_B, uinput.KEY_M, uinput.KEY_LEFTALT, uinput.KEY_TAB, uinput.KEY_ENTER])
 
         time.sleep(5)
         while True:
-            line = s.readline().decode("utf-8")
-            print("Hello There")
-            command, duration_string = line.split("|")
-            duration = float(duration_string)
+            if s.in_waiting > 0:
+                line = s.readline().decode("utf-8")
+                print("Hello There")
+                command, duration_string = line.split("|")
+                duration = float(duration_string)
 
-            if duration >= 0.1:
-                print("Command received: '" + command + "' (" + str(duration) + ")")
-                window_name = subprocess.check_output(["xdotool", "getactivewindow", "getwindowname"]).decode("utf-8")
-                in_aa = window_name == "autoapp"
-            
-                if command == "VOL+":
-                    self.ui_settings.switchToSound(None)
-                    if duration >= longpress:
-                        for i in range(10):
-                            self.ui_settings.ui_volume.increase(None)
-                    else:
-                        self.ui_settings.ui_volume.increase(None)
-                elif command == "VOL-":
-                    self.ui_settings.switchToSound(None)
-                    if duration >= longpress:
-                        for i in range(10):
-                            self.ui_settings.ui_volume.decrease(None)
-                    else:
-                        self.ui_settings.ui_volume.decrease(None)
-                elif command == "SEEK+":
-                    if duration >= longpress:
-                        self.ui_radio.upClicked(None)
-                    else:
-                        if in_aa:
-                            virtual_kb.emit_click(uinput.KEY_N)
-                        else:
-                            self.ui_media.ui_music_player.nextBtnPressed(None)
-                elif command == "SEEK-":
-                    if duration >= longpress:
-                        self.ui_radio.downClicked(None)
-                    else:
-                        if in_aa:
-                            virtual_kb.emit_click(uinput.KEY_V)
-                        else:
-                            self.ui_media.ui_music_player.rewindBtnPressed(None)
-                elif command == "MODE":
-                    virtual_kb.emit_combo([uinput.KEY_LEFTALT, uinput.KEY_TAB])
-
+                if duration >= 0.1:
+                    print("Command received: '" + command + "' (" + str(duration) + ")")
                     window_name = subprocess.check_output(["xdotool", "getactivewindow", "getwindowname"]).decode("utf-8")
-                    if window_name == "Error":
-                        virtual_kb.emit_click(uinput.KEY_ENTER)
-                        virtual_kb.emit_combo([uinput.KEY_LEFTALT, uinput.KEY_TAB])
-                elif command == "CALL END":
-                    virtual_kb.emit_click(uinput.KEY_O)
-                elif command == "CALL START":
-                    virtual_kb.emit_click(uinput.KEY_P)
-                elif command == "VOICE":
-                    if duration >= 5.0:
-                        subprocess.call(['shutdown', '-h', 'now'], shell=False)
-                    elif duration >= longpress:
-                        virtual_kb.emit_click(uinput.KEY_M)
-                    else:
-                        if in_aa:
-                            virtual_kb.emit_click(uinput.KEY_B)
+                    in_aa = window_name == "autoapp"
+            
+                    if command == "VOL+":
+                        self.ui_settings.switchToSound(None)
+                        if duration >= longpress:
+                            for i in range(10):
+                                self.ui_settings.ui_volume.increase(None)
                         else:
-                            self.ui_media.ui_music_player.playBtnPressed(None)
+                            self.ui_settings.ui_volume.increase(None)
+                    elif command == "VOL-":
+                        self.ui_settings.switchToSound(None)
+                        if duration >= longpress:
+                            for i in range(10):
+                                self.ui_settings.ui_volume.decrease(None)
+                        else:
+                            self.ui_settings.ui_volume.decrease(None)
+                    elif command == "SEEK+":
+                        if duration >= longpress:
+                            self.ui_radio.upClicked(None)
+                        else:
+                            if in_aa:
+                                virtual_kb.emit_click(uinput.KEY_N)
+                            else:
+                                self.ui_media.ui_music_player.nextBtnPressed(None)
+                    elif command == "SEEK-":
+                        if duration >= longpress:
+                            self.ui_radio.downClicked(None)
+                        else:
+                            if in_aa:
+                                virtual_kb.emit_click(uinput.KEY_V)
+                            else:
+                                self.ui_media.ui_music_player.rewindBtnPressed(None)
+                    elif command == "MODE":
+                        virtual_kb.emit_combo([uinput.KEY_LEFTALT, uinput.KEY_TAB])
+
+                        window_name = subprocess.check_output(["xdotool", "getactivewindow", "getwindowname"]).decode("utf-8")
+                        if window_name == "Error":
+                            virtual_kb.emit_click(uinput.KEY_ENTER)
+                            virtual_kb.emit_combo([uinput.KEY_LEFTALT, uinput.KEY_TAB])
+                    elif command == "CALL END":
+                        virtual_kb.emit_click(uinput.KEY_O)
+                    elif command == "CALL START":
+                        virtual_kb.emit_click(uinput.KEY_P)
+                    elif command == "VOICE":
+                        if duration >= 5.0:
+                            subprocess.call(['shutdown', '-h', 'now'], shell=False)
+                        elif duration >= longpress:
+                            virtual_kb.emit_click(uinput.KEY_M)
+                        else:
+                            if in_aa:
+                                virtual_kb.emit_click(uinput.KEY_B)
+                            else:
+                                self.ui_media.ui_music_player.playBtnPressed(None)
                 
