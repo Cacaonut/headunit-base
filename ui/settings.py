@@ -172,7 +172,8 @@ class Ui_content(object):
         self.btn_radio.setEnabled(True)
 
         for i in reversed(range(self.verticalLayout.count())):
-            self.verticalLayout.itemAt(i).widget().setParent(None)
+            if (self.verticalLayout.itemAt(i) != None):
+                self.verticalLayout.itemAt(i).widget().setParent(None)
 
         content_volume = QtWidgets.QWidget()
         self.ui_volume = ui.lists.number_setting.Ui_widget()
