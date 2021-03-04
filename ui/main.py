@@ -423,12 +423,10 @@ class Ui_MainWindow(object):
         self.ui_home.updateUI()
 
     def volumeUpPressed(self, event):
-        self.ui_settings.switchToSound(None)
-        self.ui_settings.ui_volume.increase(event)
+        self.ui_settings.changeVolume(self.ui_settings.volume + 2)
 
     def volumeDownPressed(self, event):
-        self.ui_settings.switchToSound(None)
-        self.ui_settings.ui_volume.decrease(event)
+        self.ui_settings.changeVolume(self.ui_settings.volume - 2)
 
     def tempChanged(self, t):
         if not t.is_null():
@@ -460,19 +458,17 @@ class Ui_MainWindow(object):
                         in_aa = window_name == "autoapp"
             
                         if command == "VOL+":
-                            self.ui_settings.switchToSound(None)
                             if duration >= longpress:
                                 for i in range(10):
-                                    self.ui_settings.ui_volume.increase(None)
+                                    self.volumeUpPressed(None)
                             else:
-                                self.ui_settings.ui_volume.increase(None)
+                                self.volumeUpPressed(None)
                         elif command == "VOL-":
-                            self.ui_settings.switchToSound(None)
                             if duration >= longpress:
                                 for i in range(10):
-                                    self.ui_settings.ui_volume.decrease(None)
+                                    self.volumeDownPressed(None)
                             else:
-                                self.ui_settings.ui_volume.decrease(None)
+                                self.volumeDownPressed(None)
                         elif command == "SEEK+":
                             if duration >= longpress:
                                 self.ui_radio.upClicked(None)
