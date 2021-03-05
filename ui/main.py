@@ -488,15 +488,16 @@ class Ui_MainWindow(object):
                                 else:
                                     self.ui_media.ui_music_player.rewindBtnPressed(None)
                         elif command == "MODE":
-                            virtual_kb.emit_combo([uinput.KEY_LEFTALT, uinput.KEY_TAB])
-                            time.sleep(0.5)
-                            virtual_kb.emit_click(uinput.KEY_ENTER)
+                            main_wid = subprocess.check_output(["xdotool", "search", "--name", "MainWindow"]).decode("utf-8")
+                            print("MainWindow: " + main_wid)
+                            aa_wid = subprocess.check_output(["xdotool", "search", "--name", "autoapp"]).decode("utf-8")
+                            print("Android Auto: " + aa_wid)
 
-                            window_name = subprocess.check_output(["xdotool", "getactivewindow", "getwindowname"]).decode("utf-8")
-                            if window_name == "Error":
-                                virtual_kb.emit_click(uinput.KEY_ENTER)
-                                virtual_kb.emit_combo([uinput.KEY_LEFTALT, uinput.KEY_TAB])
-                                virtual_kb.emit_click(uinput.KEY_ENTER)
+                            active_wid = subprocess.check_output(["xdotool", "getactivewindow"]).decode("utf-8")
+                            if (active_wid == main_wid):
+                                os.system("xdotool windowactivate " + aa_wid)
+                            else:
+                                os.system("xdotool windowactivate " + main_wid)
                         elif command == "CALL END":
                             virtual_kb.emit_click(uinput.KEY_O)
                         elif command == "CALL START":
