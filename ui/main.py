@@ -496,8 +496,8 @@ class Ui_MainWindow(object):
                         elif command == "MODE" and self.aa_wid != "-1":
                             active_wid = subprocess.check_output(["xdotool", "getactivewindow"]).decode("utf-8")
                             print("Current Window: " + active_wid)
-                            main_wid = subprocess.check_output(["xdotool", "search", "--name", "MainWindow"]).decode("utf-8")
-                            print("MainWindow: " + main_wid)
+                            main_wid = subprocess.check_output(["xdotool", "search", "--name", "Headunit"]).decode("utf-8")
+                            print("Headunit: " + main_wid)
 
                             if (active_wid == main_wid):
                                 os.system("xdotool windowactivate " + self.aa_wid)
