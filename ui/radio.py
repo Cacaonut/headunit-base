@@ -427,10 +427,8 @@ class Ui_content(object):
         command = 'rtl_fm -M fm -l 0 -A std -p 0 -s 171k -g 20 -F 9 -f ' + format(self.current_freq, ".1f") \
                   + 'M | redsea --feed-through | aplay -r 171000 -f S16_LE'
         self.process = subprocess.Popen(command, stderr=subprocess.PIPE, shell=True)
-        self.rdsTimer = QtCore.QTimer(self.content)
-        self.rdsTimer.setInterval(100)
-        self.rdsTimer.timeout.connect(self.fetchRDSOutput)
-        self.rdsTimer.start()
+        self.rds_thread = threading.Thread(target=self.fetchRDSOutput)
+        self.rds_thread.start()
 
         self.btn_play.setPixmap(QtGui.QPixmap(":/images/pause.svg"))
 
@@ -444,7 +442,7 @@ class Ui_content(object):
                 if process.name() == "rtl_fm":
                     process.kill()
         if hasattr(self, "rdsTimer"):
-            self.rdsTimer.stop()
+            self.rds_thread.stop()
 
     def upClicked(self, event):
         if not self.searching:
@@ -508,36 +506,37 @@ class Ui_content(object):
 
 
     def fetchRDSOutput(self):
-        data, output = self.process.communicate().decode("utf-8")
-        if output == "" and self.process.poll() is not None:
-            self.rdsTimer.stop()
-            return
+        while True:
+            data, output = self.process.communicate().decode("utf-8")
+            if output == "" and self.process.poll() is not None:
+                self.rdsTimer.stop()
+                return
 
-        try:
-            rds = json.loads(output)
             try:
-                print("Station: " + rds["ps"])
-                self.label_station.setText(rds["ps"])
-                if self.current_freq == self.slot1_freq:
-                    self.settings.setValue("radio/favourite_1_name", rds["ps"])
-                elif self.current_freq == self.slot2_freq:
-                    self.settings.setValue("radio/favourite_2_name", rds["ps"])
-                elif self.current_freq == self.slot3_freq:
-                    self.settings.setValue("radio/favourite_3_name", rds["ps"])
-                elif self.current_freq == self.slot4_freq:
-                    self.settings.setValue("radio/favourite_4_name", rds["ps"])
-                elif self.current_freq == self.slot5_freq:
-                    self.settings.setValue("radio/favourite_5_name", rds["ps"])
-                self.loadFavourites()
-            except KeyError:
+                rds = json.loads(output)
+                try:
+                    print("Station: " + rds["ps"])
+                    self.label_station.setText(rds["ps"])
+                    if self.current_freq == self.slot1_freq:
+                        self.settings.setValue("radio/favourite_1_name", rds["ps"])
+                    elif self.current_freq == self.slot2_freq:
+                        self.settings.setValue("radio/favourite_2_name", rds["ps"])
+                    elif self.current_freq == self.slot3_freq:
+                        self.settings.setValue("radio/favourite_3_name", rds["ps"])
+                    elif self.current_freq == self.slot4_freq:
+                        self.settings.setValue("radio/favourite_4_name", rds["ps"])
+                    elif self.current_freq == self.slot5_freq:
+                        self.settings.setValue("radio/favourite_5_name", rds["ps"])
+                    self.loadFavourites()
+                except KeyError:
+                    pass
+                try:
+                    print("Radio text: " + rds["radiotext"])
+                    self.label_info.setText(rds["radiotext"])
+                except KeyError:
+                    pass
+            except json.JSONDecodeError:
                 pass
-            try:
-                print("Radio text: " + rds["radiotext"])
-                self.label_info.setText(rds["radiotext"])
-            except KeyError:
-                pass
-        except json.JSONDecodeError:
-            pass
 
     def scan(self, center_freq):
         border = self.settings.value("radio_limit", -30)
