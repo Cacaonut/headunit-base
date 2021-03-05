@@ -489,6 +489,7 @@ class Ui_MainWindow(object):
                                     self.ui_media.ui_music_player.rewindBtnPressed(None)
                         elif command == "MODE":
                             virtual_kb.emit_combo([uinput.KEY_LEFTALT, uinput.KEY_TAB])
+                            time.sleep(0.5)
                             virtual_kb.emit_click(uinput.KEY_ENTER)
 
                             window_name = subprocess.check_output(["xdotool", "getactivewindow", "getwindowname"]).decode("utf-8")
