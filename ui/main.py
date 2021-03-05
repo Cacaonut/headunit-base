@@ -457,7 +457,7 @@ class Ui_MainWindow(object):
                     if duration >= 0.1:
                         print("Command received: '" + command + "' (" + str(duration) + ")")
                         window_name = subprocess.check_output(["xdotool", "getactivewindow", "getwindowname"]).decode("utf-8")
-                        print("Active window: " + window_name)
+                        print("Active window: '" + window_name + "'")
                         if (window_name == "autoapp"):
                             in_aa = True
                             self.aa_wid = subprocess.check_output(["xdotool", "getactivewindow"]).decode("utf-8")
