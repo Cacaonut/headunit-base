@@ -441,6 +441,8 @@ class Ui_MainWindow(object):
         s = serial.Serial("/dev/ttyACM0", 9600, timeout=1)
         s.isOpen()
 
+        os.system("sudo modprobe uinput")
+        time.sleep(0.5)
         os.system("sudo chmod 777 /dev/uinput")
         virtual_kb = uinput.Device([uinput.KEY_P, uinput.KEY_O, uinput.KEY_V, uinput.KEY_N, uinput.KEY_B, uinput.KEY_M, uinput.KEY_LEFTALT, uinput.KEY_TAB, uinput.KEY_ENTER])
 
