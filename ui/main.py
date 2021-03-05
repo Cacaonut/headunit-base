@@ -437,6 +437,7 @@ class Ui_MainWindow(object):
     def steeringWheelControls(self):
         print("Steering wheel controls client started")
         longpress = 1.0
+        self.aa_wid = -1
 
         s = serial.Serial("/dev/ttyACM0", 9600, timeout=1)
         s.isOpen()
@@ -446,7 +447,6 @@ class Ui_MainWindow(object):
         os.system("sudo chmod 777 /dev/uinput")
         virtual_kb = uinput.Device([uinput.KEY_P, uinput.KEY_O, uinput.KEY_V, uinput.KEY_N, uinput.KEY_B, uinput.KEY_M, uinput.KEY_LEFTALT, uinput.KEY_TAB, uinput.KEY_ENTER])
 
-        time.sleep(5)
         while True:
             if s.in_waiting > 0:
                 line = s.readline().decode("utf-8")
@@ -457,7 +457,10 @@ class Ui_MainWindow(object):
                     if duration >= 0.1:
                         print("Command received: '" + command + "' (" + str(duration) + ")")
                         window_name = subprocess.check_output(["xdotool", "getactivewindow", "getwindowname"]).decode("utf-8")
-                        in_aa = window_name == "autoapp"
+                        if (window_name == "autoapp"):
+                            in_aa = True
+                            self.aa_wid = subprocess.check_output(["xdotool", "getactivewindow"]).decode("utf-8")
+                            print("Saved Android Auto WID: " + self.aa_wid)
             
                         if command == "VOL+":
                             if duration >= longpress:
@@ -487,16 +490,14 @@ class Ui_MainWindow(object):
                                     virtual_kb.emit_click(uinput.KEY_V)
                                 else:
                                     self.ui_media.ui_music_player.rewindBtnPressed(None)
-                        elif command == "MODE":
+                        elif command == "MODE" & aa_wid != -1:
                             active_wid = subprocess.check_output(["xdotool", "getactivewindow"]).decode("utf-8")
                             print("Current Window: " + active_wid)
                             main_wid = subprocess.check_output(["xdotool", "search", "--name", "MainWindow"]).decode("utf-8")
                             print("MainWindow: " + main_wid)
-                            aa_wid = subprocess.check_output(["xdotool", "search", "--name", "autoapp"]).decode("utf-8")
-                            print("Android Auto: " + aa_wid)
 
                             if (active_wid == main_wid):
-                                os.system("xdotool windowactivate " + aa_wid)
+                                os.system("xdotool windowactivate " + self.aa_wid)
                             else:
                                 os.system("xdotool windowactivate " + main_wid)
                         elif command == "CALL END":
