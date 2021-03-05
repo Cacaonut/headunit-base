@@ -437,7 +437,7 @@ class Ui_MainWindow(object):
     def steeringWheelControls(self):
         print("Steering wheel controls client started")
         longpress = 1.0
-        self.aa_wid = -1
+        self.aa_wid = "-1"
 
         s = serial.Serial("/dev/ttyACM0", 9600, timeout=1)
         s.isOpen()
@@ -492,7 +492,7 @@ class Ui_MainWindow(object):
                                     virtual_kb.emit_click(uinput.KEY_V)
                                 else:
                                     self.ui_media.ui_music_player.rewindBtnPressed(None)
-                        elif command == "MODE" & self.aa_wid != -1:
+                        elif command == "MODE" & self.aa_wid != "-1":
                             active_wid = subprocess.check_output(["xdotool", "getactivewindow"]).decode("utf-8")
                             print("Current Window: " + active_wid)
                             main_wid = subprocess.check_output(["xdotool", "search", "--name", "MainWindow"]).decode("utf-8")
