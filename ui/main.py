@@ -458,7 +458,7 @@ class Ui_MainWindow(object):
                         print("Command received: '" + command + "' (" + str(duration) + ")")
                         window_name = subprocess.check_output(["xdotool", "getactivewindow", "getwindowname"]).decode("utf-8")
                         print("Active window: '" + window_name + "'")
-                        if (window_name == "autoapp"):
+                        if ("autoapp" in window_name):
                             in_aa = True
                             self.aa_wid = subprocess.check_output(["xdotool", "getactivewindow"]).decode("utf-8")
                             print("Saved Android Auto WID: " + self.aa_wid)
