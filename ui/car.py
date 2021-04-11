@@ -11,6 +11,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from ui import fuel, cockpit, diagnostics
 import obd
+import subprocess
 
 
 class Ui_content(object):
