@@ -1,5 +1,5 @@
 import subprocess
-subprocess.Popen(["sudo", "rfcomm", "connect", "hci0", "00:1D:A5:68:98:8B"])
+subprocess.Popen(["sudo", "rfcomm", "connect", "hci0", "00:1D:A5:68:98:8B"]) # Connect obd2 adapter
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 import ui.main

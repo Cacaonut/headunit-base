@@ -206,9 +206,9 @@ class Ui_content(object):
         _translate = QtCore.QCoreApplication.translate
         content.setWindowTitle(_translate("content", "Form"))
         self.label_speed.setText(_translate("content", "Speed"))
-        self.label_speed_value.setText(_translate("content", "0 km/h"))
+        self.label_speed_value.setText(_translate("content", "-"))
         self.label_rotation.setText(_translate("content", "Rotation"))
-        self.label_rotation_value.setText(_translate("content", "0 rpm"))
+        self.label_rotation_value.setText(_translate("content", "-"))
         self.label_radio.setText(_translate("content", "Radio"))
         self.label_station.setText(_translate("content", "-"))
         self.label_diagnostics.setText(_translate("content", "Diagnostics"))

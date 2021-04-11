@@ -288,6 +288,12 @@ class Ui_MainWindow(object):
         self.content.setObjectName("content")
         self.current_tab = self.btn_home
 
+        # Setup OBD2 connection
+        obd.logger.setLevel(obd.logging.DEBUG)
+        self.obd_conn = obd.Async(fast=False)
+
+        obd_conn.watch(obd.commands.AMBIANT_AIR_TEMP, callback=self.tempChanged)
+
         # Home
         self.content_home = QtWidgets.QWidget()
         self.ui_home = home.Ui_content()
@@ -311,7 +317,7 @@ class Ui_MainWindow(object):
         # Car
         self.content_car = QtWidgets.QWidget()
         self.ui_car = car.Ui_content()
-        self.ui_car.setupUi(self.content_car)
+        self.ui_car.setupUi(self.content_car, self.obd_conn)
         self.content.addWidget(self.content_car)
 
         # Devices
@@ -363,6 +369,10 @@ class Ui_MainWindow(object):
         self.text_btn_devices.setText(_translate("MainWindow", "Devices"))
         self.text_btn_radio.setText(_translate("MainWindow", "Radio"))
         self.text_btn_settings.setText(_translate("MainWindow", "Settings"))
+
+    def tempChanged(self, t):
+        if not t.is_null():
+            self.label_temperature.setText(t + " °C")
 
     def switchToHome(self, event):
         self.content.setCurrentWidget(self.content_home)

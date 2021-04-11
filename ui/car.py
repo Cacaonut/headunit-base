@@ -15,7 +15,8 @@ import subprocess
 
 
 class Ui_content(object):
-    def setupUi(self, content):
+    def setupUi(self, content, obd_conn):
+        self.obd_conn = obd_conn
         content.setObjectName("content")
         content.resize(720, 435)
         content.setStyleSheet("#content {\n"
@@ -106,10 +107,6 @@ class Ui_content(object):
         self.container = QtWidgets.QStackedWidget(content)
         self.container.setGeometry(QtCore.QRect(30, 100, 660, 300))
         self.container.setObjectName("container")
-
-        # Setup OBD2 connection
-        obd.logger.setLevel(obd.logging.DEBUG)
-        self.obd_conn = obd.Async(fast=False)
 
         # Cockpit
         content_cockpit = QtWidgets.QWidget()
