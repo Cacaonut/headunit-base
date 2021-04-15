@@ -10,6 +10,7 @@ import threading
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+
 class Ui_content(object):
     def setupUi(self, content, owner):
         self.owner = owner
@@ -125,7 +126,8 @@ class Ui_content(object):
         self.btn_diagnostics_check = QtWidgets.QLabel(self.widget_2)
         self.btn_diagnostics_check.setGeometry(QtCore.QRect(80, 60, 50, 50))
         self.btn_diagnostics_check.setText("")
-        self.btn_diagnostics_check.setPixmap(QtGui.QPixmap(":/images/check_green.svg"))
+        self.btn_diagnostics_check.setPixmap(
+            QtGui.QPixmap(":/images/check_green.svg"))
         self.btn_diagnostics_check.setScaledContents(True)
         self.btn_diagnostics_check.setObjectName("btn_diagnostics_check")
         self.widget_media = QtWidgets.QWidget(content)
@@ -180,8 +182,10 @@ class Ui_content(object):
         self.label_android_auto.setFont(font)
         self.label_android_auto.setAlignment(QtCore.Qt.AlignCenter)
         self.label_android_auto.setObjectName("label_android_auto")
-        self.label_android_auto_desc = QtWidgets.QLabel(self.widget_android_auto)
-        self.label_android_auto_desc.setGeometry(QtCore.QRect(20, 60, 170, 110))
+        self.label_android_auto_desc = QtWidgets.QLabel(
+            self.widget_android_auto)
+        self.label_android_auto_desc.setGeometry(
+            QtCore.QRect(20, 60, 170, 110))
         font = QtGui.QFont()
         font.setFamily("Montserrat")
         font.setPointSize(14)
@@ -226,8 +230,10 @@ class Ui_content(object):
         try:
             # Cockpit
             if hasattr(self.owner, "ui_car") and hasattr(self.owner.ui_car, "ui_cockpit"):
-                self.label_speed_value.setText(str(self.owner.ui_car.ui_cockpit.speed) + " km/h")
-                self.label_rotation_value.setText(str(self.owner.ui_car.ui_cockpit.rpm) + " rpm")
+                self.label_speed_value.setText(
+                    str(self.owner.ui_car.ui_cockpit.speed) + " km/h")
+                self.label_rotation_value.setText(
+                    str(int(math.ceil(self.owner.ui_car.ui_cockpit.rpm / 100.0)) * 100) + " rpm")
 
             # Radio
             if hasattr(self.owner, "ui_radio"):
@@ -238,24 +244,29 @@ class Ui_content(object):
                     radio_station = self.owner.ui_radio.label_frequency.text()
                 self.label_station.setText(radio_station)
                 if self.owner.ui_radio.playing:
-                    self.btn_play_radio.setPixmap(QtGui.QPixmap(":/images/pause.svg"))
+                    self.btn_play_radio.setPixmap(
+                        QtGui.QPixmap(":/images/pause.svg"))
                 else:
-                    self.btn_play_radio.setPixmap(QtGui.QPixmap(":/images/play.svg"))
+                    self.btn_play_radio.setPixmap(
+                        QtGui.QPixmap(":/images/play.svg"))
 
             # Media
             if hasattr(self.owner, "ui_media"):
                 if not self.finishedMediaSetup:
                     self.finishMediaSetup()
-                self.label_song.setText(self.owner.ui_media.ui_music_player.label_title.text())
+                self.label_song.setText(
+                    self.owner.ui_media.ui_music_player.label_title.text())
                 playing = True
                 if self.owner.ui_media.useBluetooth:
                     playing = not self.owner.ui_media.bt_paused
                 else:
                     playing = not self.owner.ui_media.paused
                 if playing:
-                    self.btn_play_media.setPixmap(QtGui.QPixmap(":/images/pause.svg"))
+                    self.btn_play_media.setPixmap(
+                        QtGui.QPixmap(":/images/pause.svg"))
                 else:
-                    self.btn_play_media.setPixmap(QtGui.QPixmap(":/images/play.svg"))
+                    self.btn_play_media.setPixmap(
+                        QtGui.QPixmap(":/images/play.svg"))
         except Exception as e:
             print("Error updating home view:")
             print(e)

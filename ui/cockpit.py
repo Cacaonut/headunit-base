@@ -60,7 +60,7 @@ class Ui_content(object):
     def retranslateUi(self, content):
         _translate = QtCore.QCoreApplication.translate
         content.setWindowTitle(_translate("content", "Form"))
-        self.label_gear.setText(_translate("content", "Gear 3"))
+        self.label_gear.setText(_translate("content", "Gear -"))
 
     def rpmChanged(self, r):
         if not r.is_null():
