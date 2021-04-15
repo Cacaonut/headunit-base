@@ -233,7 +233,7 @@ class Ui_content(object):
                 self.label_speed_value.setText(
                     str(self.owner.ui_car.ui_cockpit.speed) + " km/h")
                 self.label_rotation_value.setText(
-                    str(int(math.ceil(self.owner.ui_car.ui_cockpit.rpm / 100.0)) * 100) + " rpm")
+                    str(int(math.round(self.owner.ui_car.ui_cockpit.rpm / 100.0)) * 100) + " rpm")
 
             # Radio
             if hasattr(self.owner, "ui_radio"):
