@@ -6,6 +6,7 @@ import serial
 import uinput
 import time
 import os
+import obd
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
@@ -292,7 +293,7 @@ class Ui_MainWindow(object):
         obd.logger.setLevel(obd.logging.DEBUG)
         self.obd_conn = obd.Async(fast=False)
 
-        obd_conn.watch(obd.commands.AMBIANT_AIR_TEMP, callback=self.tempChanged)
+        self.obd_conn.watch(obd.commands.AMBIANT_AIR_TEMP, callback=self.tempChanged)
 
         # Home
         self.content_home = QtWidgets.QWidget()
