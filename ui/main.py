@@ -279,8 +279,11 @@ class Ui_MainWindow(object):
         self.current_tab = self.btn_home
 
         # Setup OBD2 connection
-        # obd.logger.setLevel(obd.logging.DEBUG)
-        self.obd_conn = obd.Async(protocol="6")
+        obd.logger.setLevel(obd.logging.DEBUG)
+        for i in range(10):
+            self.obd_conn = obd.Async(protocol="6")
+            if self.obd_conn.supports(obd.commands.AMBIANT_AIR_TEMP):
+                break
 
         self.obd_conn.watch(obd.commands.AMBIANT_AIR_TEMP, callback=self.tempChanged)
 
