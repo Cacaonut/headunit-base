@@ -279,8 +279,8 @@ class Ui_MainWindow(object):
         self.current_tab = self.btn_home
 
         # Setup OBD2 connection
-        obd.logger.setLevel(obd.logging.DEBUG)
-        self.obd_conn = obd.Async(fast=False)
+        # obd.logger.setLevel(obd.logging.DEBUG)
+        self.obd_conn = obd.Async(protocol="6")
 
         self.obd_conn.watch(obd.commands.AMBIANT_AIR_TEMP, callback=self.tempChanged)
 
@@ -413,10 +413,6 @@ class Ui_MainWindow(object):
         self.current_tab = self.btn_settings
 
     def updateUI(self):
-        now = datetime.now()
-        current_time = now.strftime("%H:%M")
-        self.label_clock.setText(current_time)
-
         volume = str(self.ui_settings.volume)
         self.label_volume.setText(volume)
 
