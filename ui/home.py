@@ -14,6 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_content(object):
     def setupUi(self, content, owner):
         self.owner = owner
+        self.aa_running = False
         content.setObjectName("content")
         content.resize(720, 435)
         content.setStyleSheet("#content {\n"
@@ -174,6 +175,7 @@ class Ui_content(object):
         self.widget_android_auto.setGeometry(QtCore.QRect(490, 230, 210, 190))
         self.widget_android_auto.setStyleSheet("background: #262626")
         self.widget_android_auto.setObjectName("widget_android_auto")
+        self.widget_android_auto.mouseReleaseEvent
         self.label_android_auto = QtWidgets.QLabel(self.widget_android_auto)
         self.label_android_auto.setGeometry(QtCore.QRect(25, 15, 160, 30))
         font = QtGui.QFont()
@@ -234,6 +236,28 @@ class Ui_content(object):
         self.label_android_auto.setText(_translate("content", "Android Auto"))
         self.label_android_auto_desc.setText(_translate("content", "Not running"))
         self.label_android_auto_startstop.setText(_translate("content", "Press to start"))
+
+    def startAA(self):
+        self.aa_process = subprocess.Popen(["sudo", "/home/pi/openauto/bin/autoapp"])
+        self.label_android_auto_desc.setText("Connect your\n"
+                                                                   "Android mobile\n"
+                                                                   "phone to launch\n"
+                                                                   "Android Auto")
+        self.label_android_auto_startstop.setText("Press to stop")
+        self.aa_running = True
+
+    def stopAA(self):
+        if hasattr(self, 'aa_process'):
+            self.aa_process.kill()
+        self.label_android_auto_desc.setText("Not running")
+        self.label_android_auto_startstop.setText("Press to start")
+        self.aa_running = False
+
+    def toggleAA(self, event):
+        if self.aa_running:
+            self.stopAA()
+        else:
+            self.startAA()
 
     def updateUI(self):
         try:
