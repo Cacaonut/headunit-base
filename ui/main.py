@@ -288,7 +288,7 @@ class Ui_MainWindow(object):
                 print("Needed connection attempts: " + attempts)
                 break
             self.obd_conn.close()
-        with open("obd2conn_attempts.txt", "w") as file:
+        with open("obd2conn_attempts.txt", "a") as file:
             file.write(attempts)
 
         self.obd_conn.watch(obd.commands.AMBIANT_AIR_TEMP, callback=self.tempChanged)
@@ -472,13 +472,13 @@ class Ui_MainWindow(object):
             
                         if command == "VOL+":
                             if duration >= longpress:
-                                for i in range(10):
+                                for i in range(5):
                                     self.volumeUpPressed(None)
                             else:
                                 self.volumeUpPressed(None)
                         elif command == "VOL-":
                             if duration >= longpress:
-                                for i in range(10):
+                                for i in range(5):
                                     self.volumeDownPressed(None)
                             else:
                                 self.volumeDownPressed(None)

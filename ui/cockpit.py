@@ -45,6 +45,24 @@ class Ui_content(object):
         self.label_gear.setFont(font)
         self.label_gear.setAlignment(QtCore.Qt.AlignCenter)
         self.label_gear.setObjectName("label_gear")
+        self.label_rpm = QtWidgets.QLabel(content)
+        self.label_rpm.setGeometry(QtCore.QRect(110, 100, 100, 60))
+        font = QtGui.QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(13)
+        self.label_rpm.setStyleSheet("color: #999")
+        self.label_rpm.setFont(font)
+        self.label_rpm.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_rpm.setObjectName("label_rpm")
+        self.label_kmph = QtWidgets.QLabel(content)
+        self.label_kmph.setGeometry(QtCore.QRect(450, 100, 100, 60))
+        font = QtGui.QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(13)
+        self.label_kmph.setStyleSheet("color: #999")
+        self.label_kmph.setFont(font)
+        self.label_kmph.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_kmph.setObjectName("label_kmph")
         self.label_speed = QtWidgets.QLabel(content)
         self.label_speed.setGeometry(QtCore.QRect(450, 250, 100, 60))
         font = QtGui.QFont()
@@ -54,11 +72,10 @@ class Ui_content(object):
         self.label_speed.setAlignment(QtCore.Qt.AlignCenter)
         self.label_speed.setObjectName("label_speed")
         self.label_rotation = QtWidgets.QLabel(content)
-        self.label_rotation.setGeometry(QtCore.QRect(110, 100, 100, 60))
+        self.label_rotation.setGeometry(QtCore.QRect(110, 250, 100, 60))
         font = QtGui.QFont()
         font.setFamily("Montserrat")
-        font.setPointSize(13)
-        self.label_rotation.setStyleSheet("color: #999");
+        font.setPointSize(16)
         self.label_rotation.setFont(font)
         self.label_rotation.setAlignment(QtCore.Qt.AlignCenter)
         self.label_rotation.setObjectName("label_rotation")
@@ -80,7 +97,9 @@ class Ui_content(object):
         content.setWindowTitle(_translate("content", "Form"))
         self.label_gear.setText(_translate("content", "Gear -"))
         self.label_speed.setText(_translate("content", "0 km/h"))
-        self.label_rotation.setText(_translate("content", "rpm"))
+        self.label_rotation.setText(_translate("content", "0 rpm"))
+        self.label_rpm.setText(_translate("content", "rpm"))
+        self.label_kmph.setText(_translate("content", "km/h"))
 
     def rpmChanged(self, r):
         if not r.is_null():
@@ -97,7 +116,7 @@ class Ui_content(object):
             qt_gauge = ImageQt(gauge)
             pixmap = QtGui.QPixmap.fromImage(qt_gauge)
             self.rotation_gauge.setPixmap(pixmap)
-            # self.label_rotation.setText(str(self.rpm) + " rpm")
+            self.label_rotation.setText(str(int(self.rpm)) + " rpm")
 
     def speedChanged(self, s):
         if not s.is_null():

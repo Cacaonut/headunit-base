@@ -125,3 +125,6 @@ dmypy.json
 .pyre/
 .idea/workspace.xml
 .vscode/settings.json
+
+# Log files
+obd2conn_attempts.txt
