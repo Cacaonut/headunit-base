@@ -1,14 +1,20 @@
 # Headunit base system
 ## Features
-> coming soon
+* Media playback via USB and BT
+* FM Radio
+* OBD diagnostics from car
+* Android Auto integration
 ## Requirements
 ### Hardware:
 * Raspberry Pi 3 or better (Android Auto won't work fluently on RPI2, the rest might)
 * External Soundcard and BT adapter (for Android Auto)
+* RTL-SDR dongle
 ### Software:
 * Raspbian OS based on Debian Wheezy
 * Python3
 ## Installation
+__Please note: These installation instructions are written mainly for my own purposes. However, with little customization of the code (e.g. changing the address of you obd2 adapter in main.py), you can get it running on your system as well. If I might be of any help, feel free to open an issue.__
+
 First build the following packages:  
 
 aasdk: https://github.com/openDsh/aasdk  
@@ -53,7 +59,6 @@ Fill it with the following content:
 PRETTY_HOSTNAME=[device name]
 ```
 ### Configure autostart
-__IMPORTANT: After these changes you won't be able to control the Pi from the desktop environment any more. Therefore enable SSH and change the admin password for security reasons.__ 
 Open the lxsession autostart file:
 ```
 sudo nano /etc/xdg/lxsession/LXDE-pi/autostart
@@ -88,7 +93,7 @@ Open the LXDE configuration file:
 ```
 sudo nano /etc/lightdm/lightdm.conf
 ```
-Search for the line starting with `x-server-command`. UNcomment it and add `-nocursor` to the end of it.
+Search for the line starting with `x-server-command`. Uncomment it and add `-nocursor` to the end of it.
 ### Change permission for uinput directory
 Execute the following command:
 ```
@@ -97,6 +102,7 @@ sudo chmod 777 /dev/uinput
 ### Restart
 __IMPORTANT: Don't forget to restart your Pi after making configuration changes!__
 ## Run
+If you haven't configured autostart, you can run it manually.
 ```
 python3 main.py
 ```
