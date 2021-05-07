@@ -280,10 +280,16 @@ class Ui_MainWindow(object):
 
         # Setup OBD2 connection
         obd.logger.setLevel(obd.logging.DEBUG)
-        for i in range(10):
-            self.obd_conn = obd.Async(protocol="6")
+        attempts = "-"
+        for i in range(20):
+            self.obd_conn = obd.Async(protocol="6", baudrate=38400, fast=False)
             if self.obd_conn.supports(obd.commands.AMBIANT_AIR_TEMP):
+                attempts = str(i+1)
+                print("Needed connection attempts: " + attempts)
                 break
+            self.obd_conn.close()
+        with open("obd2conn_attempts.txt", "w") as file:
+            file.write(attempts)
 
         self.obd_conn.watch(obd.commands.AMBIANT_AIR_TEMP, callback=self.tempChanged)
 
