@@ -22,14 +22,14 @@ class Ui_content(object):
                               "* {\n"
                               "    color: white\n"
                               "}")
-        self.labe = QtWidgets.QLabel(content)
-        self.labe.setGeometry(QtCore.QRect(260, 120, 140, 60))
+        self.label = QtWidgets.Qlabell(content)
+        self.label.setGeometry(QtCore.QRect(260, 120, 140, 60))
         font = QtGui.QFont()
         font.setFamily("Montserrat")
         font.setPointSize(16)
-        self.labe.setFont(font)
-        self.labe.setAlignment(QtCore.Qt.AlignCenter)
-        self.labe.setObjectName("labe")
+        self.label.setFont(font)
+        self.label.setAlignment(QtCore.Qt.AlignCenter)
+        self.label.setObjectName("label")
 
         self.retranslateUi(content)
         QtCore.QMetaObject.connectSlotsByName(content)
@@ -37,4 +37,4 @@ class Ui_content(object):
     def retranslateUi(self, content):
         _translate = QtCore.QCoreApplication.translate
         content.setWindowTitle(_translate("content", "Form"))
-        self.labe.setText(_translate("content", "Diagnostics"))
+        self.label.setText(_translate("content", "Diagnostics"))
