@@ -16,7 +16,6 @@ import ui.devices as devices
 import ui.home as home
 import ui.media as media
 import ui.settings as settings
-import ui.shutdown_popup as shutdown_popup
 from ui import radio
 
 
@@ -427,12 +426,6 @@ class Ui_MainWindow(object):
         self.label_volume.setText(volume)
 
         self.ui_home.updateUI()
-
-    def openShutdownDialog(self, event):
-        popup = QtWidgets.QWidget()
-        ui_popup = shutdown_popup.Ui_content()
-        ui_popup.setupUi(popup)
-        popup.show()
 
     def volumeUpPressed(self, event):
         self.ui_settings.changeVolume(self.ui_settings.volume + 2)
