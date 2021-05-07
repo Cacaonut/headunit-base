@@ -185,7 +185,7 @@ class Ui_content(object):
         self.label_android_auto_desc = QtWidgets.QLabel(
             self.widget_android_auto)
         self.label_android_auto_desc.setGeometry(
-            QtCore.QRect(20, 60, 170, 110))
+            QtCore.QRect(20, 60, 170, 100))
         font = QtGui.QFont()
         font.setFamily("Montserrat")
         font.setPointSize(14)
@@ -193,6 +193,17 @@ class Ui_content(object):
         self.label_android_auto_desc.setStyleSheet("color: #D9D9D9")
         self.label_android_auto_desc.setAlignment(QtCore.Qt.AlignCenter)
         self.label_android_auto_desc.setObjectName("label_android_auto_desc")
+        self.label_android_auto_startstop = QtWidgets.QLabel(
+            self.widget_android_auto)
+        self.label_android_auto_startstop.setGeometry(
+            QtCore.QRect(20, 170, 170, 15))
+        font = QtGui.QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(10)
+        self.label_android_auto_startstop.setFont(font)
+        self.label_android_auto_startstop.setStyleSheet("color: #ccc")
+        self.label_android_auto_startstop.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_android_auto_startstop.setObjectName("label_android_auto_startstop")
         self.label = QtWidgets.QLabel(content)
         self.label.setGeometry(QtCore.QRect(255, 53, 210, 123))
         self.label.setText("")
@@ -221,10 +232,8 @@ class Ui_content(object):
         self.label_media.setText(_translate("content", "Media"))
         self.label_song.setText(_translate("content", "-"))
         self.label_android_auto.setText(_translate("content", "Android Auto"))
-        self.label_android_auto_desc.setText(_translate("content", "Connect your\n"
-                                                                   "Android mobile\n"
-                                                                   "phone to launch\n"
-                                                                   "Android Auto"))
+        self.label_android_auto_desc.setText(_translate("content", "Not running"))
+        self.label_android_auto_startstop.setText(_translate("content", "Press to start"))
 
     def updateUI(self):
         try:

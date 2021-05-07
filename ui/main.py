@@ -327,7 +327,7 @@ class Ui_MainWindow(object):
 
         # Android Auto
         if platform == "linux" or platform == "linux2":
-            subprocess.Popen(["sudo", "/home/pi/openauto/bin/autoapp"])
+            self.startAA(None)
 
         # Settings
         self.content_settings = QtWidgets.QWidget()
@@ -426,6 +426,20 @@ class Ui_MainWindow(object):
         self.label_volume.setText(volume)
 
         self.ui_home.updateUI()
+
+    def startAA(self, event):
+        self.aa_process = subprocess.Popen(["sudo", "/home/pi/openauto/bin/autoapp"])
+        self.content_home.label_android_auto_desc.setText("Connect your\n"
+                                                                   "Android mobile\n"
+                                                                   "phone to launch\n"
+                                                                   "Android Auto")
+        self.content_home.label_android_auto_startstop.setText("Press to stop")
+
+    def stopAA(self, event):
+        if hasattr(self, 'aa_process'):
+            self.aa_process.kill()
+        self.content_home.label_android_auto_desc.setText("Not running")
+        self.content_home.label_android_auto_startstop.setText("Press to start")
 
     def volumeUpPressed(self, event):
         self.ui_settings.changeVolume(self.ui_settings.volume + 2)

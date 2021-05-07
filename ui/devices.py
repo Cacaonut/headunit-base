@@ -9,8 +9,7 @@
 import threading
 from sys import platform
 
-if platform == "linux" or platform == "linux2":
-    import bluetool
+import bluetool
 from PyQt5 import QtCore, QtGui, QtWidgets
 import ui.lists.device
 
@@ -78,32 +77,6 @@ class Ui_content(object):
         self.text_btn_linked.setLineWidth(1)
         self.text_btn_linked.setAlignment(QtCore.Qt.AlignCenter)
         self.text_btn_linked.setObjectName("text_btn_linked")
-        self.btn_connect = QtWidgets.QWidget(content)
-        self.btn_connect.setEnabled(True)
-        self.btn_connect.setGeometry(QtCore.QRect(30, 365, 120, 35))
-        self.btn_connect.setStyleSheet("#btn_connect {\n"
-                                       "    background: #252525; color: white\n"
-                                       "}\n"
-                                       "\n"
-                                       "#btn_connect::hover {\n"
-                                       "    background: #303030;\n"
-                                       "}\n"
-                                       "\n"
-                                       "#btn_connect::!enabled {\n"
-                                       "    background: #595959;\n"
-                                       "    border-bottom: 3px solid #E00000;\n"
-                                       "}")
-        self.btn_connect.setObjectName("btn_connect")
-        self.btn_connect.mouseReleaseEvent = self.connectBtnClicked
-        self.text_btn_connect = QtWidgets.QLabel(self.btn_connect)
-        self.text_btn_connect.setGeometry(QtCore.QRect(10, 5, 100, 25))
-        font = QtGui.QFont()
-        font.setFamily("Montserrat")
-        font.setPointSize(14)
-        self.text_btn_connect.setFont(font)
-        self.text_btn_connect.setLineWidth(1)
-        self.text_btn_connect.setAlignment(QtCore.Qt.AlignCenter)
-        self.text_btn_connect.setObjectName("text_btn_connect")
         self.scrollArea = QtWidgets.QScrollArea(content)
         self.scrollArea.setGeometry(QtCore.QRect(30, 100, 660, 240))
         self.scrollArea.setStyleSheet("#scrollArea  {\n"
@@ -122,14 +95,6 @@ class Ui_content(object):
         self.verticalLayout.setSpacing(0)
         self.verticalLayout.setObjectName("verticalLayout")
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
-        self.timout_label = QtWidgets.QLabel(content)
-        self.timout_label.setGeometry(QtCore.QRect(180, 370, 200, 25))
-        font = QtGui.QFont()
-        font.setFamily("Montserrat")
-        font.setPointSize(12)
-        self.timout_label.setFont(font)
-        self.timout_label.setText("")
-        self.timout_label.setObjectName("timout_label")
 
         self.retranslateUi(content)
         QtCore.QMetaObject.connectSlotsByName(content)
@@ -144,7 +109,6 @@ class Ui_content(object):
         content.setWindowTitle(_translate("content", "Form"))
         self.text_btn_connected.setText(_translate("content", "Connected"))
         self.text_btn_linked.setText(_translate("content", "Linked"))
-        self.text_btn_connect.setText(_translate("content", "Connect"))
 
     def switchToLinked(self, event):
         self.current_tab_connected = False
@@ -184,6 +148,3 @@ class Ui_content(object):
             self.verticalLayout.addWidget(content_device)
 
         self.scrollAreaWidgetContents.setFixedHeight(len(devices) * 45)
-
-    def connectBtnClicked(self, event):
-        self.bluetooth.make_discoverable()
