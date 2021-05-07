@@ -58,7 +58,7 @@ Open the lxsession autostart file:
 ```
 sudo nano /etc/xdg/lxsession/LXDE-pi/autostart
 ```
-Replace its content with the following line:
+Add the following line:
 ```
 @/usr/bin/python3 /home/pi/headunit-base/main.py
 ```
