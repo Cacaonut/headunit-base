@@ -22,7 +22,7 @@ class Ui_content(object):
                               "* {\n"
                               "    color: white\n"
                               "}")
-        self.label = QtWidgets.Qlabell(content)
+        self.label = QtWidgets.QLabel(content)
         self.label.setGeometry(QtCore.QRect(260, 120, 140, 60))
         font = QtGui.QFont()
         font.setFamily("Montserrat")

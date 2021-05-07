@@ -327,7 +327,7 @@ class Ui_MainWindow(object):
 
         # Android Auto
         if platform == "linux" or platform == "linux2":
-            self.content_home.startAA()
+            self.ui_home.startAA()
 
         # Settings
         self.content_settings = QtWidgets.QWidget()
