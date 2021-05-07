@@ -13,7 +13,7 @@
 * Raspbian OS based on Debian Wheezy
 * Python3
 ## Installation
-__Please note: These installation instructions are written mainly for my own purposes. However, with little customization of the code (e.g. changing the address of you obd2 adapter in main.py), you can get it running on your system as well. If I might be of any help, feel free to open an issue.__
+__Please note: These installation instructions are written mainly for my own purposes. However, with little customization of the code (e.g. changing the address of you obd2 adapter in main.py), you can get it running on your system as well. If you are in need of any assistance, feel free to open an issue.__
 
 First build the following packages:  
 
