@@ -135,12 +135,12 @@ class Ui_content(object):
         else:
             devices = self.bluetooth.get_paired_devices()
             connected_devices = self.bluetooth.get_connected_devices()
-            for device in devices:
-                if device in connected_devices:
-                    devices.remove(device)
+            print(connected_devices)
+            print(devices)
+            devices = [d for d in devices if d not in connected_devices]
+            print(devices)
 
         for device in devices:
-            print(device)
             content_device = QtWidgets.QWidget()
             ui_device = ui.lists.device.Ui_widget()
             ui_device.setupUi(content_device, self, str(device["mac_address"].decode("UTF-8")))
