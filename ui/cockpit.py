@@ -45,6 +45,23 @@ class Ui_content(object):
         self.label_gear.setFont(font)
         self.label_gear.setAlignment(QtCore.Qt.AlignCenter)
         self.label_gear.setObjectName("label_gear")
+        self.label_speed = QtWidgets.QLabel(content)
+        self.label_speed.setGeometry(QtCore.QRect(450, 130, 100, 60))
+        font = QtGui.QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(16)
+        self.label_speed.setFont(font)
+        self.label_speed.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_speed.setObjectName("label_speed")
+        self.label_rotation = QtWidgets.QLabel(content)
+        self.label_rotation.setGeometry(QtCore.QRect(280, 130, 100, 60))
+        font = QtGui.QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(16)
+        self.label_rotation.setFont(font)
+        self.label_rotation.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_rotation.setObjectName("label_rotation")
+
 
         self.speed = 0
         self.rpm = 0
@@ -61,6 +78,8 @@ class Ui_content(object):
         _translate = QtCore.QCoreApplication.translate
         content.setWindowTitle(_translate("content", "Form"))
         self.label_gear.setText(_translate("content", "Gear -"))
+        self.label_speed.setText(_translate("content", "0 km/h"))
+        self.label_rotation.setText(_translate("content", "0 rpm"))
 
     def rpmChanged(self, r):
         if not r.is_null():
@@ -77,6 +96,7 @@ class Ui_content(object):
             qt_gauge = ImageQt(gauge)
             pixmap = QtGui.QPixmap.fromImage(qt_gauge)
             self.rotation_gauge.setPixmap(pixmap)
+            self.label_rotation.setText(str(self.rpm) + " rpm")
 
     def speedChanged(self, s):
         if not s.is_null():
@@ -94,6 +114,7 @@ class Ui_content(object):
             qt_gauge = ImageQt(gauge)
             pixmap = QtGui.QPixmap.fromImage(qt_gauge)
             self.speed_gauge.setPixmap(pixmap)
+            self.label_speed.setText(str(self.speed) + " km/h")
 
     def initUI(self):
         # Speed
