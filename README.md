@@ -7,6 +7,7 @@
 ## Requirements
 ### Hardware:
 * Raspberry Pi 3 or better (Android Auto won't work fluently on RPI2, the rest might)
+* Official RasPi touchscreen
 * External Soundcard and BT adapter (for Android Auto)
 * RTL-SDR dongle
 * OBD2 Adapter
