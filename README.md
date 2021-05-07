@@ -9,6 +9,7 @@
 * Raspberry Pi 3 or better (Android Auto won't work fluently on RPI2, the rest might)
 * External Soundcard and BT adapter (for Android Auto)
 * RTL-SDR dongle
+* OBD2 Adapter
 ### Software:
 * Raspbian OS based on Debian Wheezy
 * Python3
