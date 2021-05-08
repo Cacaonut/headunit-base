@@ -61,6 +61,7 @@ class Ui_content(object):
     def updateUI(self):
         if self.dtcs:
             self.label.setVisible(False)
+            self.container.setVisible(True)
 
             for i in reversed(range(self.verticalLayout.count())):
                 self.verticalLayout.itemAt(i).widget().setParent(None)
@@ -76,3 +77,4 @@ class Ui_content(object):
             self.container.setFixedHeight(self.verticalLayout.count() * 45)
         else:
             self.label.setVisible(True)
+            self.container.setVisible(False)
