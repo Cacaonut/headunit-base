@@ -25,7 +25,7 @@ class Ui_widget(object):
                              "    color: white\n"
                              "}")
         self.label_id = QtWidgets.QLabel(widget)
-        self.label_id.setGeometry(QtCore.QRect(10, 10, 25, 25))
+        self.label_id.setGeometry(QtCore.QRect(10, 10, 80, 25))
         font = QtGui.QFont()
         font.setFamily("Montserrat Light")
         font.setPointSize(13)
@@ -34,7 +34,7 @@ class Ui_widget(object):
         self.label_id.setAlignment(QtCore.Qt.AlignCenter)
         self.label_id.setObjectName("label_id")
         self.label_title = QtWidgets.QLabel(widget)
-        self.label_title.setGeometry(QtCore.QRect(100, 10, 300, 25))
+        self.label_title.setGeometry(QtCore.QRect(100, 10, 500, 25))
         font = QtGui.QFont()
         font.setFamily("Montserrat Light")
         font.setPointSize(13)

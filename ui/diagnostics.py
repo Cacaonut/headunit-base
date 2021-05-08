@@ -9,7 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+import ui.lists.dtc
 
 class Ui_content(object):
     def setupUi(self, content):
@@ -40,7 +40,6 @@ class Ui_content(object):
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout.setSpacing(0)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.verticalLayout.setVisible(False)
 
         self.dtcs = [
             ("P0104", "Mass or Volume Air Flow Circuit Intermittent"),
@@ -48,6 +47,8 @@ class Ui_content(object):
             ("C0128", "Low Brake Fluid Circuit Low"),
             ("U0063", "Vehicle Communication Bus D (-) shorted to Bus D (+)")
         ]
+
+        self.updateUI()
 
         self.retranslateUi(content)
         QtCore.QMetaObject.connectSlotsByName(content)
@@ -60,18 +61,18 @@ class Ui_content(object):
     def updateUI(self):
         if self.dtcs:
             self.label.setVisible(False)
-            self.verticalLayout.setVisible(True)
 
             for i in reversed(range(self.verticalLayout.count())):
                 self.verticalLayout.itemAt(i).widget().setParent(None)
-        
+
             for dtc in self.dtcs:
                 content_dtc = QtWidgets.QWidget()
-                ui_dtc = ui.lists.checkbox_setting.Ui_widget()
+                ui_dtc = ui.lists.dtc.Ui_widget()
                 ui_dtc.setupUi(content_dtc, self)
                 ui_dtc.label_id.setText(dtc[0])
                 ui_dtc.label_title.setText(dtc[1])
                 self.verticalLayout.addWidget(content_dtc)
+
+            self.container.setFixedHeight(self.verticalLayout.count() * 45)
         else:
             self.label.setVisible(True)
-            self.verticalLayout.setVisible(False)
