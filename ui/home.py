@@ -128,8 +128,7 @@ class Ui_content(object):
         self.btn_diagnostics_check = QtWidgets.QLabel(self.widget_2)
         self.btn_diagnostics_check.setGeometry(QtCore.QRect(80, 60, 50, 50))
         self.btn_diagnostics_check.setText("")
-        self.btn_diagnostics_check.setPixmap(
-            QtGui.QPixmap(":/images/check_green.svg"))
+        self.btn_diagnostics_check.setPixmap(QtGui.QPixmap(":/images/cross_red.svg"))
         self.btn_diagnostics_check.setScaledContents(True)
         self.btn_diagnostics_check.setObjectName("btn_diagnostics_check")
         self.widget_media = QtWidgets.QWidget(content)
@@ -230,8 +229,7 @@ class Ui_content(object):
         self.label_radio.setText(_translate("content", "Radio"))
         self.label_station.setText(_translate("content", "-"))
         self.label_diagnostics.setText(_translate("content", "Diagnostics"))
-        self.label_diagnostics_desc.setText(_translate("content", "All tests were\n"
-                                                                  "successful"))
+        self.label_diagnostics_desc.setText(_translate("content", "Status unkown"))
         self.label_media.setText(_translate("content", "Media"))
         self.label_song.setText(_translate("content", "-"))
         self.label_android_auto.setText(_translate("content", "Android Auto"))
@@ -301,6 +299,16 @@ class Ui_content(object):
                 else:
                     self.btn_play_media.setPixmap(
                         QtGui.QPixmap(":/images/play.svg"))
+            
+            # Diagnostics
+            if hasattr(self.owner, "ui_car") and hasattr(self.owner.ui_car, "ui_diagnostics"):
+                if self.owner.ui_car.ui_diagnostics.dtcs:
+                    self.label_diagnostics_desc.setText(str(len(self.owner.ui_car.ui_diagnostics.dtcs)) + " problems")
+                    self.btn_diagnostics_check.setPixmap(QtGui.QPixmap(":/images/cross_red.svg"))
+                else:
+                    self.label_diagnostics_desc.setText("All tests were\nsuccessful")
+                    self.btn_diagnostics_check.setPixmap(QtGui.QPixmap(":/images/check_green.svg"))
+
         except Exception as e:
             print("Error updating home view:")
             print(e)
