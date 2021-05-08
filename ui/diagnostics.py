@@ -30,6 +30,22 @@ class Ui_content(object):
         self.label.setFont(font)
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setObjectName("label")
+        self.container = QtWidgets.QWidget(content)
+        self.container.setGeometry(QtCore.QRect(0, 0, 660, 281))
+        self.container.setObjectName("container")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.container)
+        self.verticalLayout.setSizeConstraint(
+            QtWidgets.QLayout.SetDefaultConstraint)
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout.setSpacing(0)
+        self.verticalLayout.setObjectName("verticalLayout")
+
+        self.dtcs = [
+            ("P0104", "Mass or Volume Air Flow Circuit Intermittent"),
+            ("B0004", "PCM Discrete Input Speed Signal Not Present"),
+            ("C0128", "Low Brake Fluid Circuit Low"),
+            ("U0063", "Vehicle Communication Bus D (-) shorted to Bus D (+)")
+        ]
 
         self.retranslateUi(content)
         QtCore.QMetaObject.connectSlotsByName(content)
@@ -38,3 +54,15 @@ class Ui_content(object):
         _translate = QtCore.QCoreApplication.translate
         content.setWindowTitle(_translate("content", "Form"))
         self.label.setText(_translate("content", "Diagnostics"))
+
+    def updateUI(self):
+        for i in reversed(range(self.verticalLayout.count())):
+            self.verticalLayout.itemAt(i).widget().setParent(None)
+        
+        for dtc in self.dtcs:
+            content_dtc = QtWidgets.QWidget()
+            ui_dtc = ui.lists.checkbox_setting.Ui_widget()
+            ui_dtc.setupUi(content_dtc, self)
+            ui_dtc.label_id.setText(dtc[0])
+            ui_dtc.label_title.setText(dtc[1])
+            self.verticalLayout.addWidget(content_dtc)
