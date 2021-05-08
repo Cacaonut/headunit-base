@@ -233,9 +233,9 @@ class Ui_content(object):
 
                         else:
                             self.btn_play.setPixmap(QtGui.QPixmap(":/images/play.svg"))
-                            self.label_title.setText("")
-                            self.label_album.setText("")
-                            self.label_artist.setText("")
+                            self.label_title.setText("-")
+                            self.label_album.setText("-")
+                            self.label_artist.setText("-")
                             self.label_music_pos.setText("0:00")
                             self.label_length.setText("0:00")
                             self.disc_cover.setPixmap(QtGui.QPixmap(":/images/cover.png"))
@@ -298,9 +298,9 @@ class Ui_content(object):
 
                     else:
                         self.btn_play.setPixmap(QtGui.QPixmap(":/images/play.svg"))
-                        self.label_title.setText("")
-                        self.label_album.setText("")
-                        self.label_artist.setText("")
+                        self.label_title.setText("-")
+                        self.label_album.setText("-")
+                        self.label_artist.setText("-")
                         self.label_music_pos.setText("0:00")
                         self.label_length.setText("0:00")
                         self.disc_cover.setPixmap(QtGui.QPixmap(":/images/cover.png"))
