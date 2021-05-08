@@ -29,7 +29,7 @@ class Ui_content(object):
         self.widget_car.setGeometry(QtCore.QRect(20, 20, 210, 190))
         self.widget_car.setStyleSheet("background: #262626")
         self.widget_car.setObjectName("widget_car")
-        self.widget_car.mouseReleaseEvent = self.owner.switchToCar
+        self.widget_car.mouseReleaseEvent = self.switchToCockpit
         self.label_speed = QtWidgets.QLabel(self.widget_car)
         self.label_speed.setGeometry(QtCore.QRect(55, 25, 100, 30))
         font = QtGui.QFont()
@@ -108,6 +108,7 @@ class Ui_content(object):
         self.widget_2.setGeometry(QtCore.QRect(490, 20, 210, 190))
         self.widget_2.setStyleSheet("background: #262626")
         self.widget_2.setObjectName("widget_2")
+        self.widget_2.mouseReleaseEvent = self.switchToDiagnostics
         self.label_diagnostics = QtWidgets.QLabel(self.widget_2)
         self.label_diagnostics.setGeometry(QtCore.QRect(25, 15, 160, 30))
         font = QtGui.QFont()
@@ -128,7 +129,7 @@ class Ui_content(object):
         self.btn_diagnostics_check = QtWidgets.QLabel(self.widget_2)
         self.btn_diagnostics_check.setGeometry(QtCore.QRect(80, 60, 50, 50))
         self.btn_diagnostics_check.setText("")
-        self.btn_diagnostics_check.setPixmap(QtGui.QPixmap(":/images/cross_red.svg"))
+        self.btn_diagnostics_check.setPixmap(QtGui.QPixmap(":/images/disconnect.svg"))
         self.btn_diagnostics_check.setScaledContents(True)
         self.btn_diagnostics_check.setObjectName("btn_diagnostics_check")
         self.widget_media = QtWidgets.QWidget(content)
@@ -236,6 +237,14 @@ class Ui_content(object):
         self.label_android_auto_desc.setText(_translate("content", "Not running"))
         self.label_android_auto_startstop.setText(_translate("content", "Press to start"))
 
+    def switchToCockpit(self, event):
+        self.owner.switchToCar(event)
+        self.owner.ui_car.switchToCockpit(event)
+
+    def switchToDiagnostics(self, event):
+        self.owner.switchToCar(event)
+        self.owner.ui_car.switchToDiagnostics(event)
+
     def startAA(self):
         self.aa_process = subprocess.Popen(["sudo", "/home/pi/openauto/bin/autoapp"])
         self.label_android_auto_desc.setText("Connect your\n"
@@ -299,12 +308,12 @@ class Ui_content(object):
                 else:
                     self.btn_play_media.setPixmap(
                         QtGui.QPixmap(":/images/play.svg"))
-            
+
             # Diagnostics
             if hasattr(self.owner, "ui_car") and hasattr(self.owner.ui_car, "ui_diagnostics"):
                 if self.owner.ui_car.ui_diagnostics.dtcs:
-                    self.label_diagnostics_desc.setText(str(len(self.owner.ui_car.ui_diagnostics.dtcs)) + " problems")
-                    self.btn_diagnostics_check.setPixmap(QtGui.QPixmap(":/images/cross_red.svg"))
+                    self.label_diagnostics_desc.setText(str(len(self.owner.ui_car.ui_diagnostics.dtcs)) + " problems\noccureed")
+                    self.btn_diagnostics_check.setPixmap(QtGui.QPixmap(":/images/disconnect.svg"))
                 else:
                     self.label_diagnostics_desc.setText("All tests were\nsuccessful")
                     self.btn_diagnostics_check.setPixmap(QtGui.QPixmap(":/images/check_green.svg"))

@@ -123,7 +123,7 @@ class Ui_content(object):
         # Diagnostics
         content_diagnostics = QtWidgets.QWidget()
         self.ui_diagnostics = diagnostics.Ui_content()
-        self.ui_diagnostics.setupUi(content_diagnostics)
+        self.ui_diagnostics.setupUi(content_diagnostics, self.obd_conn)
         self.container.addWidget(content_diagnostics)
 
         # Start OBD2 connection
