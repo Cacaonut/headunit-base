@@ -53,6 +53,7 @@ class Ui_content(object):
         self.label.setText(_translate("content", "No connection to car."))
 
     def updateUI(self):
+        self.label.setText("All test were successful.")
         if self.dtcs:
             self.label.setVisible(False)
             self.container.setVisible(True)

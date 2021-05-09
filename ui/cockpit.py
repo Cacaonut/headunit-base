@@ -38,7 +38,7 @@ class Ui_content(object):
         self.speed_gauge.setScaledContents(True)
         self.speed_gauge.setObjectName("speed_gauge")
         self.label_gear = QtWidgets.QLabel(content)
-        self.label_gear.setGeometry(QtCore.QRect(280, 30, 100, 60))
+        self.label_gear.setGeometry(QtCore.QRect(230, 30, 200, 60))
         font = QtGui.QFont()
         font.setFamily("Montserrat")
         font.setPointSize(16)
@@ -95,7 +95,7 @@ class Ui_content(object):
     def retranslateUi(self, content):
         _translate = QtCore.QCoreApplication.translate
         content.setWindowTitle(_translate("content", "Form"))
-        self.label_gear.setText(_translate("content", "Gear -"))
+        self.label_gear.setText(_translate("content", "No\nConnection"))
         self.label_speed.setText(_translate("content", "0 km/h"))
         self.label_rotation.setText(_translate("content", "0 rpm"))
         self.label_rpm.setText(_translate("content", "rpm"))
@@ -119,6 +119,7 @@ class Ui_content(object):
             self.label_rotation.setText(str(int(self.rpm)) + " rpm")
 
     def speedChanged(self, s):
+        self.label_gear.setText("")
         if not s.is_null():
             self.speed = float(str(s).split(" ")[0])
             print("RPM: " + str(self.speed))
