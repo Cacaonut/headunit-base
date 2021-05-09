@@ -126,6 +126,7 @@ class Ui_content(object):
         self.settings = QtCore.QSettings("Cacaonut", "Headunit")
         self.volume = int(self.settings.value("sound/volume", 0))
         self.balance = int(self.settings.value("sound/balance_left_right", 0))
+        print(self.volume)
 
         self.switchToDisplay(None)
 

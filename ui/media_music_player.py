@@ -158,9 +158,9 @@ class Ui_content(object):
         content.setWindowTitle(_translate("content", "Form"))
         self.label_music_pos.setText(_translate("content", "0:00"))
         self.label_length.setText(_translate("content", "0:00"))
-        self.label_artist.setText(_translate("content", ""))
-        self.label_title.setText(_translate("content", ""))
-        self.label_album.setText(_translate("content", ""))
+        self.label_artist.setText(_translate("content", "-"))
+        self.label_title.setText(_translate("content", "-"))
+        self.label_album.setText(_translate("content", "-"))
 
     def updateUI(self):
         self.updateThreadRunning = True

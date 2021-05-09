@@ -319,8 +319,9 @@ class Ui_content(object):
                     self.btn_diagnostics_check.setPixmap(QtGui.QPixmap(":/images/check_green.svg"))
 
         except Exception as e:
-            print("Error updating home view:")
-            print(e)
+            # print("Error updating home view:")
+            # print(e)
+            pass
 
     def finishMediaSetup(self):
         self.finishedMediaSetup = True

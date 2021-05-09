@@ -507,7 +507,7 @@ class Ui_content(object):
 
     def fetchRDSOutput(self):
         while True:
-            data, output = self.process.communicate().decode("utf-8")
+            output = self.process.communicate()[1].decode("utf-8")
             if output == "" and self.process.poll() is not None:
                 self.rdsTimer.stop()
                 return

@@ -29,6 +29,7 @@ class Ui_MainWindow(object):
             #MainWindow.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
         MainWindow.setStyleSheet("")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
+        self.centralwidget.setCursor(QtCore.Qt.BlankCursor)
         self.centralwidget.setStyleSheet("#centralwidget {background: #000}\n"
                                          "* {color: white}")
         self.centralwidget.setObjectName("centralwidget")
@@ -428,10 +429,14 @@ class Ui_MainWindow(object):
         self.ui_home.updateUI()
 
     def volumeUpPressed(self, event):
-        self.ui_settings.changeVolume(self.ui_settings.volume + 2)
+        if self.ui_settings.volume <= 98:
+            self.ui_settings.changeVolume(self.ui_settings.volume + 2)
+            self.ui_settings.settings.setValue("sound/volume", self.ui_settings.volume)
 
     def volumeDownPressed(self, event):
-        self.ui_settings.changeVolume(self.ui_settings.volume - 2)
+        if self.ui_settings.volume >= 2:
+            self.ui_settings.changeVolume(self.ui_settings.volume - 2)
+            self.ui_settings.settings.setValue("sound/volume", self.ui_settings.volume)
 
     def tempChanged(self, t):
         if not t.is_null():
@@ -469,7 +474,7 @@ class Ui_MainWindow(object):
                             print("Saved Android Auto WID: " + self.aa_wid)
                         else:
                             in_aa = False
-            
+
                         if command == "VOL+":
                             if duration >= longpress:
                                 for i in range(5):
@@ -513,7 +518,7 @@ class Ui_MainWindow(object):
                         elif command == "CALL START":
                             virtual_kb.emit_click(uinput.KEY_P)
                         elif command == "VOICE":
-                            if duration >= 5.0:
+                            if duration >= 3.0:
                                 subprocess.call(['shutdown', '-h', 'now'], shell=False)
                             elif duration >= longpress:
                                 virtual_kb.emit_click(uinput.KEY_M)

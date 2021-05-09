@@ -50,7 +50,7 @@ class Ui_content(object):
     def retranslateUi(self, content):
         _translate = QtCore.QCoreApplication.translate
         content.setWindowTitle(_translate("content", "Form"))
-        self.label.setText(_translate("content", "No problems occurred."))
+        self.label.setText(_translate("content", "No connection to car."))
 
     def updateUI(self):
         if self.dtcs:
